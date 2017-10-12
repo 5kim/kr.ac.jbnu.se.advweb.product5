@@ -33,8 +33,8 @@
 	</div>
 	<div>
 	<label>성별</label>
-	남자<input type ="checkbox" value="male">
-	여자<input type ="checkbox" value="female">
+	남자<input type ="radio" name="성별" value="male">
+	여자<input type ="radio" name="성별" value="female">
 	</div>
 	<div>
 	<label>E-mail</label>
