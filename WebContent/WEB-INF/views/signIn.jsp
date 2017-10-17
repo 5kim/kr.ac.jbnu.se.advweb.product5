@@ -28,11 +28,8 @@
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input type="number" name="number1" value="${user.number1}" /></td>
-				<td>-<input type="number" name="number2"
-					value="${user.number2}" /></td>
-				<td>-<input type="number" name="number3"
-					value="${user.number3}" /></td>
+				<td><input type="text" name="number" value="${user.number}" /></td>
+				<td><label><b>' - '없이 입력해주세요.</b></label>
 			</tr>
 			<tr>
 				<td>성별</td>
@@ -43,32 +40,6 @@
 				<td>생년월일</td>
 				<td><select name="birthyear" value="${user.birthyear}">
 						<option value="">생년</option>
-						<option value=1920>1920</option>
-						<option value=1921>1921</option>
-						<option value=1922>1922</option>
-						<option value=1923>1923</option>
-						<option value=1924>1924</option>
-						<option value=1925>1925</option>
-						<option value=1926>1926</option>
-						<option value=1927>1927</option>
-						<option value=1928>1928</option>
-						<option value=1929>1929</option>
-						<option value=1930>1930</option>
-						<option value=1931>1931</option>
-						<option value=1932>1932</option>
-						<option value=1933>1933</option>
-						<option value=1934>1934</option>
-						<option value=1935>1935</option>
-						<option value=1936>1936</option>
-						<option value=1937>1937</option>
-						<option value=1938>1938</option>
-						<option value=1939>1939</option>
-						<option value=1940>1940</option>
-						<option value=1941>1941</option>
-						<option value=1942>1942</option>
-						<option value=1943>1943</option>
-						<option value=1944>1944</option>
-						<option value=1945>1945</option>
 						<option value=1946>1946</option>
 						<option value=1947>1947</option>
 						<option value=1948>1948</option>
