@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+body {
+    margin: 0px; <!-- 언제나 전체 body에는 margin 값을 0으로 세팅해준다-->
+    font-size: 18px;
+
+}
+#box {
+    position: relative;
+    height: auto;
+    margin: auto; <!-- 레이아웃을 싸고 있는 box의 margin을 auto로 주면 중앙정렬 효과-->
+
+}
+#top {
+
+    height: 100px;
+    position: relative;
+}
+#left {
+	margin : auto;
+    float: left;
+    height: 500px;
+    width: 15%;
+    position: relative;
+	
+}
+#main {
+
+    float: left;
+    height: 500px;
+    width: 85%;
+    position: relative;
+}
+#bottom {
+
+    height: 70px;
+    position: relative;
+    clear: both; <!-- 상단의 흐름을 한번 끊어주기 위해 clear를 해준다.. -.-;;?? -->
+    float: left; <!-- 새로운 흐름을 지정해줘야 깨지지 않는다-->
+}
+
+.fuck {
+	background-color: green;
+	font-family: 'Jeju Myeongjo', serif;
+}
+
+.btn {
+  display: inline-block;
+  width: 150px;
+  padding: 6px 12px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}

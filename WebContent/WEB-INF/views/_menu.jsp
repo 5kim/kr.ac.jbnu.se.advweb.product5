@@ -4,20 +4,26 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-
+<link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
 </head>
 <body>
-<div style="padding: 5px;">
- 
-   <a href="${pageContext.request.contextPath}/">Home</a>
-   |
-   <a href="${pageContext.request.contextPath}/productList">Product List</a>
-   |
-   <a href="${pageContext.request.contextPath}/userInfo">My Account Info</a>
-   |
-   <a href="${pageContext.request.contextPath}/login">Login</a>
-   |
-   <a href="${pageContext.request.contextPath}/signin">회원가입</a>
+<div>
+	<br>
+	<div>
+	<button class="btn" type="button" onClick="location.href='http://localhost:8080/product/'">Home</button>
+	</div>
+	<div>
+	<button class="btn" type="button" onClick="location.href='http://localhost:8080/product/productList'">Product List</button>
+	</div>
+	<div>
+	<button class="btn" type="button" onClick="location.href='http://localhost:8080/product/userInfo'">My Account Info</button>
+	</div>
+	<div>
+	<button class="btn" type="button" onClick="location.href='http://localhost:8080/product/login'">Login</button>
+	</div>
+	<div>
+	<button class="btn" type="button" onClick="location.href='http://localhost:8080/product/signin'">회원가입</button>
+	</div> 	
 </div> 
 </body>    
 </html>
