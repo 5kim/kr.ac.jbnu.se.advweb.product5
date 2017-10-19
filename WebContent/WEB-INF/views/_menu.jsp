@@ -10,7 +10,7 @@
 <div>
 	<br>
 	<div>
-	<button class="btn" type="button" onClick="location.href='http://localhost:8080/product/'">Home</button>
+	<button class="btn" type="button" onClick="location.href='http://localhost:8080/product/home'">Home</button>
 	</div>
 	<div>
 	<button class="btn" type="button" onClick="location.href='http://localhost:8080/product/productList'">Product List</button>
