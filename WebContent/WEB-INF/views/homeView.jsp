@@ -81,6 +81,20 @@ node.append("circle").attr("id", function(d) { return d.id; }).attr("r", functio
   node.append("title")
       .text(function(d) { return d.id + "\n" + format(d.value); });
 });
+	<div id="box">
+		<div id="top">
+			<jsp:include page="_header.jsp"></jsp:include>
+		</div>
+		<div id="left">
+			<jsp:include page="_menu.jsp"></jsp:include>
+		</div>
+		<div id="main">
+		<b>여기에다가는 추천상품과 신규상품을 넣어야 하겠지....</b>
+		</div>
+		<div id="bottom">
+			<jsp:include page="_footer.jsp"></jsp:include>
+		</div>
+	</div>
 
 </script>
 	<jsp:include page="_header.jsp"></jsp:include>
