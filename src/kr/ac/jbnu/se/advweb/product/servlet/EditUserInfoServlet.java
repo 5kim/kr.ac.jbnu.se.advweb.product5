@@ -28,6 +28,9 @@ public class EditUserInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		// 1. 현재 회원의 정보를 가지고 온다.
+		// 2. 회원 객체에 넣는다.
+		// 3. 화면에 보여준다.
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

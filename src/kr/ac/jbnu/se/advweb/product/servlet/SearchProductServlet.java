@@ -28,6 +28,20 @@ public class SearchProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//ㄱ 검색한 단어를 이용한 방법
+		
+		//ㄱ.1 검색한 단어를 받아온다.
+		//ㄱ.2 검색한 단어를 이용하여 DB에서 제품에 대한 정보를 불러온다.
+		//ㄱ.3 DB에서 받아온 정보를 배열 넣는다.
+		//ㄱ.4 받아온 정보를 화면에 보여준다.
+		
+		//ㄴ 카테고리를 이용한 방법
+		//ㄴ.1 선택한 카테고리 정보를 가지고 온다.
+		//ㄴ.2 카테고리 정보를 이용하여 DB에서 제품에 대한 정보를 불러온다.
+		//ㄴ.3 DB에서 받아온 정보를 배열에 넣는다.
+		//ㄴ.4 받아온 정보를 화면에 보여준다.
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
