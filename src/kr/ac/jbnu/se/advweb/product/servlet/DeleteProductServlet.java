@@ -28,6 +28,11 @@ public class DeleteProductServlet extends HttpServlet {
 		super();
 	}
 
+	/**
+	 * 1. 선택한 제품의 정보를 가지고 온다.(제품 번호)
+	 * 2. 제품 번호를 이용하여 DB에서 삭제한다.
+	 * 3. 재고화면으로 돌아간다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

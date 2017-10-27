@@ -39,6 +39,14 @@ public class CreateProductServlet extends HttpServlet {
 
 	// When the user enters the product information, and click Submit.
 	// This method will be called.
+	
+	/**
+	 * 1. 입력한 상품의 정보를 받아온다.
+	 * 2. 받아온 정보를 product 객체에 넣는다.
+	 * 3. DB에 등록한다.
+	 * 4. 재고화면으로 넘어간다.
+	 * 
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

@@ -66,6 +66,15 @@ public class EditProductServlet extends HttpServlet {
  
     // After the user modifies the product information, and click Submit.
     // This method will be executed.
+    
+    /**
+     * 1. 수정한 제품을 제품번호를 통해 선택한다.
+     * 2. 제품 번호를 통해 DB에서 정보를 가지고 온다.<<<<< 매번 가지고 와야하는지 ?? 어딘가에 저장해놓고 쓸 수는 없는지? 이전 페이지에서 분명히 한번 접근을 했을 텐데 말이야
+     * ======get=======
+     * 3. 폼을 이용하여 데이터를 입력받고 DB를 업데이트 한다.
+     * 4. 재고관리 화면으로 돌아간다.(수정된 내용이 적용되어 있다.)
+     * ======post======
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
