@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<!-- 회원정보화면 -->
 <head>
 <meta charset="UTF-8">
 <title>User Info</title>

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+<!-- 등록한 제품을 수정하는 화면 -->
 <head>
 <meta charset="UTF-8">
 <title>Edit Product</title>

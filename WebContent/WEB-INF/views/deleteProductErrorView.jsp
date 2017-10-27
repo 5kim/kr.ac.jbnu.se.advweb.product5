@@ -3,12 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+<!-- 판매자가 등록했던 제품을 삭제했지만 실패한 화면 하지만 이 화면이 팔요한지는 의문 -->
 <head>
 <meta charset="UTF-8">
 <title>Delete Product</title>
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
 </head>
-
 <body>
 	<div id="box">
 		<div id="top">

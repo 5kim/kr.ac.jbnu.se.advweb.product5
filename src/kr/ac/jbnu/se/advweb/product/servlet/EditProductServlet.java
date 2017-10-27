@@ -14,6 +14,11 @@ import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
  
+/**
+ * 
+ * @author HongJG
+ *제품의 정보를 수정하기 위한 서블릿
+ */
 @WebServlet(urlPatterns = { "/editProduct" })
 public class EditProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;

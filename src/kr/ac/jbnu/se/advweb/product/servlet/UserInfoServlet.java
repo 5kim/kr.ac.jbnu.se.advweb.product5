@@ -13,7 +13,11 @@ import javax.servlet.http.HttpSession;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
-
+/**
+ * 회원정보를 위한 서블릿
+ * @author HongJG
+ *
+ */
 @WebServlet(urlPatterns = { "/userInfo" })
 public class UserInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

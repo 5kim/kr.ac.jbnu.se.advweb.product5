@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 회원가입을 위한 서블릿?
+ * @author HongJG
+ *
+ */
 @WebServlet(urlPatterns = { "/signin" })
 public class SigninServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

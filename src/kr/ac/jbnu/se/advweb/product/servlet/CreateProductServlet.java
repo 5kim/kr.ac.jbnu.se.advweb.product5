@@ -15,6 +15,10 @@ import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
+/**관리자가 상품등록을 위한 서블릿
+ *
+ * 
+ */
 @WebServlet(urlPatterns = { "/createProduct" })
 public class CreateProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

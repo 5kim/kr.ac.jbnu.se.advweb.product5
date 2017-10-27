@@ -15,6 +15,12 @@ import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
  
+/**
+ * 이 제품 리스트는 관리자를 위한 화면임
+ * 
+ * @author HongJG
+ *
+ */
 @WebServlet(urlPatterns = { "/productList" })
 public class ProductListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;

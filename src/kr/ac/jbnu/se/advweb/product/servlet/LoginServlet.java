@@ -16,6 +16,13 @@ import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
+/**
+ * 로그인 화면을 위한 서블릿
+ * 이건 필요 없을듯함
+ * 
+ * @author HongJG
+ *
+ */
 @WebServlet(urlPatterns = { "/login" })
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

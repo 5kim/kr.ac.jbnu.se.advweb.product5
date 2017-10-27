@@ -4,10 +4,12 @@
 
 <!DOCTYPE html>
 <html>
+<!-- 관리자가 제품 등록을 하기 위한 화면 -->
 <head>
 <meta charset="UTF-8">
 <title>Create Product</title>
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
+
 </head>
 <body>
 	<div id="box">

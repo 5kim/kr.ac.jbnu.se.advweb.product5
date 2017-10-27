@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+<!-- 관리자가 재고량을 확인 할 수 있는 화면 -->
 <head>
 <meta charset="UTF-8">
 <title>Product List</title>

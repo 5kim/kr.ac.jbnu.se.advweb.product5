@@ -14,6 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
+/**
+ * 
+ * @author HongJG
+ *관리자가 제품 목록을 삭제하기 위한 서블릿
+ */
+
 @WebServlet(urlPatterns = { "/deleteProduct" })
 public class DeleteProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
