@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +13,13 @@
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
 <title>Home Page</title>
+
+   <style>
+     div{
+        color:red;
+        text-decoration:underline;
+      }
+    </style>
 </head>
 <body>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -30,57 +36,7 @@
 	<svg width="960" height="960" font-family="sans-serif" font-size="10"
 		text-anchor="middle"></svg>
 	<script src="https://d3js.org/d3.v4.min.js"></script>
-	<script>
-
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
-
-var format = d3.format(",d");
-
-var color = d3.scaleOrdinal(d3.schemeCategory20c);
-
-var pack = d3.pack()
-    .size([width, height])
-    .padding(1.5);
-
-d3.csv("file/flare.csv", function(d) {
-  d.value = +d.value;
-  if (d.value) return d;
-}, function(error, classes) {
-  if (error) throw error;
-
-  var root = d3.hierarchy({children: classes})
-      .sum(function(d) { return d.value; })
-      .each(function(d) {
-        if (id = d.data.id) {
-          var id, i = id.lastIndexOf(".");
-          d.id = id;
-          d.package = id.slice(0, i);
-          d.class = id.slice(i + 1);
-        }
-      });
-
-  var node = svg.selectAll(".node")
-    .data(pack(root).leaves())
-    .enter().append("g")
-      .attr("class", "node")
-      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-node.append("circle").attr("id", function(d) { return d.id; }).attr("r", function(d) { return d.r; }).style("fill", function(d) { return color(d.package); });
-
-  node.append("clipPath").attr("id", function(d) { return "clip-" + d.id; }).append("use").attr("xlink:href", function(d) { return "#" + d.id; });
-
-  node.append("text").attr("clip-path", function(d) { return "url(#clip-" + d.id + ")"; })
-    .selectAll("tspan")
-    .data(function(d) { return d.class.split(/(?=[A-Z][^A-Z])/g); })
-    .enter().append("tspan")
-      .attr("x", 0)
-      .attr("y", function(d, i, nodes) { return 13 + (i - nodes.length / 2 - 0.5) * 10; })
-      .text(function(d) { return d; });
-
-  node.append("title")
-      .text(function(d) { return d.id + "\n" + format(d.value); });
-});
+	
 	<div id="box">
 		<div id="top">
 			<jsp:include page="_header.jsp"></jsp:include>
@@ -89,59 +45,12 @@ node.append("circle").attr("id", function(d) { return d.id; }).attr("r", functio
 			<jsp:include page="_menu.jsp"></jsp:include>
 		</div>
 		<div id="main">
-		<b>여기에다가는 추천상품과 신규상품을 넣어야 하겠지....</b>
+			<b>여기에다가는 추천상품과 신규상품을 넣어야 하겠지....</b>
 		</div>
 		<div id="bottom">
 			<jsp:include page="_footer.jsp"></jsp:include>
 		</div>
 	</div>
-
-</script>
-	<jsp:include page="_header.jsp"></jsp:include>
-	<jsp:include page="_menu.jsp"></jsp:include>
-
-	<div class="container">
-		<!-- Content here -->
-	</div>
-
-	<div class="container">
-		<div class="row">
-			<div class="col">1 of 2</div>
-			<div class="col">2 of 2</div>
-		</div>
-		<div class="row">
-			<div class="col">1 of 3</div>
-			<div class="col">2 of 3</div>
-			<div class="col">3 of 3</div>
-		</div>
-	</div>
-	<div class="alert alert-primary" role="alert">This is a primary
-		alert—check it out!</div>
-	<div class="alert alert-secondary" role="alert">This is a
-		secondary alert—check it out!</div>
-	<div class="alert alert-success" role="alert">This is a success
-		alert—check it out!</div>
-	<div class="alert alert-danger" role="alert">This is a danger
-		alert—check it out!</div>
-	<div class="alert alert-warning" role="alert">This is a warning
-		alert—check it out!</div>
-	<div class="alert alert-info" role="alert">This is a info
-		alert—check it out!</div>
-	<div class="alert alert-light" role="alert">This is a light
-		alert—check it out!</div>
-	<div class="alert alert-dark" role="alert">This is a dark
-		alert—check it out!</div>
-
-	<button type="button" class="btn btn-primary">Primary</button>
-	<button type="button" class="btn btn-secondary">Secondary</button>
-	<button type="button" class="btn btn-success">Success</button>
-	<button type="button" class="btn btn-danger">Danger</button>
-	<button type="button" class="btn btn-warning">Warning</button>
-	<button type="button" class="btn btn-info">Info</button>
-	<button type="button" class="btn btn-light">Light</button>
-	<button type="button" class="btn btn-dark">Dark</button>
-
-	<button type="button" class="btn btn-link">Link</button>
 
 	<h3>Home Page</h3>
 
