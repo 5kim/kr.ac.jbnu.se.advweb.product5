@@ -6,7 +6,7 @@ package kr.ac.jbnu.se.advweb.product.model;
  */
 import java.util.Date;
 
-public class Coopon {
+public class Coupon {
 	private String serialNumber;
 	private String userId;
 	private int discountRate;
