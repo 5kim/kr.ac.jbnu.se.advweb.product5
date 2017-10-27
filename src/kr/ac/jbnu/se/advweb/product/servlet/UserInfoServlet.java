@@ -65,6 +65,11 @@ public class UserInfoServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//1. 받은 유저 정보를 DB에 저장한다.
+		//2. 유저 객체를 수정한 정보로 업데이트한다.
+		//3. 세션의 회원 정보 또한 업데이트 해준다.
+		//4. 수정된 회원 정보를 보여준다.
+		
 		doGet(request, response);
 	}
 
