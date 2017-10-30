@@ -13,13 +13,6 @@
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
 <title>Home Page</title>
-
-   <style>
-     div{
-        color:red;
-        text-decoration:underline;
-      }
-    </style>
 </head>
 <body>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
