@@ -52,15 +52,22 @@ public class CreateProductServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Connection conn = MyUtils.getStoredConnection(request);
 
-		String code = (String) request.getParameter("code");
+		String productNumber = (String) request.getParameter("productNumber");
 		String name = (String) request.getParameter("name");
 		String priceStr = (String) request.getParameter("price");
+		String seller = (String) request.getParameter("seller");
+		String description = (String) request.getParameter("description");
+		String inventoryStr = (String) request.getParameter("inventory");		
+		
+		
 		float price = 0;
+		int inventory = 0;
 		try {
 			price = Float.parseFloat(priceStr);
+			inventory = Integer.parseInt(inventoryStr);
 		} catch (Exception e) {
 		}
-		Product product = new Product(code, name, price);
+		Product product = new Product(productNumber, name, price, seller, description, inventory);
 
 		String errorString = null;
 
@@ -68,7 +75,7 @@ public class CreateProductServlet extends HttpServlet {
 		// with at least 1 character
 		String regex = "\\w+";
 
-		if (code == null || !code.matches(regex)) {
+		if (productNumber == null || !productNumber.matches(regex)) {
 			errorString = "Product Code invalid!";
 		}
 

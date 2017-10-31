@@ -24,19 +24,25 @@
 
 			<table border="1" cellpadding="5" cellspacing="1">
 				<tr>
-					<th>Code</th>
+					<th>productNumber</th>
 					<th>Name</th>
 					<th>Price</th>
+					<th>seller</th>
+					<th>description</th>
+					<th>inventory</th>
 					<th>Edit</th>
 					<th>Delete</th>
 				</tr>
 				<c:forEach items="${productList}" var="product">
 					<tr>
-						<td>${product.code}</td>
+						<td>${product.productNumber}</td>
 						<td>${product.name}</td>
 						<td>${product.price}</td>
-						<td><a href="editProduct?code=${product.code}">Edit</a></td>
-						<td><a href="deleteProduct?code=${product.code}">Delete</a></td>
+						<td>${product.seller}</td>
+						<td>${product.description}</td>
+						<td>${product.inventory}</td>
+						<td><a href="editProduct?code=${product.productNumber}">Edit</a></td>
+						<td><a href="deleteProduct?code=${product.productNumber}">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</table>

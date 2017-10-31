@@ -17,7 +17,7 @@
       <form method="POST" action="${pageContext.request.contextPath}/login">
          <table border="0">
             <tr>
-               <td>User Name</td>
+               <td>User id</td>
                <td><input type="text" name="userName" value= "${user.userName}" /> </td>
             </tr>
             <tr>

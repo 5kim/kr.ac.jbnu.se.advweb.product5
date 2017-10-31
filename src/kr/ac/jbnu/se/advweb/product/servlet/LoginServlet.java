@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String userName = request.getParameter("userName");
+		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String rememberMeStr = request.getParameter("rememberMe");
 		boolean remember = "Y".equals(rememberMeStr);
@@ -59,14 +59,14 @@ public class LoginServlet extends HttpServlet {
 		boolean hasError = false;
 		String errorString = null;
 
-		if (userName == null || password == null || userName.length() == 0 || password.length() == 0) {
+		if (id == null || password == null || id.length() == 0 || password.length() == 0) {
 			hasError = true;
-			errorString = "Required username and password!";
+			errorString = "Required userid and password!";
 		} else {
 			Connection conn = MyUtils.getStoredConnection(request);
 			try {
 				// Find the user in the DB.
-				user = DBUtils.findUser(conn, userName, password);
+				user = DBUtils.findUser(conn, id, password);
 
 				if (user == null) {
 					hasError = true;
@@ -81,7 +81,7 @@ public class LoginServlet extends HttpServlet {
 		// If error, forward to /WEB-INF/views/login.jsp
 		if (hasError) {
 			user = new UserAccount();
-			user.setUserName(userName);
+			user.setId(id);
 			user.setPassword(password);
 
 			// Store information in request attribute, before forward.

@@ -14,7 +14,7 @@
 		// The following code is for submitting the form data to server and redirect to another page. 
 		$("#login_form_id").on('submit', function(e) {
 			$.post('${pageContext.request.contextPath}/login', {
-				userName : $("#name_id").val(),
+				userid : $("#id_id").val(),
 				password : $("#passwd_id").val(),
 				rememberMe : $("#rememberMe_id").val()
 			}, function(data) {
@@ -67,8 +67,8 @@
 				<table border="0">
 					<tr>
 						<td>ID</td>
-						<td><input type="text" id="name_id" name="userName"
-							value="${user.userName}" /></td>
+						<td><input type="text" id="id_id" name="id"
+							value="${user.id}" /></td>
 					</tr>
 					<tr>
 						<td>Password</td>

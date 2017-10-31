@@ -41,13 +41,13 @@ public class MyUtils {
 	// Store info in Cookie
 	public static void storeUserCookie(HttpServletResponse response, UserAccount user) {
 		System.out.println("Store user cookie");
-		Cookie cookieUserName = new Cookie(ATT_NAME_USER_NAME, user.getUserName());
+		Cookie cookieId = new Cookie(ATT_NAME_USER_NAME, user.getId());
 		// 1 day (Converted to seconds)
-		cookieUserName.setMaxAge(24 * 60 * 60);
-		response.addCookie(cookieUserName);
+		cookieId.setMaxAge(24 * 60 * 60);
+		response.addCookie(cookieId);
 	}
 
-	public static String getUserNameInCookie(HttpServletRequest request) {
+	public static String getIdInCookie(HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
