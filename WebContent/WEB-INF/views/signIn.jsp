@@ -24,7 +24,7 @@
 						<tr>
 							<td>ID</td>
 							<td><input type="text" name="userName"
-								value="${user.userName}" /></td>
+								value="${user.id}" /></td>
 						</tr>
 						<tr>
 							<td>PASSWORD</td>
@@ -37,7 +37,7 @@
 						</tr>
 						<tr>
 							<td>전화번호</td>
-							<td><input type="text" name="number" value="${user.number}" /></td>
+							<td><input type="text" name="number" value="${user.contact}" /></td>
 							<td><label><b>' - '없이 입력해주세요.</b></label>
 						</tr>
 						<tr>
@@ -172,7 +172,7 @@
 						</tr>
 						<tr>
 							<td>E-mail</td>
-							<td><input type="text" name="userMail" value="${user.mail}" /></td>
+							<td><input type="text" name="userMail" value="${user.email}" /></td>
 						</tr>
 						<tr>
 							<td colspan="2"><input type="submit" value="Submit" /> <a

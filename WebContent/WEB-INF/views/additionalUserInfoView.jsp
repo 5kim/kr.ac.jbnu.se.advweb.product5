@@ -5,7 +5,12 @@
 
 <div id="userInfo" name="userInfo" title="Example Div Element" 
 	style="color: #0900C4; font: Helvetica 12pt;border: 1px solid black;">
-  <h5>${user.userName}</h5>
+  <h5>${user.name}</h5>
+  
+  User Id: ${user.id} <br /> Name: ${user.name } <br />
+  User Birth: ${user.birth} <br /> Contact: ${user.contact } <br />
+  User E-mail: ${user.email}
+      
   <p>This is an additional user info.</p>
   
   <a href="javascript:void(0);" onclick="javascript:hideUserInfo();">hide</a>

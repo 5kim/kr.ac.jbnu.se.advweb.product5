@@ -33,14 +33,14 @@ public class EditProductServlet extends HttpServlet {
             throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
  
-        String code = (String) request.getParameter("code");
+        String productNumber = (String) request.getParameter("productNumber");
  
         Product product = null;
  
         String errorString = null;
  
         try {
-            product = DBUtils.findProduct(conn, code);
+            product = DBUtils.findProduct(conn, productNumber);
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
@@ -75,20 +75,28 @@ public class EditProductServlet extends HttpServlet {
      * 4. 재고관리 화면으로 돌아간다.(수정된 내용이 적용되어 있다.)
      * ======post======
      */
+    
+    //일단 오류가 인뜨게 해놓은 상태이고 부분 수정할 수 있도록 내부를 수정하는 작업을 진행해야함.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
  
-        String code = (String) request.getParameter("code");
+        String productNumber = (String) request.getParameter("productNumber");
         String name = (String) request.getParameter("name");
         String priceStr = (String) request.getParameter("price");
-        float price = 0;
-        try {
-            price = Float.parseFloat(priceStr);
+		String seller = (String) request.getParameter("seller");
+		String description = (String) request.getParameter("description");
+		String inventoryStr = (String) request.getParameter("inventory");		
+		
+		float price = 0;
+		int inventory = 0;
+		try {
+			price = Float.parseFloat(priceStr);
+			inventory = Integer.parseInt(inventoryStr);
         } catch (Exception e) {
         }
-        Product product = new Product(code, name, price);
+        Product product = new Product(productNumber, name, price, seller, description, inventory);
  
         String errorString = null;
  
