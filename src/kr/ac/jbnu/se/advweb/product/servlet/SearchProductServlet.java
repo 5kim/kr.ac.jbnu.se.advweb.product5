@@ -50,6 +50,14 @@ public class SearchProductServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//======단어 검색을 이용 할 경우======
+		//1. 검색한 단어를 이용해 DB에서 상품을 검색해온다.
+		//2. 검색한 상품 모두를 화면에 보여주어야 하므로 모든 정보를 request에 저장한다.
+		//3. 검색화면으로 forward한다.
+		
+		
+		
+		
 		doGet(request, response);
 	}
 

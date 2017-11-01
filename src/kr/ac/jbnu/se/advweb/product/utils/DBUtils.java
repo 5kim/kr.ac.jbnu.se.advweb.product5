@@ -27,12 +27,12 @@ public class DBUtils {
 		ResultSet rs = pstm.executeQuery();
 
 		if (rs.next()) {
-			String name = rs.getString("name");			
+			String name = rs.getString("name");
 			int birth = rs.getInt("birth");
 			String gender = rs.getString("gender");
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
-			
+
 			UserAccount user = new UserAccount();
 			user.setId(id);
 			user.setPassword(password);
@@ -41,7 +41,7 @@ public class DBUtils {
 			user.setGender(gender);
 			user.setContact(contact);
 			user.setEmail(email);
-			
+
 			return user;
 		}
 		return null;
@@ -59,14 +59,14 @@ public class DBUtils {
 
 		if (rs.next()) {
 			String password = rs.getString("Password");
-			String name = rs.getString("name");			
+			String name = rs.getString("name");
 			int birth = rs.getInt("birth");
 			String gender = rs.getString("gender");
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
-			
+
 			UserAccount user = new UserAccount();
-			
+
 			user.setId(id);
 			user.setId(id);
 			user.setPassword(password);
@@ -75,7 +75,7 @@ public class DBUtils {
 			user.setGender(gender);
 			user.setContact(contact);
 			user.setEmail(email);
-			
+
 			return user;
 		}
 		return null;
@@ -94,17 +94,17 @@ public class DBUtils {
 			float price = rs.getFloat("price");
 			String seller = rs.getString("seller");
 			String description = rs.getString("description");
-			int inventory = rs.getInt("inventory");		
+			int inventory = rs.getInt("inventory");
 
 			Product product = new Product();
-			
+
 			product.setProductNumber(productNumber);
 			product.setName(name);
 			product.setPrice(price);
 			product.setSeller(seller);
 			product.setDescription(description);
 			product.setInventory(inventory);
-			
+
 			list.add(product);
 		}
 		return list;
@@ -123,8 +123,8 @@ public class DBUtils {
 			float price = rs.getFloat("price");
 			String seller = rs.getString("seller");
 			String description = rs.getString("description");
-			int inventory = rs.getInt("inventory");	
-			
+			int inventory = rs.getInt("inventory");
+
 			Product product = new Product(productNumber, name, price, seller, description, inventory);
 			return product;
 		}
@@ -189,12 +189,12 @@ public class DBUtils {
 	public static List<Coupon> queryCoupon(Connection conn, String id) throws SQLException {
 		// TODO Auto-generated method stub
 		// 쿠폰 정보의 배열을 반환
-		//1. DB에 Query문 작성
+		// 1. DB에 Query문 작성
 		String sql = "Select * from coupon where id='" + id + "'";
-		//2. Query문 실행
+		// 2. Query문 실행
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
-		//3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
+		// 3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
 		List<Coupon> list = new ArrayList<Coupon>();
 		while (rs.next()) {
 			int discountRate = rs.getInt("discountRate");
@@ -209,8 +209,55 @@ public class DBUtils {
 
 			list.add(coupon);
 		}
-		//4. 배열 반환하기
+		// 4. 배열 반환하기
 		return list;
+	}
+
+	public static List<Product> queryTodayRecommend(Connection conn) throws SQLException {
+		// TODO Auto-generated method stub
+
+		String sql = "Select * from todayRecommend";
+		// 2. Query문 실행
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		ResultSet rs = pstm.executeQuery();
+		// 3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
+		List<Product> list = new ArrayList<Product>();
+		while (rs.next()) {
+			String productNumber = rs.getString("productNumber");
+			String name = rs.getString("name");
+			float price = rs.getFloat("price");
+			String seller = rs.getString("seller");
+			String description = rs.getString("description");
+			int inventory = rs.getInt("inventory");
+
+			Product product = new Product();
+
+			product.setProductNumber(productNumber);
+			product.setName(name);
+			product.setPrice(price);
+			product.setSeller(seller);
+			product.setDescription(description);
+			product.setInventory(inventory);
+
+			list.add(product);
+		}
+		// 4. 배열 반환하기
+		return list;
+	}
+
+	public static void insetCoupon(Connection conn, Coupon coupon) throws SQLException {
+		//관리자가 쿠폰에 대한 정보를 모두 넣는다.
+		//쿠폰 sql문 작성하기
+		
+		// TODO Auto-generated method stub
+		
+		String sql = "Insert into Product(productNumber, Name,Price) values (?,?,?)";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		// 쿠폰 넣어야함 속성에 대한 것 넣어야함
+		pstm.executeUpdate();
+		
 	}
 
 }
