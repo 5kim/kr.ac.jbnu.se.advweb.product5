@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.ac.jbnu.se.advweb.product.model.Product;
+import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
@@ -50,7 +51,7 @@ public class SigninServlet extends HttpServlet {
 		String birthStr = (String) request.getParameter("birth");
 		String gender = (String) request.getParameter("gender");
 		String contactStr = (String) request.getParameter("contact");		
-		String email = (String) request.getParameter("contact");
+		String email = (String) request.getParameter("email");
 		
 		int birth = 0;
 		int contact = 0;
@@ -59,7 +60,7 @@ public class SigninServlet extends HttpServlet {
 			contact = Integer.parseInt(contactStr);
 		} catch (Exception e) {
 		}
-		Product product = new Product(productNumber, name, price, seller, description, inventory);
+		UserAccount user = new UserAccount(id, password, name, birth, gender, contact, email);
 
 		String errorString = null;
 
@@ -67,13 +68,13 @@ public class SigninServlet extends HttpServlet {
 		// with at least 1 character
 		String regex = "\\w+";
 
-		if (productNumber == null || !productNumber.matches(regex)) {
-			errorString = "Product Code invalid!";
+		if (id == null || !id.matches(regex)) {
+			errorString = "id invalid!";
 		}
 
 		if (errorString == null) {
 			try {
-				DBUtils.insertProduct(conn, product);
+				DBUtils.insertUser(conn, user);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				errorString = e.getMessage();
@@ -82,18 +83,18 @@ public class SigninServlet extends HttpServlet {
 
 		// Store infomation to request attribute, before forward to views.
 		request.setAttribute("errorString", errorString);
-		request.setAttribute("product", product);
+		request.setAttribute("product", user);
 
 		// If error, forward to Edit page.
 		if (errorString != null) {
 			RequestDispatcher dispatcher = request.getServletContext()
-					.getRequestDispatcher("/WEB-INF/views/createProductView.jsp");
+					.getRequestDispatcher("/WEB-INF/views/signIn.jsp");
 			dispatcher.forward(request, response);
 		}
 		// If everything nice.
 		// Redirect to the product listing page.
 		else {
-			response.sendRedirect(request.getContextPath() + "/productList");
+			response.sendRedirect(request.getContextPath() + "/home");
 		}
 	}
 

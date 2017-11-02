@@ -80,7 +80,54 @@ public class DBUtils {
 		}
 		return null;
 	}
+	
+	public static void insertUser(Connection conn, UserAccount user) throws SQLException {
+		String sql = "Insert into user(id, password, name, birth, gender, contact, email) values (?,?,?,?,?,?,?)";
 
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.setString(1, user.getId());
+		pstm.setString(2, user.getPassword());
+		pstm.setString(3, user.getName());
+		pstm.setInt(4, user.getBirth());
+		pstm.setString(5, user.getGender());
+		pstm.setInt(6, user.getContact());
+		pstm.setString(7, user.getEmail());
+
+		pstm.executeUpdate();
+	}
+	
+	public static List<UserAccount> queryUser(Connection conn) throws SQLException {
+		String sql = "Select * from user a ";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		ResultSet rs = pstm.executeQuery();
+		List<UserAccount> list = new ArrayList<UserAccount>();
+		while (rs.next()) {
+			String id = rs.getString("id");
+			String password = rs.getString("password");
+			String name = rs.getString("name");
+			int birth = rs.getInt("birth");
+			String gender = rs.getString("gender");
+			int contact = rs.getInt("contact");
+			String email = rs.getString("email");
+
+			UserAccount user = new UserAccount();
+
+			user.setId(id);
+			user.setPassword(password);
+			user.setName(name);
+			user.setBirth(birth);
+			user.setGender(gender);
+			user.setContact(contact);
+			user.setEmail(email);
+
+			list.add(user);
+		}
+		return list;
+	}
+	
 	public static List<Product> queryProduct(Connection conn) throws SQLException {
 		String sql = "Select * from Product a ";
 

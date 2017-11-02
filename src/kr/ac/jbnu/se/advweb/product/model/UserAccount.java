@@ -17,6 +17,16 @@ public class UserAccount {
 	public UserAccount() {
 
 	}
+	
+	public UserAccount(String id, String password, String name, int birth, String gender, int contact, String email) {
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.birth = birth;
+		this.gender = gender;
+		this.contact = contact;
+		this.email = email;
+	}
 
 	public String getId() {
 		return id;
@@ -72,6 +82,10 @@ public class UserAccount {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String checkGender() {
+		return gender;
 	}
 
 }

@@ -7,6 +7,17 @@
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sign in</title>
+<script type="text/javascript">
+function check_gender() {
+	var gender = document.getElementsByName('gender');
+	for( var i = 0; i<gender.length; i++){
+		if(gender[i].checked == true ){
+			alert(gender[i].value);
+			gender[i].value = ${user.gender};
+		}
+	}
+}
+</script>
 </head>
 <body>
 	<div id="box">
@@ -42,8 +53,9 @@
 						</tr>
 						<tr>
 							<td>성별</td>
-							<td>남자<input type="radio" name="sex" value="${user.male}" /></td>
-							<td>여자<input type="radio" name="sex" value="${user.female}" /></td>
+							<td>남자<input type="radio" name="gender" value="male" /></td>
+							<td>여자<input type="radio" name="gender" value="female" /></td>
+							
 						</tr>
 						<tr>
 							<td>생년월일</td>
@@ -175,7 +187,7 @@
 							<td><input type="text" name="userMail" value="${user.email}" /></td>
 						</tr>
 						<tr>
-							<td colspan="2"><input type="submit" value="Submit" /> <a
+							<td colspan="2"><input type="submit" value="Submit" onClick="check_gender();"/> <a
 								href="home">Cancel</a></td>
 						</tr>
 					</table>

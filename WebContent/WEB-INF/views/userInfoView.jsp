@@ -34,8 +34,9 @@
 		<div id="main">
 			<h3>Edit your information</h3>
 
-			User Name: <input type="text" value="${user.name}"> <br /> 
+			User Name: ${user.name} <br /> 
 			Gender: ${user.gender } <br />
+			<button type="button" onClick="location.href='${pageContext.request.contextPath}/edituser'">Edit</button>
 
 			<a href="javascript:void(0);" onclick="javascript:showUserInfo();">Show
 				More</a>
