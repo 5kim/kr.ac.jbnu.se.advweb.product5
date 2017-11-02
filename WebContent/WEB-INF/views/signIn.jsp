@@ -17,7 +17,7 @@
 			<jsp:include page="_menu.jsp"></jsp:include>
 		</div>
 		<div id="main">
-			<div>
+			<div style="margin-top: 20px">
 				<form method="POST"
 					action="${pageContext.request.contextPath}/signin">
 					<table border="0">

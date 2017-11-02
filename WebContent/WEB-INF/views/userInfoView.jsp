@@ -32,9 +32,10 @@
 			<jsp:include page="_menu.jsp"></jsp:include>
 		</div>
 		<div id="main">
-			<h3>Hello: ${user.name}</h3>
+			<h3>Edit your information</h3>
 
-			User Name: <b>${user.name}</b> <br /> Gender: ${user.gender } <br />
+			User Name: <input type="text" value="${user.name}"> <br /> 
+			Gender: ${user.gender } <br />
 
 			<a href="javascript:void(0);" onclick="javascript:showUserInfo();">Show
 				More</a>

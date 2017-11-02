@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
 </head>
 <body>
-<div>
+<div style = "margin-left: 10px">
 	<br>
 	<div>
 	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/home'">Home</button>
@@ -18,12 +18,7 @@
 	<div>
 	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/userInfo'">My Account Info</button>
 	</div>
-	<div>
-	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/login'">Login</button>
-	</div>
-	<div>
-	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/signin'">회원가입</button>
-	</div> 	
+	 	
 </div> 
 </body>    
 </html>

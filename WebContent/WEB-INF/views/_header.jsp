@@ -6,21 +6,16 @@
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
 </head>
 <body>
-<div class ="fuck" style="height: 55px; padding: 5px;">
-  <div style="float: left;">
-     <h1>중고로운 평화나라</h1>
+<div class ="header" style="height: 70px; padding: 5px;">
+  <div style="text-align: center">
+     <img src="Image/title.png" width= 200px; height= 100px; onClick="location.href='${pageContext.request.contextPath}/home'">
+ <div style="float: right; margin-right: 100px; margin-top: 15px; margin-left: 5px; padding: 10px; text-align: right;">
+ 	<img src="Image/user.png" width= 40px; height= 40px; onClick="location.href='${pageContext.request.contextPath}/usermain'">
+ 	<img src="Image/cart.png" width= 40px; height= 40px;>
+ 	<img src="Image/search.png" width= 40px; height= 40px;>
+ </div>	
   </div>
- 
-  <div style="float: right; padding: 10px; text-align: right;">
- 
-     <!-- User store in session with attribute: loginedUser -->
-     Hello <b>${loginedUser.name}</b>
-   <br/>
-     Search <input name="search">
- 
-  </div>
- 
-</div>
+
 </body></html>
 
 

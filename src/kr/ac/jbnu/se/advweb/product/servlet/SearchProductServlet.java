@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
+
 /**
  * Servlet implementation class SearchProductServlet
  * 검색을 하면 제품의 목록을 보여주는 서블릿
@@ -54,7 +56,6 @@ public class SearchProductServlet extends HttpServlet {
 		//1. 검색한 단어를 이용해 DB에서 상품을 검색해온다.
 		//2. 검색한 상품 모두를 화면에 보여주어야 하므로 모든 정보를 request에 저장한다.
 		//3. 검색화면으로 forward한다.
-		
 		
 		
 		

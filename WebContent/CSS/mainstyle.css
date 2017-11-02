@@ -40,8 +40,7 @@ body {
     float: left; <!-- 새로운 흐름을 지정해줘야 깨지지 않는다-->
 }
 
-.fuck {
-	background-color: green;
+.header {
 	font-family: 'Jeju Myeongjo', serif;
 }
 

@@ -16,7 +16,12 @@
 			<jsp:include page="_menu.jsp"></jsp:include>
 		</div>
 		<div id="main">
-			<b>여기에다가는 추천상품과 신규상품을 넣어야 하겠지....</b>
+			<div style="height: 200px">
+			<h2>Today's New Item</h2>
+			</div>
+			<div style="height: 200px">
+			<h2>Today's Recommend Item</h2>
+			</div>
 		</div>
 		<div id="bottom">
 			<jsp:include page="_footer.jsp"></jsp:include>

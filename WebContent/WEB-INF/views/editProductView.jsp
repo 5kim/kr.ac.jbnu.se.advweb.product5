@@ -25,11 +25,11 @@
 			<c:if test="${not empty product}">
 				<form method="POST"
 					action="${pageContext.request.contextPath}/editProduct">
-					<input type="hidden" name="code" value="${product.code}" />
+					<input type="hidden" name="code" value="${product.productNumber}" />
 					<table border="0">
 						<tr>
 							<td>Code</td>
-							<td style="color: red;">${product.code}</td>
+							<td style="color: red;">${product.productNumber}</td>
 						</tr>
 						<tr>
 							<td>Name</td>
