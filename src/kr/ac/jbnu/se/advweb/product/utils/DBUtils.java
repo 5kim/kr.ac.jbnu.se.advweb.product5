@@ -194,17 +194,20 @@ public class DBUtils {
 	public static void insertProduct(Connection conn, Product product) throws SQLException {
 		String sql = "Insert into Product(productNumber, name, price, seller, description, inventory) values (?,?,?,?,?,?)";
 
-		PreparedStatement pstm = conn.prepareStatement(sql);
+	      PreparedStatement pstm = conn.prepareStatement(sql);
 
-		pstm.setString(1, product.getProductNumber());
-		pstm.setString(2, product.getName());
-		pstm.setFloat(3, product.getPrice());
+	      pstm.setString(1, product.getProductNumber());
+	      pstm.setString(2, product.getName());
+	      pstm.setFloat(3, product.getPrice());
+	      pstm.setString(4, product.getSeller());
+	      pstm.setString(5, product.getDescription());
+	      pstm.setInt(6, product.getInventory());
 		pstm.setString(4, product.getSeller());
 		pstm.setString(5, product.getDescription());
 		pstm.setInt(6, product.getInventory());
 
-		pstm.executeUpdate();
-	}
+	      pstm.executeUpdate();
+	   }
 
 	public static void deleteProduct(Connection conn, String productNumber) throws SQLException {
 		String sql = "Delete From Product where Code= ?";
