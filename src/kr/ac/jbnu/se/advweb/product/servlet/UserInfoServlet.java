@@ -31,8 +31,7 @@ public class UserInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String moreInfo = request.getParameter("more");
-		
-		
+
 		HttpSession session = request.getSession();
 
 		// Check User has logged on

@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Product List</title>
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
+
 </head>
 <body>
 	<div id="box">
@@ -35,7 +36,7 @@
 				</tr>
 				<c:forEach items="${productList}" var="product">
 					<tr>
-						<td>${product.productNumber}</td>
+						<td><a href="productinfo?code=${product.productNumber}">${product.productNumber}</td>
 						<td>${product.name}</td>
 						<td>${product.price}</td>
 						<td>${product.seller}</td>
