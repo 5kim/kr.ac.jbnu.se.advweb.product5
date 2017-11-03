@@ -34,7 +34,7 @@ public class EditProductServlet extends HttpServlet {
         Connection conn = MyUtils.getStoredConnection(request);
  
         String productNumber = (String) request.getParameter("productNumber");
- 
+
         Product product = null;
  
         String errorString = null;
