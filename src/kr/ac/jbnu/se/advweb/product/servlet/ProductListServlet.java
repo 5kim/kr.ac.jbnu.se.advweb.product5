@@ -38,6 +38,15 @@ public class ProductListServlet extends HttpServlet {
         List<Product> list = null;
         try {
             list = DBUtils.queryProduct(conn);
+			
+			DBUtils a = new DBUtils();
+			
+			a.queryOders(conn, "1");
+			a.queryCart(conn, "tomid");
+			a.queryOders(conn, "1");
+			
+            
+            
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();

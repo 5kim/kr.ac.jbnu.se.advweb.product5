@@ -48,10 +48,15 @@ public class HomeServlet extends HttpServlet {
 		// 1.1 오늘의 추천 테이블에서 모든 정보를 가지고 온다.
 		Connection conn = MyUtils.getStoredConnection(request);
 		// 세션에 들어가 있는 아이디를 넣어준다.
+		
+		
+		
+		
 		String errorString = null;
 		List<Product> list = null;
 		try {
 			list = DBUtils.queryTodayRecommend(conn);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();

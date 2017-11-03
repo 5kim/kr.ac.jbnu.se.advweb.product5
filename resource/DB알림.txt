@@ -5,5 +5,29 @@
 
 2. 현재 불러오기 기능을 구현한 user와 product table 2개만 우선 선언해주세요. 오더 카트 쿠폰 테이블은 구현시 필요하신 분만 선언해주세요.
 
+----------------2017.11.03----------------------------------------------
+1. product에 카테고리 속성값  쿼리문.
+
+alter table product add category varchar(10) null;
+alter table product add recommendFlag BOOLEAN not null;
+
+테이블 컬럼값 변경 쿼리문
+
+alter table orders drop column date;
+alter table coupon drop column period;
+
+alter table orders add date DATE not null;
+alter table coupon add period DATE not null;
+
+2. 다른 테이블 예제 삽입 쿼리문.
+
+insert into cart (userId, productNumber, count)
+values ('tomid', 'P001', 2);
+
+insert into orders (orderNumber, customerId, productNumber,date,count)
+values ('1', 'tomid', 'P001',20171103,5);
+
+insert into coupon (serialNumber, userId, discountRate, period)
+values ('1', 'tomid', 15, 20171103);
+
 ----------------------------------------------------------------------------
- 

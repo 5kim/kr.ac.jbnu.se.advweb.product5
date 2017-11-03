@@ -7,10 +7,19 @@ import java.util.Date;
  *
  */
 public class Order {
+	private String orderNumber;
 	private Date date;
 	private String custromerId;
 	private String productNumber;
 	private int count;
+	
+	
+	public String getOrderNumber() {
+		return orderNumber;
+	}
+	public void setOrderNumber(String orderNumber) {
+		this.orderNumber = orderNumber;
+	}
 	
 	public Date getDate() {
 		return date;
