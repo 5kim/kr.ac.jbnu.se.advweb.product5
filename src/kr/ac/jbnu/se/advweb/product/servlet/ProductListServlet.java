@@ -38,6 +38,7 @@ public class ProductListServlet extends HttpServlet {
         List<Product> list = null;
         try {
             list = DBUtils.queryProduct(conn);
+            
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
