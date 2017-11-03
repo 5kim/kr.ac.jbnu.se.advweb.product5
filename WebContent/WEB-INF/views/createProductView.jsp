@@ -29,7 +29,7 @@
 				<table border="0">
 					<tr>
 						<td>Code</td>
-						<td><input type="text" name="code" value="${product.code}" /></td>
+						<td><input type="text" name="productNumber" value="${product.productNumber}" /></td>
 					</tr>
 					<tr>
 						<td>Name</td>
@@ -38,6 +38,18 @@
 					<tr>
 						<td>Price</td>
 						<td><input type="text" name="price" value="${product.price}" /></td>
+					</tr>
+					<tr>
+						<td>Seller</td>
+						<td><input type="text" name="seller" value="${product.seller}" /></td>
+					</tr>
+					<tr>
+						<td>Description</td>
+						<td><textarea name="description" value="${product.description}"></textarea></td>
+					</tr>
+					<tr>
+						<td>Inventory</td>
+						<td><input type="text" name="inventory" value="${product.inventory}" /></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="Submit" /> <a
