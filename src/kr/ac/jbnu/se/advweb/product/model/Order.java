@@ -13,7 +13,6 @@ public class Order {
 	private String productNumber;
 	private int count;
 	
-	
 	public String getOrderNumber() {
 		return orderNumber;
 	}
