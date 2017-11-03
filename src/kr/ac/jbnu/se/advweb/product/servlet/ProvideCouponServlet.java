@@ -74,7 +74,7 @@ public class ProvideCouponServlet extends HttpServlet {
 		String errorString = null;
 
 		try {
-			DBUtils.insetCoupon(conn, coupon);
+			DBUtils.insertCoupon(conn, coupon);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

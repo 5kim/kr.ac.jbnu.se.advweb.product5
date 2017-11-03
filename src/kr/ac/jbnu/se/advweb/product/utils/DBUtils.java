@@ -265,12 +265,12 @@ public class DBUtils {
 
 	public static List<Product> queryTodayRecommend(Connection conn) throws SQLException {
 		// TODO Auto-generated method stub
-
-		String sql = "Select * from todayRecommend";
+		//1. 오늘의 추천으로 설정되어 있는 상품 목록 가지고 오기위한 sql문
+		String sql = "Select * from product where recommend = 'true';";
 		// 2. Query문 실행
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
-		// 3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
+		// 3. DB에서 가지고 온 정보 Product 형태의 배열로 만들어주기
 		List<Product> list = new ArrayList<Product>();
 		while (rs.next()) {
 			String productNumber = rs.getString("productNumber");
@@ -295,7 +295,7 @@ public class DBUtils {
 		return list;
 	}
 
-	public static void insetCoupon(Connection conn, Coupon coupon) throws SQLException {
+	public static void insertCoupon(Connection conn, Coupon coupon) throws SQLException {
 		//관리자가 쿠폰에 대한 정보를 모두 넣는다.
 		//쿠폰 sql문 작성하기
 		
