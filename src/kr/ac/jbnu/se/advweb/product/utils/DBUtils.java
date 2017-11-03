@@ -10,6 +10,7 @@ import java.util.List;
 
 import kr.ac.jbnu.se.advweb.product.model.Cart;
 import kr.ac.jbnu.se.advweb.product.model.Coupon;
+import kr.ac.jbnu.se.advweb.product.model.Order;
 import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 
@@ -174,6 +175,7 @@ public class DBUtils {
 
 			Product product = new Product(productNumber, name, price, seller, description, inventory);
 			return product;
+				
 		}
 		return null;
 	}
@@ -190,7 +192,7 @@ public class DBUtils {
 	}
 
 	public static void insertProduct(Connection conn, Product product) throws SQLException {
-	      String sql = "Insert into Product(productNumber, name, price, seller, description, inventory) values (?,?,?,?,?,?)";
+		String sql = "Insert into Product(productNumber, name, price, seller, description, inventory) values (?,?,?,?,?,?)";
 
 	      PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -200,6 +202,9 @@ public class DBUtils {
 	      pstm.setString(4, product.getSeller());
 	      pstm.setString(5, product.getDescription());
 	      pstm.setInt(6, product.getInventory());
+		pstm.setString(4, product.getSeller());
+		pstm.setString(5, product.getDescription());
+		pstm.setInt(6, product.getInventory());
 
 	      pstm.executeUpdate();
 	   }
@@ -214,10 +219,41 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 
+	public static List<Order> queryOders(Connection conn, String orderNumber) throws SQLException {
+		// TODO Auto-generated method stub
+		// 주문된 정보를 가지고와 배열로 만든다.
+		// 항목마다 id가 중복되서 불러와지니 레이아웃 배치를 id만 따로 하는게 좋은것 같아 보임.
+		
+		String sql = "Select * from orders a where a.orderNumber='" + orderNumber + "'";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		ResultSet rs = pstm.executeQuery();
+		List<Order> list = new ArrayList<Order>();
+		while (rs.next()) {
+			String custromerId = rs.getString("customerId");
+			String productNumber = rs.getString("productNumber");
+			Date date  = rs.getDate("Date");		
+			int count = rs.getInt("count");		
+			
+			Order order = new Order();
+			order.setOrderNumber(orderNumber);
+			order.setCustromerId(custromerId);
+			order.setProductNumber(productNumber);
+			order.setDate(date);
+			order.setCount(count);
+
+			list.add(order);
+		}
+		return list;
+	}
+	
 	public static List<Cart> queryCart(Connection conn, String id) throws SQLException {
 		// TODO Auto-generated method stub
 		// 장바구니의 정보를 가지고와 배열로 만든다.
-		String sql = "Select * from cart where id='" + id + "'";
+		// 항목마다 id가 중복되서 불러와지니 레이아웃 배치를 id만 따로 하는게 좋은것 같아 보임.
+		
+		String sql = "Select * from cart a where a.userId='" + id + "'";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -226,38 +262,42 @@ public class DBUtils {
 		while (rs.next()) {
 			int count = rs.getInt("count");
 			String productNumber = rs.getString("productNumber");
-			String userId = rs.getString("id");
+			String userId = rs.getString("userId");
 			Cart cart = new Cart();
 			cart.setCount(count);
 			cart.setUserId(userId);
 			cart.setProductNumber(productNumber);
 			list.add(cart);
+			
 		}
 		return list;
 	}
 
-	public static List<Coupon> queryCoupon(Connection conn, String id) throws SQLException {
+	public static List<Coupon> queryCoupon(Connection conn, String serialNumber) throws SQLException {
 		// TODO Auto-generated method stub
 		// 쿠폰 정보의 배열을 반환
 		// 1. DB에 Query문 작성
-		String sql = "Select * from coupon where id='" + id + "'";
+
+		String sql = "Select * from coupon a where a.serialNumber='" + serialNumber + "'";
 		// 2. Query문 실행
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		// 3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
 		List<Coupon> list = new ArrayList<Coupon>();
 		while (rs.next()) {
+			
+			String userId = rs.getString("userId");
 			int discountRate = rs.getInt("discountRate");
 			Date period = rs.getDate("period");
-			String serialNumber = rs.getString("serialNumber");
-			String userId = rs.getString("userId");
+
 			Coupon coupon = new Coupon();
-			coupon.setDiscountRate(discountRate);
-			coupon.setPeriod(period);
 			coupon.setSerialNumber(serialNumber);
 			coupon.setUserId(userId);
+			coupon.setDiscountRate(discountRate);
+			coupon.setPeriod(period);
 
 			list.add(coupon);
+
 		}
 		// 4. 배열 반환하기
 		return list;
