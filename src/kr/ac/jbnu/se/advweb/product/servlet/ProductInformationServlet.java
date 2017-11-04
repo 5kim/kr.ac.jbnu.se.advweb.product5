@@ -36,11 +36,12 @@ public class ProductInformationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		//1. 고객이 선택한 상품의 정보를 가지고 온다.
+		//2. 통계를 내기 위해 상품을 본 고객의 성별 퍼센트, 조회수, 나이대별 조회수 퍼센트 등등을 집계한다.
+		//3. 정리한 내용을 상세보기 화면으로 넘겨준다.
 		Connection conn = MyUtils.getStoredConnection(request);
 		 
-        String productNumber = (String) request.getParameter("productNumber");
-        System.out.println(productNumber);
+        String productNumber = request.getParameter("code");
  
         Product product = null;
         String errorString = null;
@@ -52,7 +53,7 @@ public class ProductInformationServlet extends HttpServlet {
             errorString = e.getMessage();
         }
 		
-        request.setAttribute("productNumber", product);
+        request.setAttribute("product", product);
         
 		RequestDispatcher dispatcher  = this.getServletContext().getRequestDispatcher("/WEB-INF/views/productInfomationView.jsp");
 		dispatcher.forward(request, response);

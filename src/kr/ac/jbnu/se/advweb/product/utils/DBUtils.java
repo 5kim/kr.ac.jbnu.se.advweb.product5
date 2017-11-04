@@ -350,4 +350,93 @@ public class DBUtils {
 		
 	}
 
+	public static List<Product> querySearchWord(Connection conn, String searchWord) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		String sql = "select * from product where name like \"%" + searchWord + "%\"";
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		List<Product> list = new ArrayList<Product>();
+		// 쿠폰 넣어야함 속성에 대한 것 넣어야함
+		ResultSet rs = pstm.executeQuery();
+		while(rs.next()) {
+			String productNumber = rs.getString("productNumber");
+			String name = rs.getString("name");
+			float price = rs.getFloat("price");
+			String seller = rs.getString("seller");
+			String description = rs.getString("description");
+			int inventory = rs.getInt("inventory");
+
+			Product product = new Product();
+
+			product.setProductNumber(productNumber);
+			product.setName(name);
+			product.setPrice(price);
+			product.setSeller(seller);
+			product.setDescription(description);
+			product.setInventory(inventory);
+
+			list.add(product);
+		}
+		return list;
+	}
+
+	public static List<Product> queryCategory(Connection conn, String category) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "select * from product where category='" + category + "'";
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		List<Product> list = new ArrayList<Product>();
+		// 쿠폰 넣어야함 속성에 대한 것 넣어야함
+		ResultSet rs = pstm.executeQuery();
+		while(rs.next()) {
+			String productNumber = rs.getString("productNumber");
+			String name = rs.getString("name");
+			float price = rs.getFloat("price");
+			String seller = rs.getString("seller");
+			String description = rs.getString("description");
+			int inventory = rs.getInt("inventory");
+
+			Product product = new Product();
+
+			product.setProductNumber(productNumber);
+			product.setName(name);
+			product.setPrice(price);
+			product.setSeller(seller);
+			product.setDescription(description);
+			product.setInventory(inventory);
+
+			list.add(product);
+		}
+		return list;
+	}
+
+	public static List<Product> queryCategoryAndSearchWord(Connection conn, String category, String searchWord) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "select * from product where category='" + category + "', name like \"%" + searchWord + "%\"";
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		List<Product> list = new ArrayList<Product>();
+		// 쿠폰 넣어야함 속성에 대한 것 넣어야함
+		ResultSet rs = pstm.executeQuery();
+		while(rs.next()) {
+			String productNumber = rs.getString("productNumber");
+			String name = rs.getString("name");
+			float price = rs.getFloat("price");
+			String seller = rs.getString("seller");
+			String description = rs.getString("description");
+			int inventory = rs.getInt("inventory");
+
+			Product product = new Product();
+
+			product.setProductNumber(productNumber);
+			product.setName(name);
+			product.setPrice(price);
+			product.setSeller(seller);
+			product.setDescription(description);
+			product.setInventory(inventory);
+
+			list.add(product);
+		}
+		return list;
+	}
+
+
 }
