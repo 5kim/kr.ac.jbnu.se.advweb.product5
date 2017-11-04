@@ -21,7 +21,7 @@ import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 /**
  * Servlet implementation class ProvideCouponServlet 관리자가 회원에게 쿠폰을 지급하기 위한 서블릿
  */
-@WebServlet("/provideCoupon")
+@WebServlet(urlPatterns = { "/providecoupon" })
 public class ProvideCouponServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,8 @@ public class ProvideCouponServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/provideCouponView.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -81,9 +82,9 @@ public class ProvideCouponServlet extends HttpServlet {
 		}
 		// Store info in request attribute, before forward to views
 		request.setAttribute("errorString", errorString);
-		// Forward to /WEB-INF/views/productListView.jsp
+
 		RequestDispatcher dispatcher = request.getServletContext()
-				.getRequestDispatcher("/WEB-INF/views/productListView.jsp");
+				.getRequestDispatcher("/WEB-INF/views/provideCouponView.jsp");
 		dispatcher.forward(request, response);
 		// 3. 쿠폰 발급 화면으로 다시 넘어간다.
 	}

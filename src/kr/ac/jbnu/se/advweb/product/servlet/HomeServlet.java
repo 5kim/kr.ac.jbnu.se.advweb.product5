@@ -47,32 +47,23 @@ public class HomeServlet extends HttpServlet {
 		// 따라서 관리자가 원하는 상품을 등록하는 페이지가 필요하며 오늘의 추천에 대한 테이블이 하나 필요 할 것 같다.
 		// 1.1 오늘의 추천 테이블에서 모든 정보를 가지고 온다.
 		Connection conn = MyUtils.getStoredConnection(request);
-		// 세션에 들어가 있는 아이디를 넣어준다.
-		
-		
-		
-		
-		String errorString = null;
-		List<Product> list = null;
-		try {
-			list = DBUtils.queryTodayRecommend(conn);
-			System.out.println(list);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			errorString = e.getMessage();
-		}
-		
-		// Store info in request attribute, before forward to views
-		// 2. DB에서 가지고 온 정보를 request에 넣는다.
-		request.setAttribute("errorString", errorString);
-		request.setAttribute("todayRecommend", list);
-
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-
-		// Forward to /WEB-INF/views/homeView.jsp
-		// (Users can not access directly into JSP pages placed in WEB-INF)
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/homeView.jsp");
-		dispatcher.forward(request, response);
+		 
+        String errorString = null;
+        List<Product> list = null;
+        try {
+            list = DBUtils.queryProduct(conn);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            errorString = e.getMessage();
+        }
+        // Store info in request attribute, before forward to views
+        request.setAttribute("errorString", errorString);
+        request.setAttribute("productList", list);
+ 
+        RequestDispatcher dispatcher = request.getServletContext()
+                .getRequestDispatcher("/WEB-INF/views/homeView.jsp");
+        dispatcher.forward(request, response);
 
 	}
 
