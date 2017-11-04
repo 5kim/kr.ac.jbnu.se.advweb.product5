@@ -1,5 +1,7 @@
 package kr.ac.jbnu.se.advweb.product.model;
 
+import java.awt.image.BufferedImage;
+
 public class Product {
 	private String productNumber;
 	private String name;
@@ -7,11 +9,22 @@ public class Product {
 	private String seller;
 	private String description;	
 	private int inventory;
+	private BufferedImage image;
+	private Category category;
 	
 	public Product() {
 	}
 	
 
+	public Product(String productNumber, String name, float price, String seller, String description, int inventory, BufferedImage image) {
+		this.productNumber = productNumber;
+		this.name = name;
+		this.price = price;
+		this.seller = seller;
+		this.description = description;
+		this.inventory = inventory;
+		this.image = image;
+	}
 	public Product(String productNumber, String name, float price, String seller, String description, int inventory) {
 		this.productNumber = productNumber;
 		this.name = name;
@@ -73,5 +86,25 @@ public class Product {
 
 	public void setInventory(int inventory) {
 		this.inventory = inventory;
+	}
+
+
+	public BufferedImage getImage() {
+		return image;
+	}
+
+
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
+
+
+	public Category getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 }

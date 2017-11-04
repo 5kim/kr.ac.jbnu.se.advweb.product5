@@ -1,5 +1,8 @@
 package kr.ac.jbnu.se.advweb.product.utils;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
+
+import javax.imageio.ImageIO;
+
+import com.mysql.jdbc.Blob;
 
 import kr.ac.jbnu.se.advweb.product.model.Cart;
 import kr.ac.jbnu.se.advweb.product.model.Coupon;
@@ -385,6 +392,16 @@ public class DBUtils {
 			String seller = rs.getString("seller");
 			String description = rs.getString("description");
 			int inventory = rs.getInt("inventory");
+			Blob blobImage = (Blob) rs.getBlob("image");
+			InputStream inputStream = blobImage.getBinaryStream();
+			
+			BufferedImage bufferedImage = null;
+			try {
+				 bufferedImage = ImageIO.read(inputStream);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			Product product = new Product();
 
@@ -394,6 +411,7 @@ public class DBUtils {
 			product.setSeller(seller);
 			product.setDescription(description);
 			product.setInventory(inventory);
+			product.setImage(bufferedImage);
 
 			list.add(product);
 		}
