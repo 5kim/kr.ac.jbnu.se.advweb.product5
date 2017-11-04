@@ -318,7 +318,7 @@ public class DBUtils {
 	public static List<Product> queryTodayRecommend(Connection conn) throws SQLException {
 		// TODO Auto-generated method stub
 		//1. 오늘의 추천으로 설정되어 있는 상품 목록 가지고 오기위한 sql문
-		String sql = "Select * from product where recommend = 'true';";
+		String sql = "Select * from product where recommendFlag = 0;";
 		// 2. Query문 실행
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();

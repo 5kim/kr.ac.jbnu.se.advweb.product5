@@ -17,7 +17,7 @@ import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 /**
  * Servlet implementation class InsertCartServlet
  */
-@WebServlet("/InsertCartServlet")
+@WebServlet("/insertCart")
 public class InsertCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

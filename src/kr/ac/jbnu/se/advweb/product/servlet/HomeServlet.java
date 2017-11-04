@@ -56,11 +56,12 @@ public class HomeServlet extends HttpServlet {
 		List<Product> list = null;
 		try {
 			list = DBUtils.queryTodayRecommend(conn);
-			
+			System.out.println(list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
 		}
+		
 		// Store info in request attribute, before forward to views
 		// 2. DB에서 가지고 온 정보를 request에 넣는다.
 		request.setAttribute("errorString", errorString);
