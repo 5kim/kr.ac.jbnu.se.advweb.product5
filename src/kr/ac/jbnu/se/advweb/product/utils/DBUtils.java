@@ -466,8 +466,8 @@ public class DBUtils {
 		
 	}
 
-	public static void insertCard(Connection conn, Product product) throws SQLException {
-		String sql = "Insert into cart(id, password, name, birth, gender, contact, email) values (?,?,?,?,?,?,?)";
+	public static void insertCart(Connection conn, Product product) throws SQLException {
+		String sql = "Insert into cart() values (?,?,?,?,?,?,?)";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 //
