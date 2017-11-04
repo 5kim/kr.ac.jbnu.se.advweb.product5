@@ -438,5 +438,29 @@ public class DBUtils {
 		return list;
 	}
 
+	public static void deleteCoupon(Connection conn, String coupon) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "delete from coupon where ='"+coupon+"'";
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.executeUpdate();
+		
+	}
+
+	public static void insertCard(Connection conn, Product product) throws SQLException {
+		String sql = "Insert into cart(id, password, name, birth, gender, contact, email) values (?,?,?,?,?,?,?)";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+//
+//		pstm.setString(1, Product.getId());
+//		pstm.setString(2, Product.getPassword());
+//		pstm.setString(3, Product.getName());
+//		pstm.setInt(4, Product.getBirth());
+//		pstm.setString(5, Product.getGender());
+//		pstm.setInt(6, Product.getContact());
+//		pstm.setString(7, Product.getEmail());
+
+		pstm.executeUpdate();
+	}
+
 
 }

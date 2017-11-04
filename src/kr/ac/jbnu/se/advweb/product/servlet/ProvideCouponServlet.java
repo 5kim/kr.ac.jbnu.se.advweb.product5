@@ -86,7 +86,6 @@ public class ProvideCouponServlet extends HttpServlet {
 				.getRequestDispatcher("/WEB-INF/views/productListView.jsp");
 		dispatcher.forward(request, response);
 		// 3. 쿠폰 발급 화면으로 다시 넘어간다.
-		doGet(request, response);
 	}
 
 	public Date transformDate(String year, String month, String day) {
