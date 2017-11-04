@@ -11,7 +11,7 @@ public class Product {
 	private int inventory;
 	private int recommend;
 	private BufferedImage image;
-	private Category category;
+	private String category;
 	
 	public Product() {
 	}
@@ -81,17 +81,6 @@ public class Product {
 		this.inventory = inventory;
 	}
 
-
-	public String getCategory() {
-		return category;
-	}
-
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-
 	public int getRecommend() {
 		return recommend;
 	}
@@ -102,8 +91,6 @@ public class Product {
 	}
 	
 	
-
-
 	public BufferedImage getImage() {
 		return image;
 	}
@@ -114,52 +101,13 @@ public class Product {
 	}
 
 
-	public Category getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
 
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
-
-	public BufferedImage getImage() {
-		return image;
-	}
-
-
-	public void setImage(BufferedImage image) {
-		this.image = image;
-	}
-
-
-	public Category getCategory() {
-		return category;
-	}
-
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-
-	public BufferedImage getImage() {
-		return image;
-	}
-
-
-	public void setImage(BufferedImage image) {
-		this.image = image;
-	}
-
-
-	public Category getCategory() {
-		return category;
-	}
-
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
 }

@@ -55,7 +55,7 @@ create table coupon(
 serialNumber int auto_increment not null,
 couponName varchar(30),
 userId varchar(30),
-discountRate VARCHAR(20),
+discountRate int,
 period Date,
 primary key (serialNumber)
 ) ;

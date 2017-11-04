@@ -54,6 +54,13 @@ public class ProvideCouponServlet extends HttpServlet {
 
 		// 1. 입력 받은 쿠폰의 객체를 생성한다.
 		Coupon coupon = new Coupon();
+		
+		String userId = request.getParameter("userId");
+		coupon.setUserId(userId);
+		
+		String couponName = request.getParameter("userId");
+		coupon.setCouponName(couponName);
+		
 		String discountRateStr = request.getParameter("discountRate");
 		int discountRate = Integer.parseInt(discountRateStr);
 		coupon.setDiscountRate(discountRate);
@@ -64,10 +71,10 @@ public class ProvideCouponServlet extends HttpServlet {
 		Date period = transformDate(year, month, day);
 		coupon.setPeriod(period);
 
-		String serialNumber = request.getParameter("serialNumber");
-		coupon.setSerialNumber(serialNumber);
-		String userId = request.getParameter("userId");
-		coupon.setUserId(userId);
+//		String serialNumberStr = request.getParameter("serialNumber");
+//		int serialNumber = Integer.parseInt(serialNumberStr);
+//		coupon.setSerialNumber(serialNumber);
+
 
 		// 2. 생성한 객체를 Coupon table에 넣는다.
 		Connection conn = MyUtils.getStoredConnection(request);

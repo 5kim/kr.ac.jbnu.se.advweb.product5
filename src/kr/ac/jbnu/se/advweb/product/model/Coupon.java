@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class Coupon {
 	private int serialNumber;
+	private String couponName;
 	private String userId;
 	private int discountRate;
 	private Date period;
@@ -17,6 +18,13 @@ public class Coupon {
 	}
 	public void setSerialNumber(int serialNumber) {
 		this.serialNumber = serialNumber;
+	}
+	
+	public String getCouponName() {
+		return couponName;
+	}
+	public void setCouponName(String couponName) {
+		this.couponName = couponName;
 	}
 	public String getUserId() {
 		return userId;

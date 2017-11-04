@@ -27,6 +27,10 @@
 						<td><input type="text" name="userId"><br></td>
 					</tr>
 					<tr>
+						<td>CouponName :</td>
+						<td><input type="text" name="couponName"><br></td>
+					</tr>
+					<tr>
 						<td>Discount Rate :</td>
 						<td><select name="discountRate">
 								<option value="5">5%

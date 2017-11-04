@@ -52,6 +52,7 @@ public class SigninServlet extends HttpServlet {
 		String gender = (String) request.getParameter("gender");
 		String contactStr = (String) request.getParameter("contact");		
 		String email = (String) request.getParameter("email");
+		String address = (String) request.getParameter("address");
 		
 		int birth = 0;
 		int contact = 0;
@@ -60,7 +61,7 @@ public class SigninServlet extends HttpServlet {
 			contact = Integer.parseInt(contactStr);
 		} catch (Exception e) {
 		}
-		UserAccount user = new UserAccount(id, password, name, birth, gender, contact, email);
+		UserAccount user = new UserAccount(id, password, name, birth, gender, contact, email,address);
 
 		String errorString = null;
 

@@ -224,7 +224,7 @@ public class DBUtils {
 	   }
 
 	public static void deleteProduct(Connection conn, String productNumber) throws SQLException {
-		String sql = "Delete From Product where Code= ?";
+		String sql = "Delete From product where productNumber = ?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -300,36 +300,71 @@ public class DBUtils {
 		return list;
 	}
 
-	public static List<Coupon> queryCoupon(Connection conn, String id) throws SQLException {
-		// TODO Auto-generated method stub
-		// 쿠폰 정보의 배열을 반환
-		// 1. DB에 Query문 작성
+//	public static List<Coupon> queryCoupon(Connection conn, String id) throws SQLException {
+//		// TODO Auto-generated method stub
+//		// 쿠폰 정보의 배열을 반환
+//		// 1. DB에 Query문 작성
+//
+//		String sql = "Select * from coupon a where a.userId='" + id + "'";
+//		// 2. Query문 실행
+//		PreparedStatement pstm = conn.prepareStatement(sql);
+//		ResultSet rs = pstm.executeQuery();
+//		// 3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
+//		List<Coupon> list = new ArrayList<Coupon>();
+//		while (rs.next()) {
+//			
+//			String userId = rs.getString("userId");
+//			int discountRate = rs.getInt("discountRate");
+//			Date period = rs.getDate("period");
+//
+//			Coupon coupon = new Coupon();
+//
+//			coupon.setUserId(userId);
+//			coupon.setDiscountRate(discountRate);
+//			coupon.setPeriod(period);
+//
+//			list.add(coupon);
+//
+//		}
+//		// 4. 배열 반환하기
+//		return list;
+//	}
 
-		String sql = "Select * from coupon a where a.userId='" + id + "'";
-		// 2. Query문 실행
-		PreparedStatement pstm = conn.prepareStatement(sql);
-		ResultSet rs = pstm.executeQuery();
-		// 3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
-		List<Coupon> list = new ArrayList<Coupon>();
-		while (rs.next()) {
-			
-			String userId = rs.getString("userId");
-			int discountRate = rs.getInt("discountRate");
-			Date period = rs.getDate("period");
+	public static List<Coupon> queryCoupon(Connection conn) throws SQLException {
+	// TODO Auto-generated method stub
+	// 쿠폰 정보의 배열을 반환
+	// 1. DB에 Query문 작성
 
-			Coupon coupon = new Coupon();
+	String sql = "Select * from coupon ORDER BY serialNumber";
+	// 2. Query문 실행
+	PreparedStatement pstm = conn.prepareStatement(sql);
+	ResultSet rs = pstm.executeQuery();
+	// 3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
+	List<Coupon> list = new ArrayList<Coupon>();
+	while (rs.next()) {
+		
+		int serialNumber = rs.getInt("serialNumber");
+		String couponName = rs.getString("couponName");
+		String userId = rs.getString("userId");
+		int discountRate = rs.getInt("discountRate");
+		Date period = rs.getDate("period");
 
-			coupon.setUserId(userId);
-			coupon.setDiscountRate(discountRate);
-			coupon.setPeriod(period);
+		Coupon coupon = new Coupon();
+		
+		coupon.setSerialNumber(serialNumber);
+		coupon.setCouponName(couponName);
+		coupon.setUserId(userId);
+		coupon.setDiscountRate(discountRate);
+		coupon.setPeriod(period);
 
-			list.add(coupon);
+		list.add(coupon);
 
-		}
-		// 4. 배열 반환하기
-		return list;
 	}
-
+	// 4. 배열 반환하기
+	return list;
+}
+	
+	
 	public static List<Product> queryTodayRecommend(Connection conn) throws SQLException {
 		// TODO Auto-generated method stub
 		//1. 오늘의 추천으로 설정되어 있는 상품 목록 가지고 오기위한 sql문
@@ -365,19 +400,18 @@ public class DBUtils {
 	public static void insertCoupon(Connection conn, Coupon coupon) throws SQLException {
 		//관리자가 쿠폰에 대한 정보를 모두 넣는다.
 		//쿠폰 sql문 작성하기
-		
+	
 		// TODO Auto-generated method stub
 		
-		String sql = "Insert into Product(UserId, discountRate, period) values (?,?,?)";
+		String sql = "Insert into coupon(couponName,UserId, discountRate, period) values (?,?,?,?)";
 
 	      PreparedStatement pstm = conn.prepareStatement(sql);
 
-	      pstm.setString(1, coupon.getUserId());
-	      pstm.setInt(2, coupon.getDiscountRate());
-	      pstm.setDate(3, (Date) coupon.getPeriod());
-
-	      pstm.executeUpdate();
-
+	      pstm.setString(1, coupon.getCouponName());
+	      pstm.setString(2, coupon.getUserId());
+	      pstm.setInt(3, coupon.getDiscountRate());
+	      pstm.setDate(4, (Date) coupon.getPeriod());
+	      
 		// 쿠폰 넣어야함 속성에 대한 것 넣어야함
 		pstm.executeUpdate();
 		
@@ -483,10 +517,13 @@ public class DBUtils {
 		return list;
 	}
 
-	public static void deleteCoupon(Connection conn, String coupon) throws SQLException {
-		// TODO Auto-generated method stub
-		String sql = "delete from coupon where ='"+coupon+"'";
+	public static void deleteCoupon(Connection conn, String serialNumber) throws SQLException {
+		String sql = "Delete From coupon where serialNumber = ?";
+
 		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.setString(1, serialNumber);
+
 		pstm.executeUpdate();
 		
 	}
