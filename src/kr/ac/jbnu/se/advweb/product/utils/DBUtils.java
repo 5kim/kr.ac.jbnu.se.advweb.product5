@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import kr.ac.jbnu.se.advweb.product.model.Cart;
@@ -202,9 +202,7 @@ public class DBUtils {
 	      pstm.setString(4, product.getSeller());
 	      pstm.setString(5, product.getDescription());
 	      pstm.setInt(6, product.getInventory());
-		pstm.setString(4, product.getSeller());
-		pstm.setString(5, product.getDescription());
-		pstm.setInt(6, product.getInventory());
+
 
 	      pstm.executeUpdate();
 	   }
@@ -218,8 +216,22 @@ public class DBUtils {
 
 		pstm.executeUpdate();
 	}
+	
+	public static void insertOrder(Connection conn, Order order) throws SQLException {
+		String sql = "Insert into Orders(orderNumber, customerId, productNumber, date, count) values (?,?,?,?,?)";
 
-	public static List<Order> queryOders(Connection conn, String orderNumber) throws SQLException {
+	      PreparedStatement pstm = conn.prepareStatement(sql);
+
+	      pstm.setString(1, order.getOrderNumber());
+	      pstm.setString(2, order.getCustomerId());
+	      pstm.setString(3, order.getProductNumber());
+	      pstm.setDate(4, order.getDate());
+	      pstm.setInt(5, order.getCount());
+
+	      pstm.executeUpdate();
+	   }
+	
+	public static List<Order> queryOrders(Connection conn, String orderNumber) throws SQLException {
 		// TODO Auto-generated method stub
 		// 주문된 정보를 가지고와 배열로 만든다.
 		// 항목마다 id가 중복되서 불러와지니 레이아웃 배치를 id만 따로 하는게 좋은것 같아 보임.

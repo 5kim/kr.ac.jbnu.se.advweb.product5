@@ -3,7 +3,6 @@ package kr.ac.jbnu.se.advweb.product.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,7 @@ import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
  * Servlet implementation class OrderCompletedServlet
  * 주문 완료가 표시되는 화면을 위한 서블릿
  */
-@WebServlet("/OrderCompletedServlet")
+@WebServlet(urlPatterns = { "/ordercomplete" })
 public class OrderCompletedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

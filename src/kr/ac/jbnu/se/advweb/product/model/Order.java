@@ -1,6 +1,6 @@
 package kr.ac.jbnu.se.advweb.product.model;
 
-import java.util.Date;
+import java.sql.Date;
 /**
  * 주문 객체
  * @author HongJG
@@ -9,9 +9,21 @@ import java.util.Date;
 public class Order {
 	private String orderNumber;
 	private Date date;
-	private String custromerId;
+	private String customerId;
 	private String productNumber;
 	private int count;
+	
+	public Order() {
+		
+	}
+	
+	public Order(String orderNumber, Date date, String customerId, String productNumber, int count) {
+		this.orderNumber = orderNumber;
+		this.date = date;
+		this.customerId = customerId;
+		this.productNumber = productNumber;
+		this.count = count;
+	}
 	
 	public String getOrderNumber() {
 		return orderNumber;
@@ -26,11 +38,11 @@ public class Order {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getCustromerId() {
-		return custromerId;
+	public String getCustomerId() {
+		return customerId;
 	}
-	public void setCustromerId(String custromerId) {
-		this.custromerId = custromerId;
+	public void setCustromerId(String customerId) {
+		this.customerId = customerId;
 	}
 	public String getProductNumber() {
 		return productNumber;
