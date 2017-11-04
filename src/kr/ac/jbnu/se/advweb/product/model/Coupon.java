@@ -11,6 +11,7 @@ public class Coupon {
 	private String userId;
 	private int discountRate;
 	private Date period;
+	
 	public String getSerialNumber() {
 		return serialNumber;
 	}

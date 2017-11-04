@@ -353,12 +353,20 @@ public class DBUtils {
 		
 		// TODO Auto-generated method stub
 		
-		String sql = "Insert into Product(productNumber, Name,Price) values (?,?,?)";
+		String sql = "Insert into Product(serialNumber, UserId, discountRate, period) values (?,?,?,?)";
 
-		PreparedStatement pstm = conn.prepareStatement(sql);
+	      PreparedStatement pstm = conn.prepareStatement(sql);
+
+	      pstm.setString(1, coupon.getSerialNumber());
+	      pstm.setString(2, coupon.getUserId());
+	      pstm.setInt(3, coupon.getDiscountRate());
+	      pstm.setDate(4, (Date) coupon.getPeriod());
+
+	      pstm.executeUpdate();
 
 		// 쿠폰 넣어야함 속성에 대한 것 넣어야함
 		pstm.executeUpdate();
+		
 		
 	}
 
