@@ -1,6 +1,8 @@
 package kr.ac.jbnu.se.advweb.product.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class OrderCompletedServlet
  * 주문 완료가 표시되는 화면을 위한 서블릿
  */
-@WebServlet("/OrderCompletedServlet")
+@WebServlet(urlPatterns = { "/ordercomplete" })
 public class OrderCompletedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,7 +34,9 @@ public class OrderCompletedServlet extends HttpServlet {
 		//2. 결제가 완료되었다고 email을 이용하여 보낸다.
 		//3. 결제가 완료된 화면을 표현하기 위한 정보를 담는다.
 		//4. 결제 완료 창을 띄워준다.
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher dispatcher = this.getServletContext()
+				.getRequestDispatcher("/WEB-INF/views//orderCompletedView.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
