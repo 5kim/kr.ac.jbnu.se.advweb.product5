@@ -5,8 +5,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.sql.Date;
 
+import javax.mail.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.ac.jbnu.se.advweb.product.model.Coupon;
 import kr.ac.jbnu.se.advweb.product.model.Order;
 import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
@@ -58,16 +61,19 @@ public class OrderProductServlet extends HttpServlet {
 
 		Product product = null;
 		String errorString = null;
+		List<Coupon> couponList = null;
+		
 		try {
 			product = DBUtils.findProduct(conn, productNumber);
+			couponList = DBUtils.queryCoupon(conn, loginedUser.getId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
 		}
 		request.setAttribute("user", loginedUser);
 		request.setAttribute("product", product);
+		request.setAttribute("couponList", couponList);
 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		RequestDispatcher dispatcher = this.getServletContext()
 				.getRequestDispatcher("/WEB-INF/views//orderProductView.jsp");
 		dispatcher.forward(request, response);

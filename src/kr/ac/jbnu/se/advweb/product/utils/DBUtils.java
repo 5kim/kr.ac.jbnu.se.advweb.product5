@@ -292,19 +292,19 @@ public class DBUtils {
 		return list;
 	}
 
-	public static List<Coupon> queryCoupon(Connection conn, String serialNumber) throws SQLException {
+	public static List<Coupon> queryCoupon(Connection conn, String id) throws SQLException {
 		// TODO Auto-generated method stub
 		// 쿠폰 정보의 배열을 반환
 		// 1. DB에 Query문 작성
 
-		String sql = "Select * from coupon a where a.serialNumber='" + serialNumber + "'";
+		String sql = "Select * from coupon where userId='" + id + "'";
 		// 2. Query문 실행
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 		// 3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
 		List<Coupon> list = new ArrayList<Coupon>();
 		while (rs.next()) {
-			
+			String serialNumber = rs.getString("serialNumber");
 			String userId = rs.getString("userId");
 			int discountRate = rs.getInt("discountRate");
 			Date period = rs.getDate("period");

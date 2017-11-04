@@ -7,6 +7,7 @@ package kr.ac.jbnu.se.advweb.product.model;
  */
 
 public class Cart {
+	
 	private String userId;
 	private String productNumber;
 	private int count;

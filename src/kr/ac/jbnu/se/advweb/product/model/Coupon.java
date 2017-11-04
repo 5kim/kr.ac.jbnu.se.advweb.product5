@@ -7,6 +7,7 @@ package kr.ac.jbnu.se.advweb.product.model;
 import java.util.Date;
 
 public class Coupon {
+	private String couponName;
 	private String serialNumber;
 	private String userId;
 	private int discountRate;
@@ -35,6 +36,12 @@ public class Coupon {
 	}
 	public void setPeriod(Date period) {
 		this.period = period;
+	}
+	public String getCouponName() {
+		return couponName;
+	}
+	public void setCouponName(String couponName) {
+		this.couponName = couponName;
 	}
 	
 }

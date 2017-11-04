@@ -2,7 +2,10 @@ package kr.ac.jbnu.se.advweb.product.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Calendar;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.ac.jbnu.se.advweb.product.model.Order;
 import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
@@ -63,14 +67,16 @@ public class OrderCompletedServlet extends HttpServlet {
 		// 할 때 확인 할 수 있게
 		// 1.1 카드 번호, 카드 비밀번호, 금액, 쿠폰 활용 여부를 넘겨준다.  form의 형태를 어떻게 할 것인지 정해야함
 		
-//		String productName = request.getParameter("productName");
-//		int price = Integer.parseInt(request.getParameter("price"));
-//		String productNumber = request.getParameter("productNumber");
+		String productName = request.getParameter("productName");
+		String productNumber = request.getParameter("productNumber");
 		Product product = new Product();
+		//수량에 대한 정보, 가격에 대한 정보를 받아와야함
+//		int count = Integer.parseInt(request.getParameter("count"));
+//		int price = Integer.parseInt(request.getParameter("price"));
 		
-//		product.setName(productName);
+		product.setName(productName);
 //		product.setPrice(price);
-//		product.setProductNumber(productNumber);
+		product.setProductNumber(productNumber);
 		String customerName = request.getParameter("name");
 		String phoneNum = request.getParameter("contact");
 			
@@ -81,20 +87,29 @@ public class OrderCompletedServlet extends HttpServlet {
 		
 		Connection conn = MyUtils.getStoredConnection(request);
 		
+		HttpSession session = request.getSession();
+		UserAccount userAccount = MyUtils.getLoginedUser(session);
+		
+		Order order = new Order();
+//		order.setCount(count);
+		order.setCustromerId(userAccount.getId());
+		Calendar oCalendar = Calendar.getInstance( ); 
+		Date date = new Date(oCalendar.getTime().getYear(),oCalendar.getTime().getMonth(),oCalendar.getTime().getDay());
+		order.setDate(date);
+		order.setProductNumber(productNumber);
 		//쿠폰이 존재한다면 DB에서 삭제한다.
 		// 1.3 사용된 쿠폰이 있을 시 데이터베이스를 업데이트 한다.
-		if(coupon!=null) {
-			try {
+		
+			try {//쿠폰이 존재하는지 판단해보고 쿠폰을 적용해주어야함
 				DBUtils.deleteCoupon(conn, coupon);
+				DBUtils.insertOrder(conn, order);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		HttpSession session = request.getSession();
-		UserAccount userAccount = MyUtils.getLoginedUser(session);
+		
 		//결제가 완료되었다고 메일을 보내준다.
-		MailUtils.sendMail("rlwns012@gmail.com", userAccount.getEmail(), product);
+		
 		
 		// 금액 적인 부분도 자바스크립트에서 하면됨
 		// 이 정보 들을 엔티티에 담는다.
@@ -109,6 +124,11 @@ public class OrderCompletedServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
-	
+	public Date transformDate(String year, String month, String day) {
+		String date = year + "-" + month + "-" + day;
+		Date d = Date.valueOf(date);
+
+		return d;
+	}
 
 }
