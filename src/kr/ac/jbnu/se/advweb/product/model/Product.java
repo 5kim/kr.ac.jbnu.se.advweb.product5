@@ -7,18 +7,21 @@ public class Product {
 	private String seller;
 	private String description;	
 	private int inventory;
+	private String category;
+	private int recommend;
 	
 	public Product() {
 	}
 	
 
-	public Product(String productNumber, String name, float price, String seller, String description, int inventory) {
+	public Product(String productNumber, String name, float price, String seller, String description, int inventory, String category) {
 		this.productNumber = productNumber;
 		this.name = name;
 		this.price = price;
 		this.seller = seller;
 		this.description = description;
 		this.inventory = inventory;
+		this.category = category;
 	}
 
 	public String getProductNumber() {
@@ -74,4 +77,26 @@ public class Product {
 	public void setInventory(int inventory) {
 		this.inventory = inventory;
 	}
+
+
+	public String getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	public int getRecommend() {
+		return recommend;
+	}
+
+
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
+	}
+	
+	
 }

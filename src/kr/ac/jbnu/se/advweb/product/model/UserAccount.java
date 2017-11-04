@@ -13,12 +13,13 @@ public class UserAccount {
 	private String gender;
 	private int contact;
 	private String email;
+	private String address;
 
 	public UserAccount() {
 
 	}
 	
-	public UserAccount(String id, String password, String name, int birth, String gender, int contact, String email) {
+	public UserAccount(String id, String password, String name, int birth, String gender, int contact, String email, String address) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
@@ -26,6 +27,7 @@ public class UserAccount {
 		this.gender = gender;
 		this.contact = contact;
 		this.email = email;
+		this.address = address;
 	}
 
 	public String getId() {
@@ -88,4 +90,14 @@ public class UserAccount {
 		return gender;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	
+	
 }

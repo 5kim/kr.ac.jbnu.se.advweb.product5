@@ -7,7 +7,7 @@ import java.sql.Date;
  *
  */
 public class Order {
-	private String orderNumber;
+	private int orderNumber;
 	private Date date;
 	private String customerId;
 	private String productNumber;
@@ -17,7 +17,7 @@ public class Order {
 		
 	}
 	
-	public Order(String orderNumber, Date date, String customerId, String productNumber, int count) {
+	public Order(int orderNumber, Date date, String customerId, String productNumber, int count) {
 		this.orderNumber = orderNumber;
 		this.date = date;
 		this.customerId = customerId;
@@ -25,10 +25,10 @@ public class Order {
 		this.count = count;
 	}
 	
-	public String getOrderNumber() {
+	public int getOrderNumber() {
 		return orderNumber;
 	}
-	public void setOrderNumber(String orderNumber) {
+	public void setOrderNumber(int orderNumber) {
 		this.orderNumber = orderNumber;
 	}
 	

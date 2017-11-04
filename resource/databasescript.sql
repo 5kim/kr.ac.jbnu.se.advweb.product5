@@ -10,55 +10,52 @@ grant all privileges on simpleweb.* to root@localhost ;
 
 create table user(
 id varchar(30) not null,
-password  VARCHAR(30) not null,
-name VARCHAR(30) not null,
-birth int(8) not null,
+password  VARCHAR(30),
+name VARCHAR(30),
+birth int(8),
 gender VARCHAR(1) not null,
-contact int(11) not null,
-email varchar(30) not null,
-address varchar(30) not null,
+contact int(11),
+email varchar(30),
+address varchar(30),
 primary key (id) 
 ) ;
 
 create table product(
 
-productNumber int auto_increment not null,
-name  VARCHAR(128) not null,
-price FLOAT not null,
+productNumber VARCHAR(20) not null,
+name  VARCHAR(128),
+price FLOAT,
 seller varchar(30),
 description varchar(100),
-inventory int not null,
-category varchar(10) null,
-recommend BOOLEAN not null,
-
+inventory int,
+category varchar(10),
+recommend BOOLEAN DEFAULT 0,
+Image mediumblob,
 primary key (productNumber)
 ) ;
 
 create table orders(
 orderNumber  int auto_increment not null,
-customerId  varchar(30) not null,
-productNumber VARCHAR(20) not null,
-date int not null,
-count int not null,
+customerId  varchar(30),
+productNumber VARCHAR(20),
+date Date,
+count int,
 primary key (orderNumber)
 ) ;
 
 create table cart(
 cartNumber int auto_increment not null,
-userId varchar(30) not null,
-productNumber VARCHAR(20) not null,
-count int not null,
+userId varchar(30),
+productNumber VARCHAR(20),
+count int,
 primary key (cartNumber)
 );
 
 create table coupon(
 serialNumber int auto_increment not null,
-userId varchar(30) not null,
-discountRate VARCHAR(20) not null,
-period int not null,
+couponName varchar(30),
+userId varchar(30),
+discountRate VARCHAR(20),
+period Date,
 primary key (serialNumber)
 ) ;
-
--- [변경된] Insert data: ---------------------------------------------------------------
-
--

@@ -7,10 +7,19 @@ package kr.ac.jbnu.se.advweb.product.model;
  */
 
 public class Cart {
+	private int cartNumber;
 	private String userId;
 	private String productNumber;
 	private int count;
 	
+	
+	
+	public int getCartNumber() {
+		return cartNumber;
+	}
+	public void setCartNumber(int cartNumber) {
+		this.cartNumber = cartNumber;
+	}
 	public String getUserId() {
 		return userId;
 	}
