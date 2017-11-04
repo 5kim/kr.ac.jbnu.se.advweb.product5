@@ -80,6 +80,7 @@ public class OrderProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
 		// 받은 정보들이 유효한지 판단 - 이 같은 경우 제대로된 정보를 입력 안한건 자바스크립트로 처리하고 그 이외에 부분으로 쿠폰의 적용 부분을
 		// 여기서 확인한다.
 		// 0. 에러가 있다면 다시 돌아가게 한다. 그런데 무슨 에러가 있을까?

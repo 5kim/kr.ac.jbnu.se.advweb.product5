@@ -20,7 +20,7 @@ import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 /**
  * Servlet implementation class CartServlet 장바구니 목록을 위한 서블릿
  */
-@WebServlet("/CartServlet")
+@WebServlet("/cart")
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

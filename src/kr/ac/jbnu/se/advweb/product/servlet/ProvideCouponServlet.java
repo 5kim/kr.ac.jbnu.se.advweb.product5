@@ -21,7 +21,7 @@ import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 /**
  * Servlet implementation class ProvideCouponServlet 관리자가 회원에게 쿠폰을 지급하기 위한 서블릿
  */
-@WebServlet("/ProvideCouponServlet")
+@WebServlet("/provideCoupon")
 public class ProvideCouponServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -86,7 +86,6 @@ public class ProvideCouponServlet extends HttpServlet {
 				.getRequestDispatcher("/WEB-INF/views/productListView.jsp");
 		dispatcher.forward(request, response);
 		// 3. 쿠폰 발급 화면으로 다시 넘어간다.
-		doGet(request, response);
 	}
 
 	public Date transformDate(String year, String month, String day) {

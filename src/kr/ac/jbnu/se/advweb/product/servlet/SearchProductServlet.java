@@ -19,7 +19,7 @@ import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 /**
  * Servlet implementation class SearchProductServlet 검색을 하면 제품의 목록을 보여주는 서블릿
  */
-@WebServlet("/SearchProductServlet")
+@WebServlet("/searchProduct")
 public class SearchProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

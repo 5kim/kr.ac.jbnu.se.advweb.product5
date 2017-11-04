@@ -8,17 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class OrderedProductListServlet
- * 구매한 목록 확인을 위한 서블릿
+ * Servlet implementation class RegisterCartServlet
  */
-@WebServlet("/orderedProductList")
-public class OrderedProductListServlet extends HttpServlet {
+@WebServlet("/registerCart")
+public class RegisterCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderedProductListServlet() {
+    public RegisterCartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
