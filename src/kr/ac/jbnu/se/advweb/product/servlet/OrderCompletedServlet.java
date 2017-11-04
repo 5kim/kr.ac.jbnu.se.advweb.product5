@@ -63,20 +63,20 @@ public class OrderCompletedServlet extends HttpServlet {
 		// 할 때 확인 할 수 있게
 		// 1.1 카드 번호, 카드 비밀번호, 금액, 쿠폰 활용 여부를 넘겨준다.  form의 형태를 어떻게 할 것인지 정해야함
 		
-		String productName = request.getParameter("productName");
-		int price = Integer.parseInt(request.getParameter("price"));
-		String productNumber = request.getParameter("productNumber");
+//		String productName = request.getParameter("productName");
+//		int price = Integer.parseInt(request.getParameter("price"));
+//		String productNumber = request.getParameter("productNumber");
 		Product product = new Product();
 		
-		product.setName(productName);
-		product.setPrice(price);
-		product.setProductNumber(productNumber);
-		String customerName = request.getParameter("customerName");
-		String phoneNum = request.getParameter("phoneNum");
+//		product.setName(productName);
+//		product.setPrice(price);
+//		product.setProductNumber(productNumber);
+		String customerName = request.getParameter("name");
+		String phoneNum = request.getParameter("contact");
 			
-		String address = request.getParameter("address");
-		String cardNum = request.getParameter("cardNum");
-		String cardPW = request.getParameter("cardPW");
+		String address = request.getParameter("addr");
+		String cardNum = request.getParameter("cardcode");
+		String cardPW = request.getParameter("cardpassword");
 		String coupon = request.getParameter("coupon"); // 쿠폰의 번호를 가지고 온다.
 		
 		Connection conn = MyUtils.getStoredConnection(request);
@@ -100,7 +100,7 @@ public class OrderCompletedServlet extends HttpServlet {
 		// 이 정보 들을 엔티티에 담는다.
 		request.setAttribute("cardNum", cardNum);
 		request.setAttribute("cardPW", cardPW);
-		request.setAttribute("price", price);
+//		request.setAttribute("price", price);
 		request.setAttribute("coupon", coupon);
 		
 		// 3. 결제 완료 화면으로 넘어간다.
