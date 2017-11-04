@@ -89,11 +89,11 @@ public class OrderProductServlet extends HttpServlet {
 		// 1.1 카드 번호, 카드 비밀번호, 금액, 쿠폰 활용 여부를 넘겨준다. form의 형태를 어떻게 할 것인지 정해야함
 		Connection conn = MyUtils.getStoredConnection(request);
 
-		String orderNumber = (String) request.getParameter("orderNumber");
-		String customerId = (String) request.getParameter("customerId");
-		String productNumber = (String) request.getParameter("productNumber");
-		String dateStr = (String) request.getParameter("date");
-		String countStr = (String) request.getParameter("count");
+		String orderNumber =  request.getParameter("orderNumber");
+		String customerId = request.getParameter("customerId");
+		String productNumber = request.getParameter("productNumber");
+		String dateStr =  request.getParameter("date");
+		String countStr = request.getParameter("count");
 
 		String cardNum = request.getParameter("cardNum");
 		String cardPW = request.getParameter("cardPW");

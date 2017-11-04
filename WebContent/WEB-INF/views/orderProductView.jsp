@@ -22,7 +22,7 @@
 		<div id="main">
 			<h3>Order Product</h3>
 			<form method="POST"
-				action="${pageContext.request.contextPath}/order">
+				action="${pageContext.request.contextPath}/ordercomplete">
 				<table border="0">
 					<tr>
 						<td>Product Name :</td>

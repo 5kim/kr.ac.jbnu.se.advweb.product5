@@ -38,7 +38,7 @@ public class InsertCartServlet extends HttpServlet {
 		Connection conn = MyUtils.getStoredConnection(request);
 		try {
 			Product product = DBUtils.findProduct(conn, code);
-			DBUtils.insertCard(conn, product);
+			DBUtils.insertCart(conn, product);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
