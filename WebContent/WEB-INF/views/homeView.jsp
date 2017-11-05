@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
 </head>
 <body>
+	
 	<div id="box">
 		<div id="top">
 			<jsp:include page="_header.jsp"></jsp:include>
