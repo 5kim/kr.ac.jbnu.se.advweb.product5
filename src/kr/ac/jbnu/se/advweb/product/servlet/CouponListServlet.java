@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.ac.jbnu.se.advweb.product.model.Coupon;
-import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
@@ -42,10 +41,11 @@ public class CouponListServlet extends HttpServlet {
 		// 1. DB에서 회원의 쿠폰에 대한 정보를 가지고 온다.
 		Connection conn = MyUtils.getStoredConnection(request);
 		// 세션에 저장된 아이디를 가지고와 넣어준다.
-//		String id = null;
-		
+
 		String errorString = null;
 		List<Coupon> list = null;
+	
+
 		try {
 			list = DBUtils.queryCoupon(conn, MyUtils.getLoginedUser(request.getSession()).getId());
 		} catch (SQLException e) {

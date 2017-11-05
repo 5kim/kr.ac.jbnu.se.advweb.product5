@@ -17,9 +17,11 @@
 						onClick="location.href='${pageContext.request.contextPath}/usermain'">
 					<img src="Image/cart.png" width=40px; height=40px;>
 				</div>
+				<form method="GET" action="${pageContext.request.contextPath}/searchproduct">
 				<div style="text-align : center">
-				<b>Search</b> <input type="text" name="content" width= 300px;> <button type="submit">Search</button>
+				<b>Search</b> <input type="text" name="searchWord" width= 300px;> <button type="submit">Search</button>
 				</div>
+				</form>
 
 			</div>
 		</div>

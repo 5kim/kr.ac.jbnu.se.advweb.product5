@@ -30,7 +30,6 @@
 					<th>userId</th>
 					<th>discountRate</th>
 					<th>period</th>
-					<th>Delete</th>
 				</tr>
 				<c:forEach items="${couponList}" var="coupon">
 					<tr>
@@ -39,7 +38,6 @@
 						<td>${coupon.userId}</td>
 						<td>${coupon.discountRate}</td>
 						<td>${coupon.period}</td>
-						<td><a href="deleteCoupon?code=${coupon.serialNumber}">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</table>
