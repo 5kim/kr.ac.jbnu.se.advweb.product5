@@ -383,7 +383,7 @@ public class DBUtils {
 	      
 		// 쿠폰 넣어야함 속성에 대한 것 넣어야함
 		pstm.executeUpdate();
-		
+
 		
 	}
 
@@ -402,6 +402,7 @@ public class DBUtils {
 			String seller = rs.getString("seller");
 			String description = rs.getString("description");
 			int inventory = rs.getInt("inventory");
+			String category = rs.getString("recommend");
 			Blob blobImage = (Blob) rs.getBlob("image");
 			InputStream inputStream = blobImage.getBinaryStream();
 			
@@ -422,6 +423,7 @@ public class DBUtils {
 			product.setDescription(description);
 			product.setInventory(inventory);
 			product.setImage(bufferedImage);
+			product.setCategory(category);
 
 			list.add(product);
 		}
@@ -515,13 +517,28 @@ public class DBUtils {
 
 	public static List<Order> queryUserOrder(Connection conn, String id) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "Delete From coupon where serialNumber = ?";
+
+		String sql = "Select * from orders where customerId='" + id + "'";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
+		ResultSet rs = pstm.executeQuery();
+		List<Order> list = new ArrayList<Order>();
+		while (rs.next()) {
+			String custromerId = rs.getString("customerId");
+			String productNumber = rs.getString("productNumber");
+			Date date  = rs.getDate("Date");		
+			int count = rs.getInt("count");		
+			
+			Order order = new Order();
+			order.setCustromerId(custromerId);
+			order.setProductNumber(productNumber);
+			order.setDate(date);
+			order.setCount(count);
 
-		pstm.executeUpdate();
-		return null;
+			list.add(order);
+		}
+		return list;
 	}
 
 

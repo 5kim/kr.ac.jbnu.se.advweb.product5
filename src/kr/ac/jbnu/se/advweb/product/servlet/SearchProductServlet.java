@@ -83,7 +83,6 @@ public class SearchProductServlet extends HttpServlet {
 		request.setAttribute("itemCount", String.valueOf(searchList.size()) + "개의 상품이 검색되었습니다.");
 		// ㄱ.4 받아온 정보를 화면에 보여준다.
 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		RequestDispatcher dispatcher = request.getServletContext()
 				.getRequestDispatcher("/WEB-INF/views/searchProductView.jsp");
 		dispatcher.forward(request, response);
