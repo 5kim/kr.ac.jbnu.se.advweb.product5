@@ -305,9 +305,11 @@ public class DBUtils {
 		// 1. DB에 Query문 작성
 
 
-	String sql = "Select * from coupon ORDER BY serialNumber";
+	String sql = "	Select * from coupon a where a.UserId= '" + id + "'";
+
 	// 2. Query문 실행
 	PreparedStatement pstm = conn.prepareStatement(sql);
+	
 	ResultSet rs = pstm.executeQuery();
 	// 3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
 	List<Coupon> list = new ArrayList<Coupon>();
