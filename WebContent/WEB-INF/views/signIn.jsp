@@ -51,8 +51,8 @@
 						</tr>
 						<tr>
 							<td>성별</td>
-							<td>남자<input type="radio" name="gender" value="male" id="genderM_id"/></td>
-							<td>여자<input type="radio" name="gender" value="female" id="genderF_id"/></td>
+							<td>남자<input type="radio" name="gender" value="m" id="genderM_id"/></td>
+							<td>여자<input type="radio" name="gender" value="f" id="genderF_id"/></td>
 							
 						</tr>
 						<tr>
