@@ -492,12 +492,12 @@ public class DBUtils {
 		return list;
 	}
 
-	public static void deleteCoupon(Connection conn, String serialNumber) throws SQLException {
+	public static void deleteCoupon(Connection conn, int serialNumber) throws SQLException {
 		String sql = "Delete From coupon where serialNumber = ?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
-		pstm.setString(1, serialNumber);
+		pstm.setInt(1, serialNumber);
 
 		pstm.executeUpdate();
 		
@@ -557,25 +557,28 @@ public class DBUtils {
 		
 	}
 
-	public static Coupon queryUseCoupon(Connection conn, String couponserialNumber) throws SQLException {
+	public static Coupon queryUseCoupon(Connection conn, int couponserialNumber) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "select * from coupon where ='"+couponserialNumber+"'";
+		String sql = "select * from coupon where serialNumber = ? ";
 		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.setInt(1, couponserialNumber);
 		
-		ResultSet rs = pstm.executeQuery();
-		int serialNumber = rs.getInt("serialNumber");
-		String couponName = rs.getString("couponName");
-		String userId = rs.getString("userId");
-		int discountRate = rs.getInt("discountRate");
-		Date period = rs.getDate("period");
-
 		Coupon coupon = new Coupon();
-		
-		coupon.setSerialNumber(serialNumber);
-		coupon.setCouponName(couponName);
-		coupon.setUserId(userId);
-		coupon.setDiscountRate(discountRate);
-		coupon.setPeriod(period);
+		ResultSet rs = pstm.executeQuery();
+		while(rs.next()) {
+			int serialNumber = rs.getInt("serialNumber");
+			String couponName = rs.getString("couponName");
+			String userId = rs.getString("userId");
+			int discountRate = rs.getInt("discountRate");
+			Date period = rs.getDate("period");
+			
+			coupon.setSerialNumber(serialNumber);
+			coupon.setCouponName(couponName);
+			coupon.setUserId(userId);
+			coupon.setDiscountRate(discountRate);
+			coupon.setPeriod(period);
+			
+		}
 		return coupon;
 	}
 

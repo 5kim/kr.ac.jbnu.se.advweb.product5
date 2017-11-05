@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Order Product</title>
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
+
 </head>
 <body>
 	<div id="box">
@@ -40,8 +41,7 @@
 						<td>Use Coupon :</td>
 						<td><select name="coupon">
 							<c:forEach items="${couponList}" var="coupon">
-							<option name = "serialNumber" value="${coupon.serialNumber }">${coupon.couponName }</option>
-							
+							<option value=${coupon.serialNumber }>${coupon.couponName }</option>
 							</c:forEach>
 							</select><br></td>
 					</tr>
