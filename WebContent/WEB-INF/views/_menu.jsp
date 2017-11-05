@@ -18,6 +18,8 @@
 	<div>
 	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/userInfo'">My Account Info</button>
 	</div>
+		<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/orderedProductList'">ordered product</button>
+	</div>
 	 	
 </div> 
 </body>    

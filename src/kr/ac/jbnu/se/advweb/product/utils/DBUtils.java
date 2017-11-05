@@ -500,5 +500,31 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 
+	public static List<Order> queryUserOrder(Connection conn, String id) throws SQLException {
+		String sql = "Select * from orders where customerId   ='" + id + "'";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		ResultSet rs = pstm.executeQuery();
+		List<Order> list = new ArrayList<Order>();
+		while (rs.next()) {
+			String custromerId = rs.getString("customerId");
+			String productNumber = rs.getString("productNumber");
+			Date date  = rs.getDate("Date");		
+			int count = rs.getInt("count");		
+			
+			Order order = new Order();
+			order.setCustromerId(custromerId);
+			order.setProductNumber(productNumber);
+			order.setDate(date);
+			order.setCount(count);
+
+			list.add(order);
+		}
+		return list;
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

@@ -94,7 +94,7 @@ public class OrderCompletedServlet extends HttpServlet {
 //		order.setCount(count);
 		order.setCustromerId(userAccount.getId());
 		Calendar oCalendar = Calendar.getInstance( ); 
-		Date date = new Date(oCalendar.getTime().getYear(),oCalendar.getTime().getMonth(),oCalendar.getTime().getDay());
+		Date date = new Date(oCalendar.getTimeInMillis());
 		order.setDate(date);
 		order.setProductNumber(productNumber);
 		//쿠폰이 존재한다면 DB에서 삭제한다.
