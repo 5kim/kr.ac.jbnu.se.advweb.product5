@@ -19,7 +19,7 @@ import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 /**
  * Servlet implementation class SearchProductServlet 검색을 하면 제품의 목록을 보여주는 서블릿
  */
-@WebServlet("/searchProduct")
+@WebServlet(urlPatterns = { "/searchproduct" })
 public class SearchProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -55,7 +55,7 @@ public class SearchProductServlet extends HttpServlet {
 			String error = "잘못된 검색 방법입니다.";
 			request.setAttribute("error", error);
 			// 검색어 만을 이용한 상품 검색
-		} else if (searchWord == null && category != null) {
+		} else if (searchWord != null && category == null) {
 			try {
 				searchList = DBUtils.querySearchWord(conn, searchWord);
 			} catch (SQLException e) {
@@ -63,7 +63,7 @@ public class SearchProductServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			// 카테고리만을 이용한 상품 검색
-		} else if (searchWord != null && category == null) {
+		} else if (searchWord == null && category != null) {
 			try {
 				searchList = DBUtils.queryCategory(conn, category);
 			} catch (SQLException e) {
@@ -83,7 +83,6 @@ public class SearchProductServlet extends HttpServlet {
 		request.setAttribute("itemCount", String.valueOf(searchList.size()) + "개의 상품이 검색되었습니다.");
 		// ㄱ.4 받아온 정보를 화면에 보여준다.
 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		RequestDispatcher dispatcher = request.getServletContext()
 				.getRequestDispatcher("/WEB-INF/views/searchProductView.jsp");
 		dispatcher.forward(request, response);

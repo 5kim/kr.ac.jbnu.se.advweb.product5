@@ -402,16 +402,16 @@ public class DBUtils {
 			String seller = rs.getString("seller");
 			String description = rs.getString("description");
 			int inventory = rs.getInt("inventory");
-			Blob blobImage = (Blob) rs.getBlob("image");
-			InputStream inputStream = blobImage.getBinaryStream();
-			
-			BufferedImage bufferedImage = null;
-			try {
-				 bufferedImage = ImageIO.read(inputStream);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			Blob blobImage = (Blob) rs.getBlob("image");
+//			InputStream inputStream = blobImage.getBinaryStream();
+//			
+//			BufferedImage bufferedImage = null;
+//			try {
+//				 bufferedImage = ImageIO.read(inputStream);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 
 			Product product = new Product();
 
@@ -421,7 +421,7 @@ public class DBUtils {
 			product.setSeller(seller);
 			product.setDescription(description);
 			product.setInventory(inventory);
-			product.setImage(bufferedImage);
+//			product.setImage(bufferedImage);
 
 			list.add(product);
 		}
