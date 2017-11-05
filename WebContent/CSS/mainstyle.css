@@ -36,21 +36,21 @@
 }
 
 #top {
-	height: 100px;
+	height: 200px;
 	position: relative;
 }
 
 #left {
 	margin: auto;
 	float: left;
-	height: 500px;
+	height: 400px;
 	width: 15%;
 	position: relative;
 }
 
 #main {
 	float: left;
-	height: 500px;
+	height: 400px;
 	width: 85%;
 	position: relative;
 }

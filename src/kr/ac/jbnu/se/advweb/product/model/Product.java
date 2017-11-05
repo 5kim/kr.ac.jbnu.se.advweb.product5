@@ -9,29 +9,22 @@ public class Product {
 	private String seller;
 	private String description;	
 	private int inventory;
+	private int recommend;
 	private BufferedImage image;
-	private Category category;
+	private String category;
 	
 	public Product() {
 	}
 	
 
-	public Product(String productNumber, String name, float price, String seller, String description, int inventory, BufferedImage image) {
+	public Product(String productNumber, String name, float price, String seller, String description, int inventory, String category) {
 		this.productNumber = productNumber;
 		this.name = name;
 		this.price = price;
 		this.seller = seller;
 		this.description = description;
 		this.inventory = inventory;
-		this.image = image;
-	}
-	public Product(String productNumber, String name, float price, String seller, String description, int inventory) {
-		this.productNumber = productNumber;
-		this.name = name;
-		this.price = price;
-		this.seller = seller;
-		this.description = description;
-		this.inventory = inventory;
+		this.category = category;
 	}
 
 	public String getProductNumber() {
@@ -88,7 +81,16 @@ public class Product {
 		this.inventory = inventory;
 	}
 
+	public int getRecommend() {
+		return recommend;
+	}
 
+
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
+	}
+	
+	
 	public BufferedImage getImage() {
 		return image;
 	}
@@ -99,12 +101,13 @@ public class Product {
 	}
 
 
-	public Category getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
 
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
+
 }

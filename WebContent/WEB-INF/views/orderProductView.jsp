@@ -55,7 +55,7 @@
 					</tr>
 					<tr>
 						<td>Customer Address :</td>
-						<td><input type="text" name="addr"><br></td>
+						<td><input type="text" name="addr" value=${user.address }> <br></td>
 					</tr>
 					<tr>
 						<td>Customer Contact :</td>

@@ -13,7 +13,16 @@
 	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/home'">Home</button>
 	</div>
 	<div>
-	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/productList'">Product List</button>
+	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/productList'">Outer</button>
+	</div>
+	<div>
+	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/productList'">Shirts</button>
+	</div>
+	<div>
+	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/productList'">Pants</button>
+	</div>
+	<div>
+	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/productList'">Shoes</button>
 	</div>
 	<div>
 	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/userInfo'">My Account Info</button>

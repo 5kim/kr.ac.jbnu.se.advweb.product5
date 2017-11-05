@@ -40,6 +40,7 @@ public class DBUtils {
 			String gender = rs.getString("gender");
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
+			String address = rs.getString("address");
 
 			UserAccount user = new UserAccount();
 			user.setId(id);
@@ -72,10 +73,10 @@ public class DBUtils {
 			String gender = rs.getString("gender");
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
-
+			String address = rs.getString("address");
+			
 			UserAccount user = new UserAccount();
 
-			user.setId(id);
 			user.setId(id);
 			user.setPassword(password);
 			user.setName(name);
@@ -83,6 +84,7 @@ public class DBUtils {
 			user.setGender(gender);
 			user.setContact(contact);
 			user.setEmail(email);
+			user.setAddress(address);
 
 			return user;
 		}
@@ -90,7 +92,7 @@ public class DBUtils {
 	}
 	
 	public static void insertUser(Connection conn, UserAccount user) throws SQLException {
-		String sql = "Insert into user(id, password, name, birth, gender, contact, email) values (?,?,?,?,?,?,?)";
+		String sql = "Insert into user(id, password, name, birth, gender, contact, email, address) values (?,?,?,?,?,?,?,?)";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -101,6 +103,7 @@ public class DBUtils {
 		pstm.setString(5, user.getGender());
 		pstm.setInt(6, user.getContact());
 		pstm.setString(7, user.getEmail());
+		pstm.setString(8, user.getAddress());
 
 		pstm.executeUpdate();
 	}
@@ -120,7 +123,8 @@ public class DBUtils {
 			String gender = rs.getString("gender");
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
-
+			String address = rs.getString("address");
+			
 			UserAccount user = new UserAccount();
 
 			user.setId(id);
@@ -130,6 +134,7 @@ public class DBUtils {
 			user.setGender(gender);
 			user.setContact(contact);
 			user.setEmail(email);
+			user.setAddress(address);
 
 			list.add(user);
 		}
@@ -150,6 +155,7 @@ public class DBUtils {
 			String seller = rs.getString("seller");
 			String description = rs.getString("description");
 			int inventory = rs.getInt("inventory");
+			String category = rs.getString("category");
 
 			Product product = new Product();
 
@@ -159,6 +165,7 @@ public class DBUtils {
 			product.setSeller(seller);
 			product.setDescription(description);
 			product.setInventory(inventory);
+			product.setCategory(category);
 
 			list.add(product);
 		}
@@ -179,8 +186,9 @@ public class DBUtils {
 			String seller = rs.getString("seller");
 			String description = rs.getString("description");
 			int inventory = rs.getInt("inventory");
+			String category = rs.getString("category");
 
-			Product product = new Product(productNumber, name, price, seller, description, inventory);
+			Product product = new Product(productNumber, name, price, seller, description, inventory, category);
 			return product;
 				
 		}
@@ -199,7 +207,7 @@ public class DBUtils {
 	}
 
 	public static void insertProduct(Connection conn, Product product) throws SQLException {
-		String sql = "Insert into Product(productNumber, name, price, seller, description, inventory) values (?,?,?,?,?,?)";
+		String sql = "Insert into Product(productNumber,name, price, seller, description, inventory,category) values (?,?,?,?,?,?,?)";
 
 	      PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -209,13 +217,13 @@ public class DBUtils {
 	      pstm.setString(4, product.getSeller());
 	      pstm.setString(5, product.getDescription());
 	      pstm.setInt(6, product.getInventory());
-
+	      pstm.setString(7, product.getCategory());
 
 	      pstm.executeUpdate();
 	   }
 
 	public static void deleteProduct(Connection conn, String productNumber) throws SQLException {
-		String sql = "Delete From Product where Code= ?";
+		String sql = "Delete From product where productNumber = ?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -225,20 +233,19 @@ public class DBUtils {
 	}
 	
 	public static void insertOrder(Connection conn, Order order) throws SQLException {
-		String sql = "Insert into Orders(orderNumber, customerId, productNumber, date, count) values (?,?,?,?,?)";
+		String sql = "Insert into Orders(customerId, productNumber, date, count) values (?,?,?,?)";
 
 	      PreparedStatement pstm = conn.prepareStatement(sql);
 
-	      pstm.setString(1, order.getOrderNumber());
-	      pstm.setString(2, order.getCustomerId());
-	      pstm.setString(3, order.getProductNumber());
-	      pstm.setDate(4, order.getDate());
-	      pstm.setInt(5, order.getCount());
+	      pstm.setString(1, order.getCustomerId());
+	      pstm.setString(2, order.getProductNumber());
+	      pstm.setDate(3, order.getDate());
+	      pstm.setInt(4, order.getCount());
 
 	      pstm.executeUpdate();
 	   }
 	
-	public static List<Order> queryOrders(Connection conn, String orderNumber) throws SQLException {
+	public static List<Order> queryOrders(Connection conn, int orderNumber) throws SQLException {
 		// TODO Auto-generated method stub
 		// 주문된 정보를 가지고와 배열로 만든다.
 		// 항목마다 id가 중복되서 불러와지니 레이아웃 배치를 id만 따로 하는게 좋은것 같아 보임.
@@ -297,25 +304,30 @@ public class DBUtils {
 		// 쿠폰 정보의 배열을 반환
 		// 1. DB에 Query문 작성
 
-		String sql = "Select * from coupon where userId='" + id + "'";
-		// 2. Query문 실행
-		PreparedStatement pstm = conn.prepareStatement(sql);
-		ResultSet rs = pstm.executeQuery();
-		// 3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
-		List<Coupon> list = new ArrayList<Coupon>();
-		while (rs.next()) {
-			String serialNumber = rs.getString("serialNumber");
-			String userId = rs.getString("userId");
-			int discountRate = rs.getInt("discountRate");
-			Date period = rs.getDate("period");
 
-			Coupon coupon = new Coupon();
-			coupon.setSerialNumber(serialNumber);
-			coupon.setUserId(userId);
-			coupon.setDiscountRate(discountRate);
-			coupon.setPeriod(period);
+	String sql = "Select * from coupon ORDER BY serialNumber";
+	// 2. Query문 실행
+	PreparedStatement pstm = conn.prepareStatement(sql);
+	ResultSet rs = pstm.executeQuery();
+	// 3. DB에서 가지고 온 정보 coupon형태의 배열로 만들어주기
+	List<Coupon> list = new ArrayList<Coupon>();
+	while (rs.next()) {
+		
+		int serialNumber = rs.getInt("serialNumber");
+		String couponName = rs.getString("couponName");
+		String userId = rs.getString("userId");
+		int discountRate = rs.getInt("discountRate");
+		Date period = rs.getDate("period");
 
-			list.add(coupon);
+		Coupon coupon = new Coupon();
+		
+		coupon.setSerialNumber(serialNumber);
+		coupon.setCouponName(couponName);
+		coupon.setUserId(userId);
+		coupon.setDiscountRate(discountRate);
+		coupon.setPeriod(period);
+
+		list.add(coupon);
 
 		}
 		// 4. 배열 반환하기
@@ -325,7 +337,7 @@ public class DBUtils {
 	public static List<Product> queryTodayRecommend(Connection conn) throws SQLException {
 		// TODO Auto-generated method stub
 		//1. 오늘의 추천으로 설정되어 있는 상품 목록 가지고 오기위한 sql문
-		String sql = "Select * from product where recommendFlag = 0;";
+		String sql = "Select * from product where recommend = 0;";
 		// 2. Query문 실행
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
@@ -360,17 +372,15 @@ public class DBUtils {
 		
 		// TODO Auto-generated method stub
 		
-		String sql = "Insert into Product(serialNumber, UserId, discountRate, period) values (?,?,?,?)";
+		String sql = "Insert into coupon(couponName,UserId, discountRate, period) values (?,?,?,?)";
 
 	      PreparedStatement pstm = conn.prepareStatement(sql);
 
-	      pstm.setString(1, coupon.getSerialNumber());
+	      pstm.setString(1, coupon.getCouponName());
 	      pstm.setString(2, coupon.getUserId());
 	      pstm.setInt(3, coupon.getDiscountRate());
 	      pstm.setDate(4, (Date) coupon.getPeriod());
-
-	      pstm.executeUpdate();
-
+	      
 		// 쿠폰 넣어야함 속성에 대한 것 넣어야함
 		pstm.executeUpdate();
 		
@@ -476,10 +486,13 @@ public class DBUtils {
 		return list;
 	}
 
-	public static void deleteCoupon(Connection conn, String coupon) throws SQLException {
-		// TODO Auto-generated method stub
-		String sql = "delete from coupon where ='"+coupon+"'";
+	public static void deleteCoupon(Connection conn, String serialNumber) throws SQLException {
+		String sql = "Delete From coupon where serialNumber = ?";
+
 		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.setString(1, serialNumber);
+
 		pstm.executeUpdate();
 		
 	}
@@ -498,32 +511,6 @@ public class DBUtils {
 //		pstm.setString(7, Product.getEmail());
 
 		pstm.executeUpdate();
-	}
-
-	public static List<Order> queryUserOrder(Connection conn, String id) throws SQLException {
-		String sql = "Select * from orders where customerId   ='" + id + "'";
-
-		PreparedStatement pstm = conn.prepareStatement(sql);
-
-		ResultSet rs = pstm.executeQuery();
-		List<Order> list = new ArrayList<Order>();
-		while (rs.next()) {
-			String custromerId = rs.getString("customerId");
-			String productNumber = rs.getString("productNumber");
-			Date date  = rs.getDate("Date");		
-			int count = rs.getInt("count");		
-			
-			Order order = new Order();
-			order.setCustromerId(custromerId);
-			order.setProductNumber(productNumber);
-			order.setDate(date);
-			order.setCount(count);
-
-			list.add(order);
-		}
-		return list;
-		// TODO Auto-generated method stub
-		
 	}
 
 

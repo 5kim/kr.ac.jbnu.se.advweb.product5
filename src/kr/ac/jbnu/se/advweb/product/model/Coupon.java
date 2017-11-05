@@ -7,17 +7,24 @@ package kr.ac.jbnu.se.advweb.product.model;
 import java.util.Date;
 
 public class Coupon {
+	private int serialNumber;
 	private String couponName;
-	private String serialNumber;
 	private String userId;
 	private int discountRate;
 	private Date period;
 	
-	public String getSerialNumber() {
+	public int getSerialNumber() {
 		return serialNumber;
 	}
-	public void setSerialNumber(String serialNumber) {
+	public void setSerialNumber(int serialNumber) {
 		this.serialNumber = serialNumber;
+	}
+	
+	public String getCouponName() {
+		return couponName;
+	}
+	public void setCouponName(String couponName) {
+		this.couponName = couponName;
 	}
 	public String getUserId() {
 		return userId;

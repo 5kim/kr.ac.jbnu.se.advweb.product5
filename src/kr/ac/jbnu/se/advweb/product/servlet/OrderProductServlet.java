@@ -95,7 +95,10 @@ public class OrderProductServlet extends HttpServlet {
 		// 1.1 카드 번호, 카드 비밀번호, 금액, 쿠폰 활용 여부를 넘겨준다. form의 형태를 어떻게 할 것인지 정해야함
 		Connection conn = MyUtils.getStoredConnection(request);
 
-		String orderNumber =  request.getParameter("orderNumber");
+		// orderNumberStr 자동증가 값이라 테이블에 넣을때 필요 없지 않을까?
+		String orderNumberStr =  request.getParameter("orderNumber");
+		int orderNumber = Integer.parseInt(orderNumberStr);
+
 		String customerId = request.getParameter("customerId");
 		String productNumber = request.getParameter("productNumber");
 		String dateStr =  request.getParameter("date");
@@ -113,15 +116,15 @@ public class OrderProductServlet extends HttpServlet {
 			count = Integer.parseInt(countStr);
 		} catch (Exception e) {
 		}
-		Order order = new Order(orderNumber, date, productNumber, customerId, count);
+		Order order = new Order(orderNumber, date, customerId, productNumber, count);
 
 		String errorString = null;
 
-		String regex = "\\w+";
-
-		if (orderNumber == null || !orderNumber.matches(regex)) {
-			errorString = "Product Code invalid!";
-		}
+//		String regex = "\\w+";
+//
+//		if (orderNumber == null || !orderNumber.matches(regex)) {
+//			errorString = "Product Code invalid!";
+//		}
 
 		if (errorString == null) {
 			try {

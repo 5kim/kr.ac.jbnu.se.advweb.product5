@@ -51,14 +51,14 @@ public class CreateProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Connection conn = MyUtils.getStoredConnection(request);
-
+		
 		String productNumber = (String) request.getParameter("productNumber");
 		String name = (String) request.getParameter("name");
 		String priceStr = (String) request.getParameter("price");
 		String seller = (String) request.getParameter("seller");
 		String description = (String) request.getParameter("description");
 		String inventoryStr = (String) request.getParameter("inventory");		
-		
+		String category = (String) request.getParameter("category");	
 		
 		float price = 0;
 		int inventory = 0;
@@ -67,7 +67,7 @@ public class CreateProductServlet extends HttpServlet {
 			inventory = Integer.parseInt(inventoryStr);
 		} catch (Exception e) {
 		}
-		Product product = new Product(productNumber, name, price, seller, description, inventory);
+		Product product = new Product(productNumber,name, price, seller, description, inventory, category);
 
 		String errorString = null;
 
