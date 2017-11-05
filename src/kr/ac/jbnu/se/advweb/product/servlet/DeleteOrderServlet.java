@@ -16,7 +16,7 @@ import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 /**
  * Servlet implementation class DeleteOrderServlet
  */
-@WebServlet("/DeleteOrderServlet")
+@WebServlet("/deleteOrder")
 public class DeleteOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
