@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
 </head>
 <body>
-<div style = "margin-left: 10px">
+<div style="margin-top: 10px">
 	<br>
 	<form method="GET" action="${pageContext.request.contextPath}/searchproduct">
 	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/searchproduct?category=outer'">Outer</button>
@@ -21,12 +21,8 @@
 	<div>
 	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/searchproduct?category=shoes'">Shoes</button>
 	</div>
-	<div>
 	</form>
-	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/userInfo'">My Account Info</button>
-	</div>
-		<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/orderedProductList'">ordered product</button>
-	</div>
+	
 	 	
 </div> 
 </body>    

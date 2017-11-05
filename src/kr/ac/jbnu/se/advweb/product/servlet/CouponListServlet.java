@@ -19,7 +19,7 @@ import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 /**
  * Servlet implementation class CouponListServlet 쿠폰 목록을 위한 서블릿
  */
-@WebServlet("/couponList")
+@WebServlet(urlPatterns = { "/couponlist" })
 public class CouponListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -22,7 +22,7 @@ import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 /**
  * Servlet implementation class OrderedProductListServlet 구매한 목록 확인을 위한 서블릿
  */
-@WebServlet("/orderedProductList")
+@WebServlet(urlPatterns = { "/orderedlist" })
 public class OrderedProductListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
