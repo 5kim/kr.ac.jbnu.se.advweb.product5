@@ -80,15 +80,17 @@ public class EditUserInfoServlet extends HttpServlet {
 		// ㄴ.2 어디가 잘못 되었는지 표시를 해주며, 다시 작성하게끔 포커싱을 해준다.
 
 		Connection conn = MyUtils.getStoredConnection(request);
-
-		String id = (String) request.getParameter("id");
-		String password = (String) request.getParameter("password");
-		String name = (String) request.getParameter("name");
-		String birthStr = (String) request.getParameter("birth");
-		String gender = (String) request.getParameter("gender");
-		String contactStr = (String) request.getParameter("contact");		
-		String email = (String) request.getParameter("email");
-		String address = (String) request.getParameter("address");
+		HttpSession session = request.getSession();
+		UserAccount user = MyUtils.getLoginedUser(session);
+		
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		String name = request.getParameter("name");
+		String birthStr = request.getParameter("birth");
+		String gender = request.getParameter("gender");
+		String contactStr = request.getParameter("contact");		
+		String email = request.getParameter("email");
+		String address = request.getParameter("address");
 		
 		int birth = 0;
 		int contact = 0;
@@ -97,7 +99,7 @@ public class EditUserInfoServlet extends HttpServlet {
 			contact = Integer.parseInt(contactStr);
 		} catch (Exception e) {
 		}
-		UserAccount user = new UserAccount(id, password, name, birth, gender, contact, email, address);
+		user = new UserAccount(id, password, name, birth, gender, contact, email, address);
 
 		String errorString = null;
 
@@ -120,12 +122,12 @@ public class EditUserInfoServlet extends HttpServlet {
 
 		// Store infomation to request attribute, before forward to views.
 		request.setAttribute("errorString", errorString);
-		request.setAttribute("product", user);
+		request.setAttribute("user", user);
 
 		// If error, forward to Edit page.
 		if (errorString != null) {
 			RequestDispatcher dispatcher = request.getServletContext()
-					.getRequestDispatcher("/WEB-INF/views/editUserInfo.jsp");
+					.getRequestDispatcher("/WEB-INF/views/editUserInfoView.jsp");
 			dispatcher.forward(request, response);
 		}
 		// If everything nice.

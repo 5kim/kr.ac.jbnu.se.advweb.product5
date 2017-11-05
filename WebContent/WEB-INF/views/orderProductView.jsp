@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Order Product</title>
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
-
 </head>
 <body>
 	<div id="box">
@@ -38,14 +37,14 @@
 					<tr>
 						<td>Use Coupon :</td>
 						<td><select name="coupon">
-							<option value="test">test!</option>
-							</select><br></td>
+								<option value="test">test!</option>
+						</select><br></td>
 					</tr>
 					<tr>
 						<td>Total Price :</td>
 						<td>price~~~~~<br></td>
 					</tr>
-					
+
 					<br>
 					<br>
 					<!-- 				<input type="checkbox" id="check"> Equals User Information<br> -->
@@ -55,7 +54,8 @@
 					</tr>
 					<tr>
 						<td>Customer Address :</td>
-						<td><input type="text" name="addr" value=${user.address }> <br></td>
+						<td><input type="text" name="addr" value=${user.address }>
+							<br></td>
 					</tr>
 					<tr>
 						<td>Customer Contact :</td>
@@ -79,7 +79,8 @@
 				</table>
 				<br>
 				<button type="submit">Order</button>
-				<button type="reset" onClick="location.href='${pageContext.request.contextPath}/productinfo?code=${product.productNumber }'">cancel</button>
+				<button type="reset"
+					onClick="location.href='${pageContext.request.contextPath}/productinfo?code=${product.productNumber }'">cancel</button>
 			</form>
 
 		</div>
