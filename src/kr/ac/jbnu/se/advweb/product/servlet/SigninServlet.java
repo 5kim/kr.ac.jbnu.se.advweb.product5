@@ -2,6 +2,7 @@ package kr.ac.jbnu.se.advweb.product.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -48,21 +49,28 @@ public class SigninServlet extends HttpServlet {
 		String id = (String) request.getParameter("id");
 		String password = (String) request.getParameter("password");
 		String name = (String) request.getParameter("name");
-		String birthStr = (String) request.getParameter("birth");
-		String gender = (String) request.getParameter("gender");
+		
+//		String genderM = (String) request.getParameter("genderM");
+//		String genderF = (String) request.get
+//		String gender = (String) request.getParameter("gender");
+		
 		String contactStr = (String) request.getParameter("contact");		
 		String email = (String) request.getParameter("email");
 		String address = (String) request.getParameter("address");
 		
+		String year = request.getParameter("year");
+		String day = request.getParameter("day");
+		String month = request.getParameter("month");
+		
 		int birth = 0;
 		int contact = 0;
-		try {
-			birth = Integer.parseInt(birthStr);
-			contact = Integer.parseInt(contactStr);
-		} catch (Exception e) {
-		}
-		UserAccount user = new UserAccount(id, password, name, birth, gender, contact, email,address);
-
+		
+		String gender = "G";
+		
+		contact = Integer.parseInt(contactStr);
+		birth = transformInt(year, month, day);
+		
+		UserAccount user = new UserAccount(id, password, name, birth, gender, contact, email, address);
 		String errorString = null;
 
 		// Product ID is the string literal [a-zA-Z_0-9]
@@ -84,7 +92,7 @@ public class SigninServlet extends HttpServlet {
 
 		// Store infomation to request attribute, before forward to views.
 		request.setAttribute("errorString", errorString);
-		request.setAttribute("product", user);
+		request.setAttribute("user", user);
 
 		// If error, forward to Edit page.
 		if (errorString != null) {
@@ -95,8 +103,16 @@ public class SigninServlet extends HttpServlet {
 		// If everything nice.
 		// Redirect to the product listing page.
 		else {
-			response.sendRedirect(request.getContextPath() + "/home");
+			response.sendRedirect(request.getContextPath() + "/login");
 		}
 	}
+	
+	public int transformInt(String year, String month, String day) {
+		String brithStr = year + month + day;
+		int d= Integer.parseInt(brithStr);
+
+		return d;
+	}
+	
 
 }

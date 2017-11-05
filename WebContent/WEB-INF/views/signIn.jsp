@@ -1,14 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <!-- 회원가입 화면 -->
-<head>
-<link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sign in</title>
 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SignIn</title>
+
+<link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		// Newly Added by STKim. 
+		// The following code is for submitting the form data to server and redirect to another page. 
+		$("#signin_form_id").on('submit', function(e) {
+			$.post('${pageContext.request.contextPath}/signin', {
+				id : $("#id_id").val(),
+				password : $("#password_id").val(),
+				name : $("#name_id").val(),
+				contact : $("#contact_id").val(),
+				
+				year : $("#year_id").val(),
+				month : $("#month_id").val(),
+				day : $("#day_id").val(),
+				
+				email : $("#email_id").val(),
+				address : $("#address_id").val()
+
+			}, function(data) {
+				// move another page
+				var win = window.open();
+				win.document.write(data);
+			});
+		});
+	})
+</script>
 </head>
+
 <body>
 	<div id="box">
 		<div id="top">
@@ -19,37 +49,40 @@
 		</div>
 		<div id="main">
 			<div style="margin-top: 20px">
+			
 				<form method="POST"
-					action="${pageContext.request.contextPath}/signin">
+					action="${pageContext.request.contextPath}/signin" id="signin_form_id">
 					<table border="0">
 						<tr>
 							<td>ID</td>
-							<td><input type="text" name="userName"
-								value="${user.id}" /></td>
+							<td><input type="text" name="userId" id="id_id"
+								value="${user.id}" rangelength=[1,20] required/></td>
 						</tr>
 						<tr>
 							<td>PASSWORD</td>
-							<td><input type="password" name="password"
-								value="${user.password}" /></td>
+							<td><input type="password" name="password" id="password_id"
+								value="${user.password}" minlength="6" required/></td>
 						</tr>
 						<tr>
 							<td>이름</td>
-							<td><input type="text" name="name" value="${user.name}" /></td>
+							<td><input type="text" name="name" id="name_id"
+								value="${user.name}"required/></td>
 						</tr>
 						<tr>
 							<td>전화번호</td>
-							<td><input type="text" name="number" value="${user.contact}" /></td>
+							<td><input type="text" name="contact" id="contact_id"
+								value="${user.contact}" required/></td>
 							<td><label><b>' - '없이 입력해주세요.</b></label>
 						</tr>
 						<tr>
 							<td>성별</td>
-							<td>남자<input type="radio" name="gender" value="male" /></td>
-							<td>여자<input type="radio" name="gender" value="female" /></td>
+							<td>남자<input type="radio" name="gender" value="male" id="genderM_id"/></td>
+							<td>여자<input type="radio" name="gender" value="female" id="genderF_id"/></td>
 							
 						</tr>
 						<tr>
 							<td>생년월일</td>
-							<td><select name="birthyear" value="${user.birthyear}">
+							<td><select name="birthyear" value="${user.birthyear}" id="year_id" required>
 									<option value="">생년</option>
 									<option value=1946>1946</option>
 									<option value=1947>1947</option>
@@ -123,7 +156,7 @@
 									<option value=2015>2015</option>
 									<option value=2016>2016</option>
 									<option value=2017>2017</option>
-							</select> <select name="birthmonth" value="${user.birthmonth}">
+							</select> <select name="birthmonth" value="${user.birthmonth}" id="month_id"required>
 									<option value="">월</option>
 									<option value="01">1</option>
 									<option value="02">2</option>
@@ -137,7 +170,7 @@
 									<option value="10">10</option>
 									<option value="11">11</option>
 									<option value="12">12</option>
-							</select><select name="birthdate" value="${user.birthdate}">
+							</select><select name="birthdate" value="${user.birthdate}"id="day_id"required>
 									<option value="">일</option>
 									<option value="01">1</option>
 									<option value="02">2</option>
@@ -174,7 +207,12 @@
 						</tr>
 						<tr>
 							<td>E-mail</td>
-							<td><input type="text" name="userMail" value="${user.email}" /></td>
+							<td><input type="email" name="userMail" id="email_id" value="${user.email}" required /></td>
+						</tr>
+						<tr>
+						<tr>
+							<td>주소</td>
+							<td><input type="text" name="userAddress" id="address_id" value="${user.address}"  required/></td>
 						</tr>
 						<tr>
 							<td colspan="2"><input type="submit" value="Submit"/> <a
@@ -182,6 +220,7 @@
 						</tr>
 					</table>
 				</form>
+				
 			</div>
 		</div>
 		<div id="bottom">
