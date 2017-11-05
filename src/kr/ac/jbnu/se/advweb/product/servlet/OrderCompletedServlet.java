@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.ac.jbnu.se.advweb.product.model.Coupon;
 import kr.ac.jbnu.se.advweb.product.model.Order;
 import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
@@ -78,9 +79,12 @@ public class OrderCompletedServlet extends HttpServlet {
 		String countStr = request.getParameter("count");
 		int count =Integer.parseInt(countStr);
 		if(product.getInventory()<count) {
-			response.sendRedirect(request.getContextPath() + "/login");
+			response.sendRedirect(request.getContextPath() + "/home");
 			return;
 		}
+		//재고량을 수정하기 위한 계산
+		int newCount = product.getInventory() - count;
+
 //		4. 쿠폰 사용을 했다면 쿠폰 또한 DB 업데이트를 해준다.
 //		쿠폰의 경우 이전 jsp에서 애초에 사용 가능한 쿠폰만을 입력 받게 한다.
 //		5. 결제가 완료된 상품을 주문 DB에 새롭게 넣는다.
@@ -100,10 +104,21 @@ public class OrderCompletedServlet extends HttpServlet {
 		Date date = new Date(oCalendar.getTimeInMillis());
 		order.setDate(date);
 		order.setProductNumber(productNumber);
-		String coupon = request.getParameter("coupon"); // 쿠폰의 번호를 가지고 온다.
-		if(coupon !=null) {
+		String couponserialNumber = request.getParameter("serialNumber"); // 쿠폰의 번호를 가지고 온다.
+		
+		Coupon coupon = null;
+		try {
+			coupon = DBUtils.queryUseCoupon(conn,couponserialNumber);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		float discountPrice = product.getPrice() * (float)coupon.getDiscountRate();
+		if(couponserialNumber !=null) {
 			try {//쿠폰이 존재하는지 판단해보고 쿠폰을 적용해주어야함
-				DBUtils.deleteCoupon(conn, coupon);
+				DBUtils.updateProduct(conn, product, newCount);
+				DBUtils.deleteCoupon(conn, couponserialNumber);
 				DBUtils.insertOrder(conn, order);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -112,6 +127,7 @@ public class OrderCompletedServlet extends HttpServlet {
 		}else {
 			response.sendRedirect(request.getContextPath() + "/home");
 		}
+		
 //		6. 고객의 이메일에 결제 완료를 보낸다.
 		
 //		7. 결제 완료 창을 띄운다. 결제 완료 창에서는 상품에 대한 요약 정보 및 감사합니다. 문구
@@ -121,6 +137,13 @@ public class OrderCompletedServlet extends HttpServlet {
 		request.setAttribute("customerName", customerName);
 		request.setAttribute("phoneNum", phoneNum);
 		request.setAttribute("address", address);
+		request.setAttribute("discountPrice", discountPrice);
+		
+		//==========================================
+		//현재 문제점 
+		//1. 주문 테이블에 주문자, 배송지, 쿠폰 적용 가격, 전화번호 등을 넣지 않았음
+		//==========================================
+		
 		
 		// 3. 결제 완료 화면으로 넘어간다.
 		RequestDispatcher dispatcher = this.getServletContext()

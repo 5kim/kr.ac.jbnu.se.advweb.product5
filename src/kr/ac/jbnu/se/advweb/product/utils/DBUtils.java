@@ -541,5 +541,39 @@ public class DBUtils {
 		return list;
 	}
 
+	public static void updateProduct(Connection conn, Product product, int newCount) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "Update Product set inventory =? where productNumber=? ";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.setInt(1, newCount);
+		pstm.setString(2, product.getProductNumber());
+		pstm.executeUpdate();
+		
+	}
+
+	public static Coupon queryUseCoupon(Connection conn, String couponserialNumber) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "select * from coupon where ='"+couponserialNumber+"'";
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		
+		ResultSet rs = pstm.executeQuery();
+		int serialNumber = rs.getInt("serialNumber");
+		String couponName = rs.getString("couponName");
+		String userId = rs.getString("userId");
+		int discountRate = rs.getInt("discountRate");
+		Date period = rs.getDate("period");
+
+		Coupon coupon = new Coupon();
+		
+		coupon.setSerialNumber(serialNumber);
+		coupon.setCouponName(couponName);
+		coupon.setUserId(userId);
+		coupon.setDiscountRate(discountRate);
+		coupon.setPeriod(period);
+		return coupon;
+	}
+
 
 }

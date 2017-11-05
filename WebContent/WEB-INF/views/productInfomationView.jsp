@@ -37,6 +37,8 @@
 				<td>Product Inventory :</td> <td>${product.inventory}<br></td>
 		</tr>
 				<br><br>
+		<form method="GET" action="${pageContext.request.contextPath}/order">
+		<input type="hidden" name="productNumber" value=${product.productNumber }>
 		<tr>
 				<td>Order Volume :</td> <td><input type="text" name="volume" value=""><br></td>
 		</tr>
@@ -46,6 +48,8 @@
 		</table>
 				<button type="submit" onClick="location.href='${pageContext.request.contextPath}/order?code=${product.productNumber}'">Order</button><br>				
 				
+		</form>
+		
 		</div>
 		<div id="bottom">
 			<jsp:include page="_footer.jsp"></jsp:include>

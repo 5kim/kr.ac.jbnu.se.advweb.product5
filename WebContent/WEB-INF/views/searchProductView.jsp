@@ -20,7 +20,8 @@
 			<div style="margin-top: 20px">
 				<c:forEach items="${searchList}" var="product">
 					<tr>
-						<td>${product.name}</td>
+						<td><a href="productinfo?code=${product.productNumber}">${product.name}</td>
+						<br>
 					</tr>
 				</c:forEach>
 			</div>
