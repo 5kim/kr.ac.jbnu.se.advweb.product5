@@ -105,7 +105,7 @@ public class OrderCompletedServlet extends HttpServlet {
 		Date date = new Date(oCalendar.getTimeInMillis());
 		order.setDate(date);
 		order.setProductNumber(productNumber);
-		String couponserialNumberStr = request.getParameter("serialNumber"); // 쿠폰의 번호를 가지고 온다.
+		String couponserialNumberStr = request.getParameter("serialNumber");// 쿠폰의 번호를 가지고 온다.
 		int couponserialNumber = Integer.parseInt(couponserialNumberStr);
 		Coupon coupon = null;
 		try {

@@ -11,32 +11,7 @@
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-	$(document).ready(function() {
-		// Newly Added by STKim. 
-		// The following code is for submitting the form data to server and redirect to another page. 
-		$("#signin_form_id").on('submit', function(e) {
-			$.post('${pageContext.request.contextPath}/signin', {
-				id : $("#id_id").val(),
-				password : $("#password_id").val(),
-				name : $("#name_id").val(),
-				contact : $("#contact_id").val(),
-				
-				year : $("#year_id").val(),
-				month : $("#month_id").val(),
-				day : $("#day_id").val(),
-				
-				email : $("#email_id").val(),
-				address : $("#address_id").val()
 
-			}, function(data) {
-				// move another page
-				var win = window.open();
-				win.document.write(data);
-			});
-		});
-	})
-</script>
 </head>
 
 <body>
@@ -55,7 +30,7 @@
 					<table border="0">
 						<tr>
 							<td>ID</td>
-							<td><input type="text" name="userId" id="id_id"
+							<td><input type="text" name="id" id="id_id"
 								value="${user.id}" rangelength=[1,20] required/></td>
 						</tr>
 						<tr>
@@ -82,7 +57,7 @@
 						</tr>
 						<tr>
 							<td>생년월일</td>
-							<td><select name="birthyear" value="${user.birthyear}" id="year_id" required>
+							<td><select name="year" required>
 									<option value="">생년</option>
 									<option value=1946>1946</option>
 									<option value=1947>1947</option>
@@ -156,7 +131,7 @@
 									<option value=2015>2015</option>
 									<option value=2016>2016</option>
 									<option value=2017>2017</option>
-							</select> <select name="birthmonth" value="${user.birthmonth}" id="month_id"required>
+							</select> <select name="month" id="month_id"required>
 									<option value="">월</option>
 									<option value="01">1</option>
 									<option value="02">2</option>
@@ -170,7 +145,7 @@
 									<option value="10">10</option>
 									<option value="11">11</option>
 									<option value="12">12</option>
-							</select><select name="birthdate" value="${user.birthdate}"id="day_id"required>
+							</select><select name="day" id="day_id"required>
 									<option value="">일</option>
 									<option value="01">1</option>
 									<option value="02">2</option>
@@ -207,12 +182,12 @@
 						</tr>
 						<tr>
 							<td>E-mail</td>
-							<td><input type="email" name="userMail" id="email_id" value="${user.email}" required /></td>
+							<td><input type="email" name="email" id="email_id" value="${user.email}" required /></td>
 						</tr>
 						<tr>
 						<tr>
 							<td>주소</td>
-							<td><input type="text" name="userAddress" id="address_id" value="${user.address}"  required/></td>
+							<td><input type="text" name="address" id="address_id" value="${user.address}"  required/></td>
 						</tr>
 						<tr>
 							<td colspan="2"><input type="submit" value="Submit"/> <a

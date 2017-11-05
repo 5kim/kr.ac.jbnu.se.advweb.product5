@@ -50,9 +50,7 @@ public class SigninServlet extends HttpServlet {
 		String password = (String) request.getParameter("password");
 		String name = (String) request.getParameter("name");
 		
-//		String genderM = (String) request.getParameter("genderM");
-//		String genderF = (String) request.get
-//		String gender = (String) request.getParameter("gender");
+		String gender = request.getParameter("gender");
 		
 		String contactStr = (String) request.getParameter("contact");		
 		String email = (String) request.getParameter("email");
@@ -65,7 +63,7 @@ public class SigninServlet extends HttpServlet {
 		int birth = 0;
 		int contact = 0;
 		
-		String gender = "G";
+		
 		
 		contact = Integer.parseInt(contactStr);
 		birth = transformInt(year, month, day);

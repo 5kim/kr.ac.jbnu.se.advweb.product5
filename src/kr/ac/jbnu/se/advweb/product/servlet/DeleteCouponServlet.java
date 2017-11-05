@@ -26,8 +26,8 @@ public class DeleteCouponServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Connection conn = MyUtils.getStoredConnection(request);
 
-		String code = (String) request.getParameter("code");
-
+		String codeStr = request.getParameter("code");
+		int code = Integer.parseInt(codeStr);
 		String errorString = null;
 
 		try {
