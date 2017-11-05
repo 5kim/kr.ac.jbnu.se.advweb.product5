@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
 </head>
 <body>
-	<div class="header" style="height: 120px; padding: 5px;">
+	<div class="header" style="height: 100px; padding: 5px;">
 		<div>
 			<div>
 				<img src="Image/title.png" width=200px; height=100px;
