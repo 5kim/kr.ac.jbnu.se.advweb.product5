@@ -19,13 +19,6 @@ public class Coupon {
 	public void setSerialNumber(int serialNumber) {
 		this.serialNumber = serialNumber;
 	}
-	
-	public String getCouponName() {
-		return couponName;
-	}
-	public void setCouponName(String couponName) {
-		this.couponName = couponName;
-	}
 	public String getUserId() {
 		return userId;
 	}

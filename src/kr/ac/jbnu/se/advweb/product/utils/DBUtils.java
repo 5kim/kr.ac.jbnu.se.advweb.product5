@@ -513,5 +513,16 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 
+	public static List<Order> queryUserOrder(Connection conn, String id) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "Delete From coupon where serialNumber = ?";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+
+		pstm.executeUpdate();
+		return null;
+	}
+
 
 }

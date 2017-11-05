@@ -43,10 +43,11 @@ public class CouponListServlet extends HttpServlet {
 		Connection conn = MyUtils.getStoredConnection(request);
 		// 세션에 저장된 아이디를 가지고와 넣어준다.
 //		String id = null;
+		
 		String errorString = null;
 		List<Coupon> list = null;
 		try {
-			list = DBUtils.queryCoupon(conn);
+			list = DBUtils.queryCoupon(conn, MyUtils.getLoginedUser(request.getSession()).getId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
