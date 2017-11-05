@@ -51,7 +51,7 @@ public class HomeServlet extends HttpServlet {
         String errorString = null;
         List<Product> list = null;
         try {
-            list = DBUtils.queryProduct(conn);
+            list = DBUtils.queryTodayRecommend(conn);
             
         } catch (SQLException e) {
             e.printStackTrace();
