@@ -108,6 +108,10 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 	
+//	public static void updateUser(Connection conn, UserAccount user) throws SQLException {
+//		String sql = "Update user set "
+//	}
+	
 	public static List<UserAccount> queryUser(Connection conn) throws SQLException {
 		String sql = "Select * from user a ";
 
