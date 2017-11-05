@@ -52,13 +52,13 @@ public class CreateProductServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Connection conn = MyUtils.getStoredConnection(request);
 		
-		String productNumber = (String) request.getParameter("productNumber");
-		String name = (String) request.getParameter("name");
-		String priceStr = (String) request.getParameter("price");
-		String seller = (String) request.getParameter("seller");
-		String description = (String) request.getParameter("description");
-		String inventoryStr = (String) request.getParameter("inventory");		
-		String category = (String) request.getParameter("category");	
+		String productNumber =  request.getParameter("productNumber");
+		String name =  request.getParameter("name");
+		String priceStr =  request.getParameter("price");
+		String seller =  request.getParameter("seller");
+		String description = request.getParameter("description");
+		String inventoryStr =  request.getParameter("inventory");		
+		String category = request.getParameter("category");	
 		
 		float price = 0;
 		int inventory = 0;

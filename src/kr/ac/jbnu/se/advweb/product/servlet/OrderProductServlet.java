@@ -57,8 +57,9 @@ public class OrderProductServlet extends HttpServlet {
 
 		// Check User has logged on
 		UserAccount loginedUser = MyUtils.getLoginedUser(session);
-		String productNumber = request.getParameter("code");
-
+		String productNumber = request.getParameter("productNumber");
+		String countStr = request.getParameter("volume");
+		int count = Integer.parseInt(countStr);
 		Product product = null;
 		String errorString = null;
 		List<Coupon> couponList = null;
@@ -71,6 +72,7 @@ public class OrderProductServlet extends HttpServlet {
 			errorString = e.getMessage();
 		}
 		request.setAttribute("user", loginedUser);
+		request.setAttribute("count", count);
 		request.setAttribute("product", product);
 		request.setAttribute("couponList", couponList);
 

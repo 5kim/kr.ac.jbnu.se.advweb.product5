@@ -24,6 +24,8 @@
 			<form method="POST"
 				action="${pageContext.request.contextPath}/ordercomplete">
 				<table border="0">
+				<input type="hidden" name="productNumber" value=${product.productNumber }>
+				<input type="hidden" name="count" value=${count }>
 					<tr>
 						<td>Product Name :</td>
 						<td>${product.name}<br></td>
@@ -38,14 +40,16 @@
 					<tr>
 						<td>Use Coupon :</td>
 						<td><select name="coupon">
-							<option value="test">test!</option>
+							<c:forEach items="${couponList}" var="coupon">
+							<option value=${coupon.serialNumber }>${coupon.couponName }</option>
+							</c:forEach>
 							</select><br></td>
 					</tr>
 					<tr>
 						<td>Total Price :</td>
 						<td>price~~~~~<br></td>
 					</tr>
-					
+
 					<br>
 					<br>
 					<!-- 				<input type="checkbox" id="check"> Equals User Information<br> -->

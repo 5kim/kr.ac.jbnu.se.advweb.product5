@@ -7,28 +7,22 @@
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
 </head>
 <body>
-<div style = "margin-left: 10px">
+<div style="margin-top: 10px">
 	<br>
-	<div>
-	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/home'">Home</button>
+	<form method="GET" action="${pageContext.request.contextPath}/searchproduct">
+	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/searchproduct?category=outer'">Outer</button>
 	</div>
 	<div>
-	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/productList'">Outer</button>
+	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/searchproduct?category=shirts'">Shirts</button>
 	</div>
 	<div>
-	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/productList'">Shirts</button>
+	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/searchproduct?category=pants'">Pants</button>
 	</div>
 	<div>
-	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/productList'">Pants</button>
+	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/searchproduct?category=shoes'">Shoes</button>
 	</div>
-	<div>
-	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/productList'">Shoes</button>
-	</div>
-	<div>
-	<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/userInfo'">My Account Info</button>
-	</div>
-		<button class="btn" type="button" onClick="location.href='${pageContext.request.contextPath}/orderedProductList'">ordered product</button>
-	</div>
+	</form>
+	
 	 	
 </div> 
 </body>    

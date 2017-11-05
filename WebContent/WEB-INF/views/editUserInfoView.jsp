@@ -19,12 +19,14 @@
 		<div id="main">
 			<h3>Edit Information</h3>
 			<form method="POST"
-				action="${pageContext.request.contextPath}/edituser">
-				ID : ${user.id} <br> PASSWORD : <input type="password"
-					value="${user.password }"><br> NAME : ${user.name }<br>
-				BIRTHDAY : ${user.birth }<br> GENDER : ${user.gender }<br>
-				CONTACT : <input type="text" value="${user.contact }"><br>
-				E-MAIL : <input type="text" value="${user.email }"><br>
+				action="${pageContext.request.contextPath}/home">
+				ID : ${user.id} <br> 
+				PASSWORD : <input type="password" name="password" value="${user.password }"><br> 
+				NAME : ${user.name }<br>
+				BIRTHDAY : ${user.birth }<br> 
+				GENDER : ${user.gender }<br>
+				CONTACT : <input type="text" name="contact" value="${user.contact }"><br>
+				E-MAIL : <input type="text" name="email" value="${user.email }"><br>
 				<button type="submit" value="submit">Complete</button>
 			</form>
 		</div>

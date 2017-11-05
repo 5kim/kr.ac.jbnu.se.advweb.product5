@@ -108,6 +108,10 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 	
+//	public static void updateUser(Connection conn, UserAccount user) throws SQLException {
+//		String sql = "Update user set "
+//	}
+	
 	public static List<UserAccount> queryUser(Connection conn) throws SQLException {
 		String sql = "Select * from user a ";
 
@@ -385,7 +389,7 @@ public class DBUtils {
 	      
 		// 쿠폰 넣어야함 속성에 대한 것 넣어야함
 		pstm.executeUpdate();
-		
+
 		
 	}
 
@@ -404,16 +408,16 @@ public class DBUtils {
 			String seller = rs.getString("seller");
 			String description = rs.getString("description");
 			int inventory = rs.getInt("inventory");
-			Blob blobImage = (Blob) rs.getBlob("image");
-			InputStream inputStream = blobImage.getBinaryStream();
-			
-			BufferedImage bufferedImage = null;
-			try {
-				 bufferedImage = ImageIO.read(inputStream);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			Blob blobImage = (Blob) rs.getBlob("image");
+//			InputStream inputStream = blobImage.getBinaryStream();
+//			
+//			BufferedImage bufferedImage = null;
+//			try {
+//				 bufferedImage = ImageIO.read(inputStream);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 
 			Product product = new Product();
 
@@ -423,7 +427,7 @@ public class DBUtils {
 			product.setSeller(seller);
 			product.setDescription(description);
 			product.setInventory(inventory);
-			product.setImage(bufferedImage);
+//			product.setImage(bufferedImage);
 
 			list.add(product);
 		}
@@ -488,12 +492,12 @@ public class DBUtils {
 		return list;
 	}
 
-	public static void deleteCoupon(Connection conn, String serialNumber) throws SQLException {
+	public static void deleteCoupon(Connection conn, int serialNumber) throws SQLException {
 		String sql = "Delete From coupon where serialNumber = ?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
-		pstm.setString(1, serialNumber);
+		pstm.setInt(1, serialNumber);
 
 		pstm.executeUpdate();
 		
@@ -517,13 +521,65 @@ public class DBUtils {
 
 	public static List<Order> queryUserOrder(Connection conn, String id) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "Delete From coupon where serialNumber = ?";
+
+		String sql = "Select * from orders where customerId='" + id + "'";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
+		ResultSet rs = pstm.executeQuery();
+		List<Order> list = new ArrayList<Order>();
+		while (rs.next()) {
+			String custromerId = rs.getString("customerId");
+			String productNumber = rs.getString("productNumber");
+			Date date  = rs.getDate("Date");		
+			int count = rs.getInt("count");		
+			
+			Order order = new Order();
+			order.setCustromerId(custromerId);
+			order.setProductNumber(productNumber);
+			order.setDate(date);
+			order.setCount(count);
 
+			list.add(order);
+		}
+		return list;
+	}
+
+	public static void updateProduct(Connection conn, Product product, int newCount) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "Update Product set inventory =? where productNumber=? ";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.setInt(1, newCount);
+		pstm.setString(2, product.getProductNumber());
 		pstm.executeUpdate();
-		return null;
+		
+	}
+
+	public static Coupon queryUseCoupon(Connection conn, int couponserialNumber) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "select * from coupon where serialNumber = ? ";
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		pstm.setInt(1, couponserialNumber);
+		
+		Coupon coupon = new Coupon();
+		ResultSet rs = pstm.executeQuery();
+		while(rs.next()) {
+			int serialNumber = rs.getInt("serialNumber");
+			String couponName = rs.getString("couponName");
+			String userId = rs.getString("userId");
+			int discountRate = rs.getInt("discountRate");
+			Date period = rs.getDate("period");
+			
+			coupon.setSerialNumber(serialNumber);
+			coupon.setCouponName(couponName);
+			coupon.setUserId(userId);
+			coupon.setDiscountRate(discountRate);
+			coupon.setPeriod(period);
+			
+		}
+		return coupon;
 	}
 
 
