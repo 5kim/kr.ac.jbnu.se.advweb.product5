@@ -212,13 +212,16 @@ public class DBUtils {
 	}
 
 	public static void updateProduct(Connection conn, Product product) throws SQLException {
-		String sql = "Update Product set Name =?, Price=? where productNumber=? ";
+		String sql = "Update Product set inventory =?,Price=?,recomend =? where productNumber=?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
-
-		pstm.setString(1, product.getName());
+		
+		
+		pstm.setInt(1, product.getInventory());
 		pstm.setFloat(2, product.getPrice());
-		pstm.setString(3, product.getProductNumber());
+		pstm.setInt(3, product.getRecommend());
+		pstm.setString(4, product.getProductNumber());
+		
 		pstm.executeUpdate();
 	}
 

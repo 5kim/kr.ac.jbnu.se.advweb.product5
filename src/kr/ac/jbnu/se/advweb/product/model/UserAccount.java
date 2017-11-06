@@ -1,5 +1,7 @@
 package kr.ac.jbnu.se.advweb.product.model;
 
+import java.sql.Date;
+
 public class UserAccount {
 
 
@@ -7,7 +9,7 @@ public class UserAccount {
 	private String id;
 	private String password;
 	private String name;
-	private int birth;
+	private Date birth;
 	private String gender;
 	private int contact;
 	private String email;
@@ -17,7 +19,7 @@ public class UserAccount {
 
 	}
 	
-	public UserAccount(String id, String password, String name, int birth, String gender, int contact, String email, String address) {
+	public UserAccount(String id, String password, String name, Date birth, String gender, int contact, String email, String address) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
@@ -36,11 +38,11 @@ public class UserAccount {
 		this.id = id;
 	}
 
-	public int getBirth() {
+	public Date getBirth() {
 		return birth;
 	}
 
-	public void setBirth(int birth) {
+	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
 
