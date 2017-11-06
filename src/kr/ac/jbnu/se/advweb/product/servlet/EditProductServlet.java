@@ -31,37 +31,37 @@ public class EditProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = MyUtils.getStoredConnection(request);
- 
-        String productNumber = (String) request.getParameter("productNumber");
-
-        Product product = null;
- 
-        String errorString = null;
- 
-        try {
-            product = DBUtils.findProduct(conn, productNumber);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            errorString = e.getMessage();
-        }
- 
-        // If no error.
-        // The product does not exist to edit.
-        // Redirect to productList page.
-        if (errorString != null && product == null) {
-            response.sendRedirect(request.getServletPath() + "/productList");
-            return;
-        }
- 
-        // Store errorString in request attribute, before forward to views.
-        request.setAttribute("errorString", errorString);
-        request.setAttribute("product", product);
- 
-        RequestDispatcher dispatcher = request.getServletContext()
-                .getRequestDispatcher("/WEB-INF/views/editProductView.jsp");
-        dispatcher.forward(request, response);
- 
+//        Connection conn = MyUtils.getStoredConnection(request);
+// 
+//        String productNumber = (String) request.getParameter("productNumber");
+//
+//        Product product = null;
+// 
+//        String errorString = null;
+// 
+//        try {
+//            product = DBUtils.findProduct(conn, productNumber);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            errorString = e.getMessage();
+//        }
+// 
+//        // If no error.
+//        // The product does not exist to edit.
+//        // Redirect to productList page.
+//        if (errorString != null && product == null) {
+//            response.sendRedirect(request.getServletPath() + "/productList");
+//            return;
+//        }
+// 
+//        // Store errorString in request attribute, before forward to views.
+//        request.setAttribute("errorString", errorString);
+//        request.setAttribute("product", product);
+// 
+//        RequestDispatcher dispatcher = request.getServletContext()
+//                .getRequestDispatcher("/WEB-INF/views/editProductView.jsp");
+//        dispatcher.forward(request, response);
+// 
     }
  
     // After the user modifies the product information, and click Submit.
@@ -89,12 +89,16 @@ public class EditProductServlet extends HttpServlet {
 		String description = (String) request.getParameter("description");
 		String inventoryStr = (String) request.getParameter("inventory");
 		String category = (String) request.getParameter("category");	
+		String recomendStr = (String) request.getParameter("recomend");
 		
 		float price = 0;
 		int inventory = 0;
+		int recomend = 0;
 		try {
 			price = Float.parseFloat(priceStr);
 			inventory = Integer.parseInt(inventoryStr);
+			recomend = Integer.parseInt(recomendStr);
+			
         } catch (Exception e) {
         }
         Product product = new Product(productNumber, name, price, seller, description, inventory, category);

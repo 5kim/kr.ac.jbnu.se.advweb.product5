@@ -8,6 +8,23 @@
 <meta charset="UTF-8">
 <title>Edit Product</title>
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
+<script>
+	$(document).ready(function() {
+		// Newly Added by STKim. 
+		// The following code is for submitting the form data to server and redirect to another page. 
+		$("#login_form_id").on('submit', function(e) {
+			$.post('${pageContext.request.contextPath}/login', {
+				userid : $("#id_id").val(),
+				password : $("#passwd_id").val(),
+				rememberMe : $("#rememberMe_id").val()
+			}, function(data) {
+				// move another page
+				var win = window.open();
+				win.document.write(data);
+			});
+		});
+	})
+</script>
 </head>
 <body>
 	<div id="box">
@@ -23,7 +40,7 @@
 			<p style="color: red;">${errorString}</p>
 
 			<c:if test="${not empty product}">
-				<form method="POST"
+				<form id ="Edit_Product_id" method="POST"
 					action="${pageContext.request.contextPath}/editProduct">
 					<input type="hidden" name="code" value="${product.productNumber}" />
 					<table border="0">
@@ -32,13 +49,18 @@
 							<td style="color: red;">${product.productNumber}</td>
 						</tr>
 						<tr>
-							<td>Name</td>
-							<td><input type="text" name="name" value="${product.name}" /></td>
+							<td>inventory</td>
+							<td><input type="text" name="name" value="${product.inventory}" /></td>
 						</tr>
 						<tr>
 							<td>Price</td>
 							<td><input type="text" name="price" value="${product.price}" /></td>
 						</tr>
+						<tr>
+							<td>recomend</td>
+							<td><input type="text" name="price" value="${product.recomend}" /></td>
+						</tr>
+						<tr>
 						<tr>
 							<td colspan="2"><input type="submit" value="Submit" /> <a
 								href="${pageContext.request.contextPath}/productList">Cancel</a>

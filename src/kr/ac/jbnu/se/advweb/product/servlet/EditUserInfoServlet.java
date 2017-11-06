@@ -102,6 +102,10 @@ public class EditUserInfoServlet extends HttpServlet {
 		}
 		
 //		user = new UserAccount(id, password, name, birth, gender, contact, email, address);
+		user.setAddress(address);
+		user.setContact(contact);
+		user.setPassword(password);
+		user.setEmail(email);
 
 		String errorString = null;
 
