@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
+import kr.ac.jbnu.se.advweb.product.utils.MailUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
 /**
@@ -29,6 +32,7 @@ public class LoginServlet extends HttpServlet {
 
 	public LoginServlet() {
 		super();
+
 	}
 
 	// Show Login page.
@@ -50,6 +54,19 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		MailUtils a = new MailUtils();
+		
+		try {
+			a.mailSender(request);
+		} catch (AddressException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (MessagingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String rememberMeStr = request.getParameter("rememberMe");
@@ -100,7 +117,7 @@ public class LoginServlet extends HttpServlet {
 		else {
 			HttpSession session = request.getSession();
 			MyUtils.storeLoginedUser(session, user);
-
+			
 			// If user checked "Remember me".
 			if (remember) {
 				MyUtils.storeUserCookie(response, user);
