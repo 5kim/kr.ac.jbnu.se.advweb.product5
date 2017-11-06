@@ -8,23 +8,7 @@
 <meta charset="UTF-8">
 <title>Edit Product</title>
 <link rel="stylesheet" type="text/css" href="CSS/mainstyle.css"></link>
-<script>
-	$(document).ready(function() {
-		// Newly Added by STKim. 
-		// The following code is for submitting the form data to server and redirect to another page. 
-		$("#login_form_id").on('submit', function(e) {
-			$.post('${pageContext.request.contextPath}/login', {
-				userid : $("#id_id").val(),
-				password : $("#passwd_id").val(),
-				rememberMe : $("#rememberMe_id").val()
-			}, function(data) {
-				// move another page
-				var win = window.open();
-				win.document.write(data);
-			});
-		});
-	})
-</script>
+
 </head>
 <body>
 	<div id="box">
@@ -39,26 +23,25 @@
 
 			<p style="color: red;">${errorString}</p>
 
-			<c:if test="${not empty product}">
-				<form id ="Edit_Product_id" method="POST"
+
+				<form method="POST"
 					action="${pageContext.request.contextPath}/editProduct">
-					<input type="hidden" name="code" value="${product.productNumber}" />
 					<table border="0">
 						<tr>
 							<td>Code</td>
 							<td style="color: red;">${product.productNumber}</td>
 						</tr>
 						<tr>
-							<td>inventory</td>
-							<td><input type="text" name="name" value="${product.inventory}" /></td>
+							<td>Inventory</td>
+							<td><input type="text" name="inventory" value="${product.inventory}" /></td>
 						</tr>
 						<tr>
 							<td>Price</td>
 							<td><input type="text" name="price" value="${product.price}" /></td>
 						</tr>
 						<tr>
-							<td>recomend</td>
-							<td><input type="text" name="price" value="${product.recomend}" /></td>
+							<td>Recommend</td>
+							<td><input type="text" name="recomend" value="${product.recommend}" /></td>
 						</tr>
 						<tr>
 						<tr>
@@ -68,7 +51,7 @@
 						</tr>
 					</table>
 				</form>
-			</c:if>
+
 		</div>
 		<div id="bottom">
 			<jsp:include page="_footer.jsp"></jsp:include>

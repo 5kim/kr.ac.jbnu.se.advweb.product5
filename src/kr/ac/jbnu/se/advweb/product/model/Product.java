@@ -26,6 +26,12 @@ public class Product {
 		this.inventory = inventory;
 		this.category = category;
 	}
+	
+	public Product(String productNumber, float price,int inventory) {
+		this.productNumber = productNumber;
+		this.price = price;
+		this.inventory = inventory;
+	}
 
 	public String getProductNumber() {
 		return productNumber;

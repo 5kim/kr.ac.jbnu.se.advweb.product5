@@ -212,15 +212,15 @@ public class DBUtils {
 		return null;
 	}
 
-	public static void updateProduct(Connection conn, Product product) throws SQLException {
-		String sql = "Update Product set inventory =?,Price=?,recomend =? where productNumber=?";
+	public static void updateProduct(Connection conn, Product product, int recommend) throws SQLException {
+		String sql = "Update Product set inventory =?, Price=?, recommend =? where productNumber=?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		
 		
 		pstm.setInt(1, product.getInventory());
 		pstm.setFloat(2, product.getPrice());
-		pstm.setInt(3, product.getRecommend());
+		pstm.setInt(3, recommend);
 		pstm.setString(4, product.getProductNumber());
 		
 		pstm.executeUpdate();
@@ -569,17 +569,17 @@ public class DBUtils {
 		return productList;
 	}
 
-	public static void updateProduct(Connection conn, Product product, int newCount) throws SQLException {
-		// TODO Auto-generated method stub
-		String sql = "Update Product set inventory =? where productNumber=? ";
-
-		PreparedStatement pstm = conn.prepareStatement(sql);
-
-		pstm.setInt(1, newCount);
-		pstm.setString(2, product.getProductNumber());
-		pstm.executeUpdate();
-		
-	}
+//	public static void updateProduct(Connection conn, Product product, int newCount) throws SQLException {
+//		// TODO Auto-generated method stub
+//		String sql = "Update Product set inventory =? where productNumber=? ";
+//
+//		PreparedStatement pstm = conn.prepareStatement(sql);
+//
+//		pstm.setInt(1, newCount);
+//		pstm.setString(2, product.getProductNumber());
+//		pstm.executeUpdate();
+//		
+//	}
 
 	public static Coupon queryUseCoupon(Connection conn, int couponserialNumber) throws SQLException {
 		// TODO Auto-generated method stub
