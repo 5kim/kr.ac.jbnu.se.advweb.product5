@@ -60,13 +60,13 @@ public class SigninServlet extends HttpServlet {
 		String day = request.getParameter("day");
 		String month = request.getParameter("month");
 		
-		int birth = 0;
+		Date birth = null;
 		int contact = 0;
 		
 		
 		
 		contact = Integer.parseInt(contactStr);
-		birth = transformInt(year, month, day);
+		birth = transformDate(year, month, day);
 		
 		UserAccount user = new UserAccount(id, password, name, birth, gender, contact, email, address);
 		String errorString = null;
@@ -104,13 +104,12 @@ public class SigninServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/login");
 		}
 	}
-	
-	public int transformInt(String year, String month, String day) {
-		String brithStr = year + month + day;
-		int d= Integer.parseInt(brithStr);
+
+	public Date transformDate(String year, String month, String day) {
+		String date = year + "-" + month + "-" + day;
+		Date d = Date.valueOf(date);
 
 		return d;
 	}
-	
 
 }

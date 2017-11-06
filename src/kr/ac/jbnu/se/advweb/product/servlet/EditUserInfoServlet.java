@@ -100,7 +100,12 @@ public class EditUserInfoServlet extends HttpServlet {
 			contact = Integer.parseInt(contactStr);
 		} catch (Exception e) {
 		}
-		user = new UserAccount(id, password, name, birth, gender, contact, email, address);
+		
+//		user = new UserAccount(id, password, name, birth, gender, contact, email, address);
+		user.setAddress(address);
+		user.setContact(contact);
+		user.setPassword(password);
+		user.setEmail(email);
 
 		String errorString = null;
 

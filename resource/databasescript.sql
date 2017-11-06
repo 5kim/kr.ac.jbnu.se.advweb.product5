@@ -12,7 +12,7 @@ create table user(
 id varchar(30) not null,
 password  VARCHAR(30),
 name VARCHAR(30),
-birth int(8),
+birth date,
 gender VARCHAR(6) not null,
 contact int(11),
 email varchar(30),

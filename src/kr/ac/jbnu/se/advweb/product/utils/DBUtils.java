@@ -21,6 +21,7 @@ import kr.ac.jbnu.se.advweb.product.model.Coupon;
 import kr.ac.jbnu.se.advweb.product.model.Order;
 import kr.ac.jbnu.se.advweb.product.model.OrderNProduct;
 import kr.ac.jbnu.se.advweb.product.model.Product;
+import kr.ac.jbnu.se.advweb.product.model.StaticData;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 
 public class DBUtils {
@@ -38,7 +39,7 @@ public class DBUtils {
 
 		if (rs.next()) {
 			String name = rs.getString("name");
-			int birth = rs.getInt("birth");
+			Date birth = rs.getDate("birth");
 			String gender = rs.getString("gender");
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
@@ -71,11 +72,12 @@ public class DBUtils {
 		if (rs.next()) {
 			String password = rs.getString("Password");
 			String name = rs.getString("name");
-			int birth = rs.getInt("birth");
+			Date birth = rs.getDate("birth");
 			String gender = rs.getString("gender");
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
 			String address = rs.getString("address");
+			System.out.println("세번째" + address);
 			
 			UserAccount user = new UserAccount();
 
@@ -101,7 +103,7 @@ public class DBUtils {
 		pstm.setString(1, user.getId());
 		pstm.setString(2, user.getPassword());
 		pstm.setString(3, user.getName());
-		pstm.setInt(4, user.getBirth());
+		pstm.setDate(4, user.getBirth());
 		pstm.setString(5, user.getGender());
 		pstm.setInt(6, user.getContact());
 		pstm.setString(7, user.getEmail());
@@ -134,7 +136,7 @@ public class DBUtils {
 			String id = rs.getString("id");
 			String password = rs.getString("password");
 			String name = rs.getString("name");
-			int birth = rs.getInt("birth");
+			Date birth = rs.getDate("birth");
 			String gender = rs.getString("gender");
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
@@ -211,13 +213,16 @@ public class DBUtils {
 	}
 
 	public static void updateProduct(Connection conn, Product product) throws SQLException {
-		String sql = "Update Product set Name =?, Price=? where productNumber=? ";
+		String sql = "Update Product set inventory =?,Price=?,recomend =? where productNumber=?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
-
-		pstm.setString(1, product.getName());
+		
+		
+		pstm.setInt(1, product.getInventory());
 		pstm.setFloat(2, product.getPrice());
-		pstm.setString(3, product.getProductNumber());
+		pstm.setInt(3, product.getRecommend());
+		pstm.setString(4, product.getProductNumber());
+		
 		pstm.executeUpdate();
 	}
 
@@ -635,22 +640,23 @@ public class DBUtils {
 		pstm.executeUpdate();		
 	}
 
-	public static List<UserAccount> queryOrdersByProductNumber(Connection conn, String productNumber) throws SQLException {
+	public static List<StaticData> queryOrdersByProductNumber(Connection conn, String productNumber) throws SQLException {
 		// TODO Auto-generated method stub
 		String sql = "select * "
 				   + "from orders, user "
-			       + "where user.id = orders.customerid, productNumber ='"+productNumber+"'";
+			       + "where user.id = orders.customerid and productNumber ="+productNumber;
 		
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
-		rs.getString("gender");
+		List<StaticData> list= new ArrayList<>();
 		
-		List<UserAccount> list= new ArrayList<>();
-		UserAccount userAccount = new UserAccount();
-//		userAccount.setBirth(birth);
-//		userAccount.setGender(gender);
-		list.add(userAccount );
-		return null;
+		if(rs.next()) {
+			StaticData staticData = new StaticData();
+			staticData.setGender(rs.getString("gender"));
+			staticData.setBirth(rs.getDate("date"));
+			list.add(staticData);
+		}
+		return list;
 	}
 
 

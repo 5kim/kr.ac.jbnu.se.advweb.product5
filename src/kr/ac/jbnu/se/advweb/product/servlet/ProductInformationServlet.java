@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.ac.jbnu.se.advweb.product.model.Order;
 import kr.ac.jbnu.se.advweb.product.model.Product;
+import kr.ac.jbnu.se.advweb.product.model.StaticData;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
@@ -48,17 +49,20 @@ public class ProductInformationServlet extends HttpServlet {
  
         Product product = null;
         String errorString = null;
-        List<UserAccount> userAccounts = null;
+        List<StaticData> staticDatas = null;
  
         try {
             product = DBUtils.findProduct(conn, productNumber);
-            userAccounts = DBUtils.queryOrdersByProductNumber(conn, product.getProductNumber());
+            staticDatas = DBUtils.queryOrdersByProductNumber(conn, product.getProductNumber());
         } catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
         }
+        
+        
 		
         request.setAttribute("product", product);
+        request.setAttribute("staticDatas", staticDatas);
         
 		RequestDispatcher dispatcher  = this.getServletContext().getRequestDispatcher("/WEB-INF/views/productInfomationView.jsp");
 		dispatcher.forward(request, response);

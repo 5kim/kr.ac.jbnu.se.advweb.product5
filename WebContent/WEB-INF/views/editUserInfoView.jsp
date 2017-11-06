@@ -25,9 +25,9 @@
 				NAME : ${user.name }<br>
 				BIRTHDAY : ${user.birth }<br> 
 				GENDER : ${user.gender }<br>
-				CONTACT : <input type="text" name="contact" value="${user.contact }"><br>
-				E-MAIL : <input type="text" name="email" value="${user.email }"><br>
-				ADDRESS : <input type="text" name="address" value="${user.address }"><br>
+				CONTACT : <input type="text" name="contact" value="${user.contact}"><br>
+				E-MAIL : <input type="text" name="email" value="${user.email}"><br>
+				ADDRESS : <input type="text" name="address" value="${user.address}"><br>
 				<button type="submit" value="submit">Complete</button>
 			</form>
 		</div>
