@@ -588,8 +588,17 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 
-	public static void insertCart(Connection conn, Product product, String id) {
-		
+	public static void insertCart(Connection conn, Product product, String id) throws SQLException {
+		String sql = "Insert into cart values (?,?,?,?)";
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.setString(1, null);
+		pstm.setString(2, id);
+		pstm.setString(3, product.getProductNumber());
+		pstm.setInt(4, 1);
+
+		pstm.executeUpdate();
 	}
 
 

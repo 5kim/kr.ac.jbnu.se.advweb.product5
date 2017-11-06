@@ -43,6 +43,15 @@ public class InsertCartServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		UserAccount userAccount = MyUtils.getLoginedUser(session);
 		
+
+		// Check User has logged on
+		
+		// Not logged in
+		if (userAccount == null) {
+			// Redirect to login page.
+			response.sendRedirect(request.getContextPath() + "/login");
+			return;
+		}
 		try {
 			Product product = DBUtils.findProduct(conn, productNumber);
 			DBUtils.insertCart(conn, product,userAccount.getId());
@@ -50,7 +59,8 @@ public class InsertCartServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect(request.getContextPath() + "/productinfo?productNumber="+productNumber);
+		return;
 	}
 
 	/**

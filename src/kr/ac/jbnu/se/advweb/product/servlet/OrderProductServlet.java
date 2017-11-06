@@ -57,6 +57,14 @@ public class OrderProductServlet extends HttpServlet {
 
 		// Check User has logged on
 		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		
+		// Not logged in
+		if (loginedUser == null) {
+			// Redirect to login page.
+			response.sendRedirect(request.getContextPath() + "/login");
+			return;
+		}
+		
 		String productNumber = request.getParameter("productNumber");
 		String countStr = request.getParameter("volume");
 		int count = Integer.parseInt(countStr);

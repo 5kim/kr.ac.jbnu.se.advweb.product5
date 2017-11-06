@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 주문을 위한 화면 -->
@@ -46,9 +47,14 @@
 					<td>------------그래프 자리--------------</td>
 				</tr>
 		</table>
-				<button type="submit" onClick="location.href='${pageContext.request.contextPath}/order?code=${product.productNumber}'">Order</button><br>				
+				<button type="submit" onClick="location.href='${pageContext.request.contextPath}/order?code=${product.productNumber}'">Order</button>			
 				
 		</form>
+		
+		<form method="GET" action="${pageContext.request.contextPath}/insertCart">
+		<input type="hidden" name="productNumber" value=${product.productNumber }>
+		<button type="submit" onClick="location.href='${pageContext.request.contextPath}/insertCart?code=${product.productNumber}'">Cart</button><br>				
+		</form>		
 		
 		</div>
 		<div id="bottom">
