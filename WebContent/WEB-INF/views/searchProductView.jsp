@@ -18,12 +18,27 @@
 		</div>
 		<div id="main">
 			<div style="margin-top: 20px">
+			<table border="1" cellpadding="5" cellspacing="1">
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>seller</th>
+					<th>description</th>
+					<th>inventory</th>
+				</tr>
 				<c:forEach items="${searchList}" var="product">
 					<tr>
 						<td><a href="productinfo?code=${product.productNumber}">${product.name}</td>
+						<td>${product.price}</td>
+						<td>${product.seller}</td>
+						<td>${product.description}</td>
+						<td>${product.inventory}</td>
 						<br>
 					</tr>
 				</c:forEach>
+			</table>
+			
+				
 			</div>
 		</div>
 		<div id="bottom">

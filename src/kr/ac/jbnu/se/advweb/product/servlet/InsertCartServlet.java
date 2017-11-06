@@ -4,13 +4,16 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.ac.jbnu.se.advweb.product.model.Product;
+import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
@@ -34,11 +37,15 @@ public class InsertCartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String code = request.getParameter("code");
+		String productNumber = request.getParameter("productNumber");
 		Connection conn = MyUtils.getStoredConnection(request);
+		
+		HttpSession session = request.getSession();
+		UserAccount userAccount = MyUtils.getLoginedUser(session);
+		
 		try {
-			Product product = DBUtils.findProduct(conn, code);
-			DBUtils.insertCart(conn, product);
+			Product product = DBUtils.findProduct(conn, productNumber);
+			DBUtils.insertCart(conn, product,userAccount.getId());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -588,5 +588,9 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 
+	public static void insertCart(Connection conn, Product product, String id) {
+		
+	}
+
 
 }
