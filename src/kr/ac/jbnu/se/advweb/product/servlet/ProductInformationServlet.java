@@ -59,6 +59,7 @@ public class ProductInformationServlet extends HttpServlet {
         }
 		
         request.setAttribute("product", product);
+//        request.setAttribute(arg0, arg1);
         
 		RequestDispatcher dispatcher  = this.getServletContext().getRequestDispatcher("/WEB-INF/views/productInfomationView.jsp");
 		dispatcher.forward(request, response);

@@ -38,7 +38,7 @@ public class DBUtils {
 
 		if (rs.next()) {
 			String name = rs.getString("name");
-			int birth = rs.getInt("birth");
+			Date birth = rs.getDate("birth");
 			String gender = rs.getString("gender");
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
@@ -71,7 +71,7 @@ public class DBUtils {
 		if (rs.next()) {
 			String password = rs.getString("Password");
 			String name = rs.getString("name");
-			int birth = rs.getInt("birth");
+			Date birth = rs.getDate("birth");
 			String gender = rs.getString("gender");
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
@@ -101,7 +101,7 @@ public class DBUtils {
 		pstm.setString(1, user.getId());
 		pstm.setString(2, user.getPassword());
 		pstm.setString(3, user.getName());
-		pstm.setInt(4, user.getBirth());
+		pstm.setDate(4, user.getBirth());
 		pstm.setString(5, user.getGender());
 		pstm.setInt(6, user.getContact());
 		pstm.setString(7, user.getEmail());
@@ -134,7 +134,7 @@ public class DBUtils {
 			String id = rs.getString("id");
 			String password = rs.getString("password");
 			String name = rs.getString("name");
-			int birth = rs.getInt("birth");
+			Date birth = rs.getDate("birth");
 			String gender = rs.getString("gender");
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
@@ -639,12 +639,15 @@ public class DBUtils {
 		// TODO Auto-generated method stub
 		String sql = "select * "
 				   + "from orders, user "
-			       + "where user.id = orders.customerid, productNumber ='"+productNumber+"'";
+			       + "where user.id = orders.customerid and productNumber ="+productNumber;
 		
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
-		rs.getString("gender");
-		
+		if(rs.next()) {
+			rs.getString("gender");
+			rs.getDate("date");
+			
+		}
 		List<UserAccount> list= new ArrayList<>();
 		UserAccount userAccount = new UserAccount();
 //		userAccount.setBirth(birth);
