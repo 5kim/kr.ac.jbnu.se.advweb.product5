@@ -20,10 +20,34 @@
 		</div>
 		<div id="main">
 			<div style="width: 400px; height: 100px; background-color: gray; margin-left: auto; margin-right: auto; text-align: center">
-			<h3>주문이 정상적으로 완료되었습니다!</h3><br>
+			<h3>${customerName}님 주문이 정상적으로 완료되었습니다!</h3><br>
 			<button type="button" onClick="location.href='${pageContext.request.contextPath}/home'">Home</button>
 			</div>
+		<div>배송지 :${address }</div>
+		<div>연락처 :${phoneNum }</div>	
+		<div>할인된 가격 :${discountPrice }</div>
+		<table border="1" cellpadding="5" cellspacing="1">
+				<tr>
+					<th>productNumber</th>
+					<th>Name</th>
+					<th>Price</th>
+					<th>seller</th>
+					<th>description</th>
+					<th>count</th>
+					
+				</tr>
+				
+					<tr>
+						<td><a href="productinfo?code=${product.productNumber}">${product.productNumber}</td>
+						<td>${product.name}</td>
+						<td>${product.price}</td>
+						<td>${product.seller}</td>
+						<td>${product.description}</td>
+						<td>${count}</td>
+					</tr>
+			</table>
 		</div>
+		
 		<div id="bottom">
 			<jsp:include page="_footer.jsp"></jsp:include>
 		</div>

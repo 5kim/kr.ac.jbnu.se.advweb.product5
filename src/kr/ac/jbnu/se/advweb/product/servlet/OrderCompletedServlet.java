@@ -101,21 +101,30 @@ public class OrderCompletedServlet extends HttpServlet {
 		Order order = new Order();
 		order.setCount(count);
 		order.setCustromerId(userAccount.getId());
+		
 		Calendar oCalendar = Calendar.getInstance( ); 
 		Date date = new Date(oCalendar.getTimeInMillis());
 		order.setDate(date);
 		order.setProductNumber(productNumber);
+		
 		String couponserialNumberStr = request.getParameter("serialNumber");// 쿠폰의 번호를 가지고 온다.
-		int couponserialNumber = Integer.parseInt(couponserialNumberStr);
-		Coupon coupon = null;
-		try {
-			coupon = DBUtils.queryUseCoupon(conn, couponserialNumber);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		int couponserialNumber = -1;
+		if(couponserialNumberStr!=null) {
+			 couponserialNumber = Integer.parseInt(couponserialNumberStr);
 		}
 		
-		float discountPrice = product.getPrice() * (float)coupon.getDiscountRate();
+		Coupon coupon = null;
+		float discountPrice = product.getPrice();
+		if(couponserialNumberStr!=null) {
+			try {
+				coupon = DBUtils.queryUseCoupon(conn, couponserialNumber);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		 discountPrice = product.getPrice() * (float)coupon.getDiscountRate();
+		}
+		
 		if(couponserialNumber != 0) {
 			try {//쿠폰이 존재하는지 판단해보고 쿠폰을 적용해주어야함
 				DBUtils.deleteCoupon(conn, couponserialNumber);
