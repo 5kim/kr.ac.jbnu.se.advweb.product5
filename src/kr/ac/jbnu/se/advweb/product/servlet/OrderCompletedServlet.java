@@ -118,15 +118,20 @@ public class OrderCompletedServlet extends HttpServlet {
 		float discountPrice = product.getPrice() * (float)coupon.getDiscountRate();
 		if(couponserialNumber != 0) {
 			try {//쿠폰이 존재하는지 판단해보고 쿠폰을 적용해주어야함
-				DBUtils.updateProduct(conn, product, newCount);
 				DBUtils.deleteCoupon(conn, couponserialNumber);
-				DBUtils.insertOrder(conn, order);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else {
 			response.sendRedirect(request.getContextPath() + "/home");
+		}
+		try {
+			DBUtils.updateProduct(conn, product, newCount);
+			DBUtils.insertOrder(conn, order);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 //		6. 고객의 이메일에 결제 완료를 보낸다.

@@ -39,7 +39,7 @@
 					</tr>
 					<tr>
 						<td>Use Coupon :</td>
-						<td><select name="coupon">
+						<td><select name="serialNumber">
 							<c:forEach items="${couponList}" var="coupon">
 							<option value=${coupon.serialNumber }>${coupon.couponName }</option>
 							</c:forEach>
