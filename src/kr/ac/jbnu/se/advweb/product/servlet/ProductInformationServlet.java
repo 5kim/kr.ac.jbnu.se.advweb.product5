@@ -3,6 +3,7 @@ package kr.ac.jbnu.se.advweb.product.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -59,7 +60,18 @@ public class ProductInformationServlet extends HttpServlet {
             errorString = e.getMessage();
         }
         
-        
+        int total = staticDatas.size();
+        int manCount = 0;
+        Calendar calendar = Calendar.getInstance();
+        for (StaticData staticData : staticDatas) {
+        	if(staticData.getGender().equals("m")) {
+        		int temp = calendar.YEAR - staticData.getBirth().getYear();
+        		if(temp) {
+        			
+        		}
+        		manCount++;
+        	}
+		}
 		
         request.setAttribute("product", product);
         request.setAttribute("staticDatas", staticDatas);

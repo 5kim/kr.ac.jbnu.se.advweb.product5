@@ -59,7 +59,7 @@ public class InsertCartServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect(request.getContextPath() + "/productinfo?productNumber="+productNumber);
+		response.sendRedirect(request.getContextPath() + "/productinfo?code="+productNumber);
 		return;
 	}
 
