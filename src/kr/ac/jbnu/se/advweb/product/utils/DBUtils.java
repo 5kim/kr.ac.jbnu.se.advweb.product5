@@ -76,6 +76,7 @@ public class DBUtils {
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
 			String address = rs.getString("address");
+			System.out.println("세번째" + address);
 			
 			UserAccount user = new UserAccount();
 

@@ -46,18 +46,22 @@ public class EditUserInfoServlet extends HttpServlet {
 
 		// Check User has logged on
 		UserAccount loginedUser = MyUtils.getLoginedUser(session);
-
+//		System.out.println("첫번째"+loginedUser.getPassword());
 		// Not logged in
 		if (loginedUser == null) {
 			// Redirect to login page.
+			System.out.println("널널널");
 			response.sendRedirect(request.getContextPath() + "/login");
 			return;
 		}
+		
+		System.out.println("세번째"+loginedUser.getAddress());
+		System.out.println("세번째"+loginedUser.getEmail());
+		System.out.println("세번째"+loginedUser.getPassword());
 
 		// Store info to the request attribute before forwarding.
 		request.setAttribute("user", loginedUser);
-
-		System.out.println(loginedUser.getAddress());
+		System.out.println("두번째"+loginedUser.getAddress());
 		RequestDispatcher dispatcher = this.getServletContext()
 				.getRequestDispatcher("/WEB-INF/views/editUserInfoView.jsp");
 		dispatcher.forward(request, response);
@@ -92,7 +96,6 @@ public class EditUserInfoServlet extends HttpServlet {
 		String contactStr = request.getParameter("contact");		
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
-		System.out.println(address);
 		int birth = 0;
 		int contact = 0;
 		try {
@@ -100,7 +103,10 @@ public class EditUserInfoServlet extends HttpServlet {
 			contact = Integer.parseInt(contactStr);
 		} catch (Exception e) {
 		}
-		user = new UserAccount(id, password, name, birth, gender, contact, email, address);
+		user.setAddress(address);
+		user.setContact(contact);
+		user.setPassword(password);
+		user.setEmail(email);
 
 		String errorString = null;
 
