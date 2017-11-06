@@ -72,7 +72,7 @@
 					</tr>
 					<tr>
 						<td>Password</td>
-						<td><input type="text" id="passwd_id" name="password"
+						<td><input type="password" id="passwd_id" name="password"
 							value="${user.password}" /></td>
 					</tr>
 					<tr>

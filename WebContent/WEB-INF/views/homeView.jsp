@@ -19,9 +19,8 @@
 			<jsp:include page="_menu.jsp"></jsp:include>
 		</div>
 		<div id="main">
-			<div style="height: 200px">
+			<div>
 				<h2>Today's Recommend Item</h2>
-				<br>
 				<table border="1" cellpadding="5" cellspacing="1">
 				<tr>
 					<th>Name</th>

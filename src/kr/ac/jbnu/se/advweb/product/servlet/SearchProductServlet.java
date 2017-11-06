@@ -11,8 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.ac.jbnu.se.advweb.product.model.Product;
+import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
 
@@ -46,7 +48,17 @@ public class SearchProductServlet extends HttpServlet {
 
 		// ㄱ.2 검색한 단어를 이용하여 DB에서 제품에 대한 정보를 불러온다.
 		Connection conn = MyUtils.getStoredConnection(request);
+		HttpSession session = request.getSession();
 
+		// Check User has logged on
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+
+		// Not logged in
+		if (loginedUser == null) {
+			// Redirect to login page.
+			response.sendRedirect(request.getContextPath() + "/login");
+			return;
+		}
 		// ㄱ.3 DB에서 받아온 정보를 배열 넣는다.
 
 		List<Product> searchList = null;

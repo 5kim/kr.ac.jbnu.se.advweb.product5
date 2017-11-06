@@ -2,8 +2,6 @@ package kr.ac.jbnu.se.advweb.product.model;
 
 public class UserAccount {
 
-	public static final String GENDER_MALE = "M";
-	public static final String GENDER_FEMALE = "F";
 
 	
 	private String id;
