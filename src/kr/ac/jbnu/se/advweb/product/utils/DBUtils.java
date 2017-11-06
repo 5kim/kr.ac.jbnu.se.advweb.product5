@@ -21,6 +21,7 @@ import kr.ac.jbnu.se.advweb.product.model.Coupon;
 import kr.ac.jbnu.se.advweb.product.model.Order;
 import kr.ac.jbnu.se.advweb.product.model.OrderNProduct;
 import kr.ac.jbnu.se.advweb.product.model.Product;
+import kr.ac.jbnu.se.advweb.product.model.StaticData;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 
 public class DBUtils {
@@ -639,7 +640,7 @@ public class DBUtils {
 		pstm.executeUpdate();		
 	}
 
-	public static List<UserAccount> queryOrdersByProductNumber(Connection conn, String productNumber) throws SQLException {
+	public static List<StaticData> queryOrdersByProductNumber(Connection conn, String productNumber) throws SQLException {
 		// TODO Auto-generated method stub
 		String sql = "select * "
 				   + "from orders, user "
@@ -647,17 +648,15 @@ public class DBUtils {
 		
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
+		List<StaticData> list= new ArrayList<>();
+		
 		if(rs.next()) {
-			rs.getString("gender");
-			rs.getDate("date");
-			
+			StaticData staticData = new StaticData();
+			staticData.setGender(rs.getString("gender"));
+			staticData.setBirth(rs.getDate("date"));
+			list.add(staticData);
 		}
-		List<UserAccount> list= new ArrayList<>();
-		UserAccount userAccount = new UserAccount();
-//		userAccount.setBirth(birth);
-//		userAccount.setGender(gender);
-		list.add(userAccount );
-		return null;
+		return list;
 	}
 
 
