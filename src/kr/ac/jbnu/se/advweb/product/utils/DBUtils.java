@@ -110,9 +110,18 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 	
-//	public static void updateUser(Connection conn, UserAccount user) throws SQLException {
-//		String sql = "Update user set "
-//	}
+	public static void updateUser(Connection conn, UserAccount user, String id) throws SQLException {
+		String sql = "Update user set password= ?, contact= ?, address= ?, email= ? where id= '" + id + "'";
+		
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		
+		pstm.setString(1, user.getPassword());
+		pstm.setInt(2, user.getContact());
+		pstm.setString(3, user.getAddress());
+		pstm.setString(4, user.getEmail());
+		
+		pstm.executeUpdate();
+	}
 	
 	public static List<UserAccount> queryUser(Connection conn) throws SQLException {
 		String sql = "Select * from user a ";

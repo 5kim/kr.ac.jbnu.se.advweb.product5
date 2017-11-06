@@ -44,12 +44,19 @@ public class UserMainServlet extends HttpServlet {
 		// Not logged in
 		if (loginedUser == null) {
 			// Redirect to login page.
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/userMain2.jsp");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/notloginedMain.jsp");
 			dispatcher.forward(request, response);
 		}
 		else {
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/userMain.jsp");
-			dispatcher.forward(request, response);
+			System.out.println(loginedUser.getId());
+			if (loginedUser.getId().equals("admin")) {
+				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/adminuserMain.jsp");
+				dispatcher.forward(request, response);
+			}
+			else {
+				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/userMain.jsp");
+				dispatcher.forward(request, response);
+			}
 			
 		}
 

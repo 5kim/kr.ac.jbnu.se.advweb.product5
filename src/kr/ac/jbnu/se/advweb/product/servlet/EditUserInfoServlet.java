@@ -57,6 +57,7 @@ public class EditUserInfoServlet extends HttpServlet {
 		// Store info to the request attribute before forwarding.
 		request.setAttribute("user", loginedUser);
 
+		System.out.println(loginedUser.getAddress());
 		RequestDispatcher dispatcher = this.getServletContext()
 				.getRequestDispatcher("/WEB-INF/views/editUserInfoView.jsp");
 		dispatcher.forward(request, response);
@@ -91,7 +92,7 @@ public class EditUserInfoServlet extends HttpServlet {
 		String contactStr = request.getParameter("contact");		
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
-		
+		System.out.println(address);
 		int birth = 0;
 		int contact = 0;
 		try {
@@ -113,7 +114,7 @@ public class EditUserInfoServlet extends HttpServlet {
 
 		if (errorString == null) {
 			try {
-				DBUtils.insertUser(conn, user);
+				DBUtils.updateUser(conn, user, id);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				errorString = e.getMessage();
