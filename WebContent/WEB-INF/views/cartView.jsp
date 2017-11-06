@@ -19,15 +19,26 @@
 		</div>
 		<div id="main">
 			<h3>Cart</h3>
-			<c:forEach items="${cartList}" var="cart">
+			<table border="1" cellpadding="5" cellspacing="1">
 				<tr>
-					<td>${cart.userId}</td>
-					<td>${cart.productNumber}</td>
-					<td>${cart.count}</td>
+					<th>cartNumber</th>
+					<th>userId</th>
+					<th>productNumber</th>
+					<th>count</th>
+					<th>Delete</th>
 				</tr>
-			</c:forEach>
-
+				<c:forEach items="${cartList}" var="cart">
+					<tr>
+						<td>${cart.cartNumber}</td>
+						<td>${cart.userId}</td>
+						<td>${cart.productNumber}</td>
+						<td>${cart.count}</td>
+						<td><a href="deleteCart?cartNumber=${cart.cartNumber }">Delete</a></td>
+					</tr>
+				</c:forEach>
+				</table>
 		</div>
+		
 		<div id="bottom">
 			<jsp:include page="_footer.jsp"></jsp:include>
 		</div>

@@ -290,10 +290,12 @@ public class DBUtils {
 		ResultSet rs = pstm.executeQuery();
 		List<Cart> list = new ArrayList<Cart>();
 		while (rs.next()) {
+			int cartNumber = rs.getInt("cartNumber");
 			int count = rs.getInt("count");
 			String productNumber = rs.getString("productNumber");
 			String userId = rs.getString("userId");
 			Cart cart = new Cart();
+			cart.setCartNumber(cartNumber);
 			cart.setCount(count);
 			cart.setUserId(userId);
 			cart.setProductNumber(productNumber);
@@ -598,6 +600,13 @@ public class DBUtils {
 		pstm.setString(3, product.getProductNumber());
 		pstm.setInt(4, 1);
 
+		pstm.executeUpdate();
+	}
+
+	public static void deleteCart(Connection conn, String cartNumber) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "Delete From cart where cartNumber = "+cartNumber;
+		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.executeUpdate();
 	}
 
