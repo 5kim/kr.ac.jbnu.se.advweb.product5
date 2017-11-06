@@ -25,19 +25,19 @@
 
 			<table border="1" cellpadding="5" cellspacing="1">
 				<tr>
-					<th>orderNumber</th>
 					<th>Product Name</th>
+					<th>Price</th>
 					<th>Order Date</th>
 					<th>Count</th>
 					<th>Delete</th>
 				</tr>
-				<c:forEach items="${orderList}" var="order">
+				<c:forEach items="${orderNProductList}" var="orderNProduct">
 					<tr>
-						<td><a href="productinfo?code=${order.productNumber}">${order.orderNumber}</td>
-						<td>${order.productNumber}</td>
-						<td>${order.date}</td>
-						<td>${order.count}</td>
-						<td><a href="deleteOrder?orderNumber=${order.orderNumber }">delete</td>
+						<td><a href="productinfo?code=${orderNProduc.productNumbert}">${orderNProduct.productName}</td>
+						<td>${orderNProduct.price}</td>
+						<td>${orderNProduct.date}</td>
+						<td>${orderNProduct.count}</td>
+						<td><a href="deleteOrder?orderNumber=${orderNProduct.orderNumber }">delete</td>
 					</tr>
 				</c:forEach>
 			</table>

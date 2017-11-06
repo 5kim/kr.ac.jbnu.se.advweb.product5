@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.sql.Date;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import com.mysql.jdbc.Blob;
 import kr.ac.jbnu.se.advweb.product.model.Cart;
 import kr.ac.jbnu.se.advweb.product.model.Coupon;
 import kr.ac.jbnu.se.advweb.product.model.Order;
+import kr.ac.jbnu.se.advweb.product.model.OrderNProduct;
 import kr.ac.jbnu.se.advweb.product.model.Product;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 
@@ -521,32 +523,36 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 
-	public static List<Order> queryUserOrder(Connection conn, String id) throws SQLException {
+	public static List<OrderNProduct> queryUserOrder(Connection conn, String id) throws SQLException {
 		// TODO Auto-generated method stub
 
-		String sql = "Select * from orders where customerId='" + id + "'";
-
+		String sql = "Select * "
+				+ "from orders, product "
+				+ "where orders.productNumber = product.productNumber "
+				+ "AND customerId= '"+id+"'";
 		PreparedStatement pstm = conn.prepareStatement(sql);
 
 		ResultSet rs = pstm.executeQuery();
-		List<Order> list = new ArrayList<Order>();
+		List<OrderNProduct> productList = new ArrayList<OrderNProduct>();
 		while (rs.next()) {
 			
-			String custromerId = rs.getString("customerId");
-			String productNumber = rs.getString("productNumber");
-			Date date  = rs.getDate("Date");		
+			String productName = rs.getString("name");
+			float price = rs.getFloat("price");
+			Date date  = rs.getDate("date");		
 			int count = rs.getInt("count");		
+			String productNumber = rs.getString("productNumber");
 			int orderNumber = rs.getInt("orderNumber");
-			Order order = new Order();
-			order.setOrderNumber(orderNumber);
-			order.setCustromerId(custromerId);
-			order.setProductNumber(productNumber);
-			order.setDate(date);
-			order.setCount(count);
-
-			list.add(order);
+			
+			OrderNProduct orderNProduct = new OrderNProduct();
+			orderNProduct.setOrderNumber(orderNumber);
+			orderNProduct.setDate(date);
+			orderNProduct.setCount(count);
+			orderNProduct.setProductName(productName);
+			orderNProduct.setPrice(price);
+			orderNProduct.setProductNumber(productNumber);
+			productList.add(orderNProduct);
 		}
-		return list;
+		return productList;
 	}
 
 	public static void updateProduct(Connection conn, Product product, int newCount) throws SQLException {

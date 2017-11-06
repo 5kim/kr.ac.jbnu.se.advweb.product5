@@ -3,6 +3,8 @@ package kr.ac.jbnu.se.advweb.product.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.mail.Session;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.ac.jbnu.se.advweb.product.model.Order;
+import kr.ac.jbnu.se.advweb.product.model.OrderNProduct;
 import kr.ac.jbnu.se.advweb.product.model.UserAccount;
 import kr.ac.jbnu.se.advweb.product.utils.DBUtils;
 import kr.ac.jbnu.se.advweb.product.utils.MyUtils;
@@ -42,17 +45,17 @@ public class OrderedProductListServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Connection conn = MyUtils.getStoredConnection(request);
-		List<Order> orderList = null;
 		HttpSession session = request.getSession();
 		UserAccount userAccount = MyUtils.getLoginedUser(session);
+		List<OrderNProduct> orderNProductList = new ArrayList<>();
 		try {
-			orderList = DBUtils.queryUserOrder(conn, userAccount.getId());
+			orderNProductList = DBUtils.queryUserOrder(conn, userAccount.getId());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		request.setAttribute("orderList", orderList);
+		request.setAttribute("orderNProductList", orderNProductList);
 		RequestDispatcher dispatcher = this.getServletContext()
 				.getRequestDispatcher("/WEB-INF/views//orderedProductListView.jsp");
 		dispatcher.forward(request, response);
