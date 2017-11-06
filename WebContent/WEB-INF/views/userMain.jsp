@@ -20,7 +20,7 @@
 		<h3>Log Out</h3>
 		<b>Thank you for use our site!</b><br>
 		<b>Good bye~</b><br>
-		<button type="button" onClick="location.href='${pageContext.request.contextPath}/logout'">Logout</button>		
+		<button type="button" onClick="location.href='${pageContext.request.contextPath}/logout'" method="POST">Logout</button>		
 		</div>
 		<div style="float: right; height: 100px; width: 50%;">
 		<h3>Edit Information</h3>

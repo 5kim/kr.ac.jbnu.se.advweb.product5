@@ -25,6 +25,8 @@ public class LogoutServlet extends HttpServlet {
      */
     public LogoutServlet() {
         super();
+        
+        
         // TODO Auto-generated constructor stub
     }
 
@@ -34,22 +36,20 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		MyUtils s= new MyUtils();
+		s.deleteUserCookie(response);
+		
+		HttpSession session = request.getSession();
+		session.invalidate();
+		response.sendRedirect(request.getContextPath() + "/home");
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
 
-		// Check User has logged on
-		UserAccount loginedUser = MyUtils.getLoginedUser(session);
-		MyUtils.deleteUserCookie(response);
-		// Store info to the request attribute before forwarding.
-		RequestDispatcher dispatcher = this.getServletContext()
-				.getRequestDispatcher("/WEB-INF/views/homeView.jsp");
-		dispatcher.forward(request, response);
 	}
 
 }

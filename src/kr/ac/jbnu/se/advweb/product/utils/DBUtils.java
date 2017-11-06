@@ -629,5 +629,23 @@ public class DBUtils {
 		pstm.executeUpdate();		
 	}
 
+	public static List<UserAccount> queryOrdersByProductNumber(Connection conn, String productNumber) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "select * "
+				   + "from orders, user "
+			       + "where user.id = orders.customerid, productNumber ='"+productNumber+"'";
+		
+		PreparedStatement pstm = conn.prepareStatement(sql);
+		ResultSet rs = pstm.executeQuery();
+		rs.getString("gender");
+		
+		List<UserAccount> list= new ArrayList<>();
+		UserAccount userAccount = new UserAccount();
+//		userAccount.setBirth(birth);
+//		userAccount.setGender(gender);
+		list.add(userAccount );
+		return null;
+	}
+
 
 }
