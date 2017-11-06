@@ -53,7 +53,7 @@ public class DBUtils {
 			user.setGender(gender);
 			user.setContact(contact);
 			user.setEmail(email);
-
+			user.setAddress(address);
 			return user;
 		}
 		return null;

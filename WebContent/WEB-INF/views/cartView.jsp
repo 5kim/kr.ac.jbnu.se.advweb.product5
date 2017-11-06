@@ -31,7 +31,7 @@
 					<tr>
 						<td>${cart.cartNumber}</td>
 						<td>${cart.userId}</td>
-						<td>${cart.productNumber}</td>
+						<td><a href="productinfo?code=${cart.productNumber}">${cart.productNumber}</td>
 						<td>${cart.count}</td>
 						<td><a href="deleteCart?cartNumber=${cart.cartNumber }">Delete</a></td>
 					</tr>
