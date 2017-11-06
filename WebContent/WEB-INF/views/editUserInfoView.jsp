@@ -20,7 +20,7 @@
 			<h3>Edit Information</h3>
 			<form method="POST"
 				action="${pageContext.request.contextPath}/edituser">
-				ID : ${user.id} <br> 
+				ID : <a name="id" value="${user.id}">${user.id}</a> <br> 
 				PASSWORD : <input type="password" name="password" value="${user.password }"><br> 
 				NAME : ${user.name }<br>
 				BIRTHDAY : ${user.birth }<br> 

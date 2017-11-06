@@ -21,15 +21,12 @@
 		<div id="main">
 			<h3>Edit Product</h3>
 
-			<p style="color: red;">${errorString}</p>
-
-
 				<form method="POST"
 					action="${pageContext.request.contextPath}/editProduct">
 					<table border="0">
 						<tr>
 							<td>Code</td>
-							<td style="color: red;">${product.productNumber}</td>
+							<td name="productNumber" style="color: red;">${product.productNumber}</td>
 						</tr>
 						<tr>
 							<td>Inventory</td>
@@ -41,7 +38,7 @@
 						</tr>
 						<tr>
 							<td>Recommend</td>
-							<td><input type="text" name="recomend" value="${product.recommend}" /></td>
+							<td><input type="text" name="recommend" value="${product.recommend}" /></td>
 						</tr>
 						<tr>
 						<tr>

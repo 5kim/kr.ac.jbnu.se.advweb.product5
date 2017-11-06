@@ -27,7 +27,7 @@ public class Product {
 		this.category = category;
 	}
 	
-	public Product(String productNumber, float price,int inventory) {
+	public Product(String productNumber, float price, int inventory) {
 		this.productNumber = productNumber;
 		this.price = price;
 		this.inventory = inventory;

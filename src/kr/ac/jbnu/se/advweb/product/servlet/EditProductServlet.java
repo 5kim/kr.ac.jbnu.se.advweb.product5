@@ -93,12 +93,12 @@ public class EditProductServlet extends HttpServlet {
 		float price = 0;
 		int inventory = 0;
 		int recommend = 0;
-		System.out.println(recommendStr);
+
 		try {
 			price = Float.parseFloat(priceStr);
 			inventory = Integer.parseInt(inventoryStr);
 			recommend = Integer.parseInt(recommendStr);
-			System.out.println(recommendStr);
+
         } catch (Exception e) {
         }
         Product product = new Product(productNumber,price,inventory);
@@ -113,7 +113,7 @@ public class EditProductServlet extends HttpServlet {
         }
         // Store infomation to request attribute, before forward to views.
         request.setAttribute("errorString", errorString);
-        request.setAttribute("editProduct", product);
+        request.setAttribute("product", product);
  
         // If error, forward to Edit page.
         if (errorString != null) {

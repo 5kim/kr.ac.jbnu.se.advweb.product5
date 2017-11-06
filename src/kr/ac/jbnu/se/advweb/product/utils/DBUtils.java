@@ -77,7 +77,6 @@ public class DBUtils {
 			int contact = rs.getInt("contact");
 			String email = rs.getString("email");
 			String address = rs.getString("address");
-			System.out.println("세번째" + address);
 			
 			UserAccount user = new UserAccount();
 
@@ -112,15 +111,17 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 	
-	public static void updateUser(Connection conn, UserAccount user, String id) throws SQLException {
-		String sql = "Update user set password= ?, contact= ?, address= ?, email= ? where id= '" + id + "'";
+	public static void updateUser(Connection conn, String password, int contact, String address, String email, String id) throws SQLException {
+		String sql = "Update user set password= ?, contact= ?, email= ?, address= ? where id= '" + id + "'";
 		
 		PreparedStatement pstm = conn.prepareStatement(sql);
-		
-		pstm.setString(1, user.getPassword());
-		pstm.setInt(2, user.getContact());
-		pstm.setString(3, user.getAddress());
-		pstm.setString(4, user.getEmail());
+		System.out.println(password);
+		System.out.println(contact);
+		System.out.println(address);
+		pstm.setString(1, password);
+		pstm.setInt(2, contact);
+		pstm.setString(3, email);
+		pstm.setString(4, address);
 		
 		pstm.executeUpdate();
 	}

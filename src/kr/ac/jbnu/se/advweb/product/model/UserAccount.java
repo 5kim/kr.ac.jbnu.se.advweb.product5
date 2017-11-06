@@ -30,6 +30,14 @@ public class UserAccount {
 		this.address = address;
 	}
 
+	public UserAccount(String password, int contact, String email, String address) {
+		// TODO Auto-generated constructor stub
+		this.password = password;
+		this.contact = contact;
+		this.email = email;
+		this.address = address;
+	}
+
 	public String getId() {
 		return id;
 	}

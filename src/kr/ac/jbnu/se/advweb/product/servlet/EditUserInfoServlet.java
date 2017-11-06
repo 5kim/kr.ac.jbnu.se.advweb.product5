@@ -2,6 +2,7 @@ package kr.ac.jbnu.se.advweb.product.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -82,44 +83,35 @@ public class EditUserInfoServlet extends HttpServlet {
 
 		Connection conn = MyUtils.getStoredConnection(request);
 		HttpSession session = request.getSession();
-		UserAccount user = MyUtils.getLoginedUser(session);
-		
-		String id = request.getParameter("id");
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+
+//		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		String name = request.getParameter("name");
-		String birthStr = request.getParameter("birth");
-		String gender = request.getParameter("gender");
+//		String name = request.getParameter("name");
+//		String birthStr = request.getParameter("birth");
+//		String gender = request.getParameter("gender");
 		String contactStr = request.getParameter("contact");		
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
-		System.out.println(address);
-		int birth = 0;
+
+//		System.out.println("11111"+birthStr);
+//		Date birth = null;
 		int contact = 0;
 		try {
-			birth = Integer.parseInt(birthStr);
+//			birth = Date.valueOf(birthStr);
 			contact = Integer.parseInt(contactStr);
 		} catch (Exception e) {
 		}
-		
-//		user = new UserAccount(id, password, name, birth, gender, contact, email, address);
-		user.setAddress(address);
-		user.setContact(contact);
-		user.setPassword(password);
-		user.setEmail(email);
+
 
 		String errorString = null;
 
 		// Product ID is the string literal [a-zA-Z_0-9]
 		// with at least 1 character
-		String regex = "\\w+";
-
-		if (id == null || !id.matches(regex)) {
-			errorString = "id invalid!";
-		}
 
 		if (errorString == null) {
 			try {
-				DBUtils.updateUser(conn, user, id);
+				DBUtils.updateUser(conn, password, contact, email, address, loginedUser.getId());
 			} catch (SQLException e) {
 				e.printStackTrace();
 				errorString = e.getMessage();
@@ -128,7 +120,7 @@ public class EditUserInfoServlet extends HttpServlet {
 
 		// Store infomation to request attribute, before forward to views.
 		request.setAttribute("errorString", errorString);
-		request.setAttribute("user", user);
+		request.setAttribute("user", loginedUser);
 
 		// If error, forward to Edit page.
 		if (errorString != null) {
