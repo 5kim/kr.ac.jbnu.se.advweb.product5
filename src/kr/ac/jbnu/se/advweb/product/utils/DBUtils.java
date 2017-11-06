@@ -650,7 +650,7 @@ public class DBUtils {
 		ResultSet rs = pstm.executeQuery();
 		List<StaticData> list= new ArrayList<>();
 		
-		if(rs.next()) {
+		while(rs.next()) {
 			StaticData staticData = new StaticData();
 			staticData.setGender(rs.getString("gender"));
 			staticData.setBirth(rs.getDate("date"));

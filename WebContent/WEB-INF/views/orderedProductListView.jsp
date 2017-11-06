@@ -33,7 +33,7 @@
 				</tr>
 				<c:forEach items="${orderNProductList}" var="orderNProduct">
 					<tr>
-						<td><a href="productinfo?code=${orderNProduc.productNumbert}">${orderNProduct.productName}</td>
+						<td><a href="productinfo?code=${orderNProduct.productNumber}">${orderNProduct.productName}</td>
 						<td>${orderNProduct.price}</td>
 						<td>${orderNProduct.date}</td>
 						<td>${orderNProduct.count}</td>
