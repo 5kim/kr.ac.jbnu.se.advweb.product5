@@ -26,19 +26,16 @@
 			<table border="1" cellpadding="5" cellspacing="1">
 				<tr>
 					<th>orderNumber</th>
-					<th>Name</th>
-					<th>Price</th>
-					<th>seller</th>
-					<th>description</th>
+					<th>Product Name</th>
+					<th>Order Date</th>
 					<th>Count</th>
-				
+					<th>Delete</th>
 				</tr>
 				<c:forEach items="${orderList}" var="order">
 					<tr>
-						<td><a href="productinfo?code=${order.productNumber}">${order.productNumber}</td>
-						<td>${order.orderNumber}</td>
-						<td>${order.count}</td>
-						<td>${order.count}</td>
+						<td><a href="productinfo?code=${order.productNumber}">${order.orderNumber}</td>
+						<td>${order.productNumber}</td>
+						<td>${order.date}</td>
 						<td>${order.count}</td>
 						<td><a href="productDelete?code=${order.productNumber}">delete</td>
 					</tr>

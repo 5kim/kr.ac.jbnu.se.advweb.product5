@@ -531,12 +531,14 @@ public class DBUtils {
 		ResultSet rs = pstm.executeQuery();
 		List<Order> list = new ArrayList<Order>();
 		while (rs.next()) {
+			
 			String custromerId = rs.getString("customerId");
 			String productNumber = rs.getString("productNumber");
 			Date date  = rs.getDate("Date");		
 			int count = rs.getInt("count");		
-			
+			int orderNumber = rs.getInt("orderNumber");
 			Order order = new Order();
+			order.setOrderNumber(orderNumber);
 			order.setCustromerId(custromerId);
 			order.setProductNumber(productNumber);
 			order.setDate(date);
