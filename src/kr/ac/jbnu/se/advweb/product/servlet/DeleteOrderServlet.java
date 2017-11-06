@@ -34,17 +34,17 @@ public class DeleteOrderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//1 상품의 상품 번호를 가지고 온다.
-		String productNumber = request.getParameter("productNumber");
+		String orderNumber = request.getParameter("orderNumber");
 		//2. 상품 번호를 이용하여 DB에서 삭제한다.
 		Connection conn = MyUtils.getStoredConnection(request);
 		try {
-			DBUtils.deleteProduct(conn, productNumber);
+			DBUtils.deleteOrder(conn, orderNumber);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//3. 다시 재고 화면으로 돌아간다.
-		response.sendRedirect(request.getContextPath() + "/productList");
+		response.sendRedirect(request.getContextPath() + "/orderedlist");
 		
 	}
 

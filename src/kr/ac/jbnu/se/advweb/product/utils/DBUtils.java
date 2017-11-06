@@ -612,5 +612,13 @@ public class DBUtils {
 		pstm.executeUpdate();
 	}
 
+	public static void deleteOrder(Connection conn, String orderNumber) throws SQLException {
+		String sql = "Delete From orders where orderNumber = "+orderNumber;
+
+		PreparedStatement pstm = conn.prepareStatement(sql);
+
+		pstm.executeUpdate();		
+	}
+
 
 }

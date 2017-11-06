@@ -37,7 +37,7 @@
 						<td>${order.productNumber}</td>
 						<td>${order.date}</td>
 						<td>${order.count}</td>
-						<td><a href="productDelete?code=${order.productNumber}">delete</td>
+						<td><a href="deleteOrder?orderNumber=${order.orderNumber }">delete</td>
 					</tr>
 				</c:forEach>
 			</table>
